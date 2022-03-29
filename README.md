@@ -1,77 +1,224 @@
-# Turborepo starter with NPM
+<div id="top"></div>
+<!--
+*** Thanks for checking out the Best-README-Template. If you have a suggestion
+*** that would make this better, please fork the repo and create a pull request
+*** or simply open an issue with the tag "enhancement".
+*** Don't forget to give the project a star!
+*** Thanks again! Now go create something AMAZING! :D
+-->
 
-This is an official starter turborepo.
+<!-- PROJECT SHIELDS -->
+<!--
+*** I'm using markdown "reference style" links for readability.
+*** Reference links are enclosed in brackets [ ] instead of parentheses ( ).
+*** See the bottom of this document for the declaration of the reference variables
+*** for contributors-url, forks-url, etc. This is an optional, concise syntax you may use.
+*** https://www.markdownguide.org/basic-syntax/#reference-style-links
+-->
 
-## What's inside?
+<!-- [![Contributors][contributors-shield]][contributors-url] -->
+<!-- [![Forks][forks-shield]][forks-url] -->
+<!-- [![Stargazers][stars-shield]][stars-url] -->
+<!-- [![Issues][issues-shield]][issues-url] -->
+<!-- [![MIT License][license-shield]][license-url] -->
+[![Twitter][twitter-shield]][twitter-url]
+[![LinkedIn][linkedin-shield]][linkedin-url]
 
-This turborepo uses [NPM](https://www.npmjs.com/) as a package manager. It includes the following packages/apps:
+<!-- PROJECT LOGO -->
+<br />
+<div align="center">
+  <a href="https://github.com/MylesWritesCode/mca-dashboard">
+    <img 
+      src="https://via.placeholder.com/160x160/303030/ffffff.png?text=PREVIEW" alt="Logo" width="160" height="160">
+  </a>
 
-### Apps and Packages
+<h3 align="center">MCA Dashboard</h3>
 
-- `docs`: a [Next.js](https://nextjs.org) app
-- `web`: another [Next.js](https://nextjs.org) app
-- `ui`: a stub React component library shared by both `web` and `docs` applications
-- `config`: `eslint` configurations (includes `eslint-config-next` and `eslint-config-prettier`)
-- `tsconfig`: `tsconfig.json`s used throughout the monorepo
+  <p align="center">
+    A readme too big for a boilerplate project
+    <br />
+    <a href="https://github.com/MylesWritesCode/mca-dashboard"><strong>Explore the docs »</strong></a>
+    <br />
+    <br />
+    <a href="https://github.com/MylesWritesCode/mca-dashboard">View Demo</a>
+    ·
+    <a href="https://github.com/MylesWritesCode/mca-dashboard/issues">Report Bug</a>
+    ·
+    <a href="https://github.com/MylesWritesCode/mca-dashboard/issues">Request Feature</a>
+  </p>
+</div>
 
-Each package/app is 100% [TypeScript](https://www.typescriptlang.org/).
+<!-- TABLE OF CONTENTS -->
+<details>
+  <summary>Table of Contents</summary>
+  <ol>
+    <li>
+      <a href="#about-the-project">About The Project</a>
+      <ul>
+        <li><a href="#built-with">Built With</a></li>
+      </ul>
+    </li>
+    <li>
+      <a href="#getting-started">Getting Started</a>
+      <ul>
+        <li><a href="#prerequisites">Prerequisites</a></li>
+        <li><a href="#installation">Installation</a></li>
+      </ul>
+    </li>
+    <li><a href="#usage">Usage</a></li>
+    <li><a href="#roadmap">Roadmap</a></li>
+    <li><a href="#contributing">Contributing</a></li>
+    <li><a href="#license">License</a></li>
+    <li><a href="#contact">Contact</a></li>
+    <li><a href="#acknowledgments">Acknowledgments</a></li>
+  </ol>
+</details>
 
-### Utilities
+<!-- ABOUT THE PROJECT -->
 
-This turborepo has some additional tools already setup for you:
+## About The Project
 
-- [TypeScript](https://www.typescriptlang.org/) for static type checking
-- [ESLint](https://eslint.org/) for code linting
-- [Prettier](https://prettier.io) for code formatting
+<div align="center">
+<br />
+<img src="https://via.placeholder.com/500x280/303030/ffffff.png?text=PREVIEW">
+<br />
+<br />
+</div>
 
-## Setup
+Another project description but there's literally nothing here :)
 
-This repository is used in the `npx create-turbo@latest` command, and selected when choosing which package manager you wish to use with your monorepo (NPM).
+<p align="right">(<a href="#top">back to top</a>)</p>
 
-### Build
+### Built With
 
-To build all apps and packages, run the following command:
+- [Turborepo](https://turborepo.org/)
+- [Next.js](https://nextjs.org/)
+- [Stencil.js](https://stenciljs.com/)
 
-```
-cd my-turborepo
-npm run build
-```
+<p align="right">(<a href="#top">back to top</a>)</p>
 
-### Develop
+<!-- GETTING STARTED -->
 
-To develop all apps and packages, run the following command:
+## Getting Started
 
-```
-cd my-turborepo
-npm run dev
-```
+This is an example of how you may give instructions on setting up your project
+locally. To get a local copy up and running follow these simple example steps.
 
-### Remote Caching
+### Prerequisites
 
-Turborepo can use a technique known as [Remote Caching (Beta)](https://turborepo.org/docs/features/remote-caching) to share cache artifacts across machines, enabling you to share build caches with your team and CI/CD pipelines.
+This is an example of how to list things you need to use the software and how to
+install them.
 
-By default, Turborepo will cache locally. To enable Remote Caching (Beta) you will need an account with Vercel. If you don't have an account you can [create one](https://vercel.com/signup), then enter the following commands:
+- npm
+  ```sh
+  npm install npm@latest -g
+  ```
 
-```
-cd my-turborepo
-npx turbo login
-```
+### Installation
 
-This will authenticate the Turborepo CLI with your [Vercel account](https://vercel.com/docs/concepts/personal-accounts/overview).
+1. Get a free API Key at [https://example.com](https://example.com)
+2. Clone the repo
+   ```sh
+   git clone https://github.com/MylesWritesCode/mca-dashboard.git
+   ```
+3. Install NPM packages
+   ```sh
+   npm install
+   ```
+4. Enter your API in `config.js`
+   ```js
+   const API_KEY = "ENTER YOUR API";
+   ```
 
-Next, you can link your Turborepo to your Remote Cache by running the following command from the root of your turborepo:
+<p align="right">(<a href="#top">back to top</a>)</p>
 
-```
-npx turbo link
-```
+<!-- USAGE EXAMPLES -->
 
-## Useful Links
+## Usage
 
-Learn more about the power of Turborepo:
+Use this space to show useful examples of how a project can be used. Additional screenshots, code examples and demos work well in this space. You may also link to more resources.
 
-- [Pipelines](https://turborepo.org/docs/features/pipelines)
-- [Caching](https://turborepo.org/docs/features/caching)
-- [Remote Caching (Beta)](https://turborepo.org/docs/features/remote-caching)
-- [Scoped Tasks](https://turborepo.org/docs/features/scopes)
-- [Configuration Options](https://turborepo.org/docs/reference/configuration)
-- [CLI Usage](https://turborepo.org/docs/reference/command-line-reference)
+_For more examples, please refer to the [Documentation](https://example.com)_
+
+<p align="right">(<a href="#top">back to top</a>)</p>
+
+<!-- ROADMAP -->
+
+## Roadmap
+
+- [ ] Feature 1
+- [ ] Feature 2
+- [ ] Feature 3
+  - [ ] Nested Feature
+
+See the [open issues](https://github.com/MylesWritesCode/mca-dashboard/issues) for a full list of proposed features (and known issues).
+
+<p align="right">(<a href="#top">back to top</a>)</p>
+
+<!-- CONTRIBUTING -->
+
+## Contributing
+
+Contributions are what make the open source community such an amazing place to
+learn, inspire, and create.
+Any contributions you make are **greatly appreciated**.
+
+If you have a suggestion that would make this better, please fork the repo and
+create a pull request. You can also simply open an issue with the tag
+"enhancement". Don't forget to give the project a star! Thanks again!
+
+1. Fork the Project
+2. Create your Feature Branch (`git checkout -b feature/AmazingFeature`)
+3. Commit your Changes (`git commit -m 'Add some AmazingFeature'`)
+4. Push to the Branch (`git push origin feature/AmazingFeature`)
+5. Open a Pull Request
+
+<p align="right">(<a href="#top">back to top</a>)</p>
+
+<!-- LICENSE -->
+
+## License
+
+Distributed under the MIT License. See `LICENSE.txt` for more information.
+
+<p align="right">(<a href="#top">back to top</a>)</p>
+
+<!-- CONTACT -->
+
+## Contact
+
+Myles Berueda - [@MylesCodesEmoji](https://twitter.com/MylesCodesEmoji) - me@themapletree.io
+
+Project Link: [https://github.com/MylesWritesCode/mca-dashboard](https://github.com/MylesWritesCode/mca-dashboard)
+
+<p align="right">(<a href="#top">back to top</a>)</p>
+
+<!-- ACKNOWLEDGMENTS -->
+<!-- ## Acknowledgments -->
+<!--  -->
+<!-- * []() -->
+<!-- * []() -->
+<!-- * []() -->
+
+<!-- <p align="right">(<a href="#top">back to top</a>)</p> -->
+
+<!-- MARKDOWN LINKS & IMAGES -->
+<!-- https://www.markdownguide.org/basic-syntax/#reference-style-links -->
+
+[contributors-shield]: https://img.shields.io/github/contributors/MylesWritesCode/mca-dashboard.svg?style=for-the-badge
+[contributors-url]: https://github.com/MylesWritesCode/mca-dashboard/graphs/contributors
+[forks-shield]: https://img.shields.io/github/forks/MylesWritesCode/mca-dashboard.svg?style=for-the-badge
+[forks-url]: https://github.com/MylesWritesCode/mca-dashboard/network/members
+[stars-shield]: https://img.shields.io/github/stars/MylesWritesCode/mca-dashboard.svg?style=for-the-badge
+[stars-url]: https://github.com/MylesWritesCode/mca-dashboard/stargazers
+[issues-shield]: https://img.shields.io/github/issues/MylesWritesCode/mca-dashboard.svg?style=for-the-badge
+[issues-url]: https://github.com/MylesWritesCode/mca-dashboard/issues
+[license-shield]: https://img.shields.io/github/license/MylesWritesCode/mca-dashboard.svg?style=for-the-badge
+[license-url]: https://github.com/MylesWritesCode/mca-dashboard/blob/master/LICENSE.txt
+[linkedin-shield]: https://img.shields.io/badge/-LinkedIn-black.svg?style=for-the-badge&logo=linkedin&colorB=555
+[linkedin-url]: https://linkedin.com/in/myles-berueda
+[twitter-shield]: https://img.shields.io/twitter/follow/MylesCodesEmoji?style=for-the-badge
+[twitter-url]: https://twitter.com/MylesCodesEmoji
+[product-screenshot]: https://via.placeholder.com/500x280/303030/ffffff.png?text=PREVIEW
+
+<!-- [product-screenshot]:  -->
