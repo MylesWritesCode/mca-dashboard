@@ -6,7 +6,7 @@ export const Button: FunctionalComponent<ButtonProps> = ({
   ...props 
 }) => {
   function handleClick(e: Event) {
-    console.log('clicked');
+    console.log('clicked: ', e.target);
   }
 
   return (

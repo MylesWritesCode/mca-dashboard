@@ -6,8 +6,7 @@
     "dev": "next dev --port 3001",
     "build": "next build",
     "start": "next start",
-    "lint": "next lint",
-    "storybook": "start-storybook --config-dir '../.storybook' -p 6006"
+    "lint": "next lint"
   },
   "dependencies": {
     "next": "12.0.8",

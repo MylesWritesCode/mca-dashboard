@@ -3,12 +3,13 @@ import { reactOutputTarget as react } from '@stencil/react-output-target';
 
 export const config: Config = {
   namespace: 'MCA',
+  globalStyle: '../ui/styles/globals.css',
   outputTargets: [
     react({
       componentCorePackage: 'stencil',
       proxiesFile: '../ui/components/index.ts',
       includeDefineCustomElements: true,
-      loaderDir: 'stencil/loader',
+      loaderDir: 'loader',
     }),
     {
       type: 'dist',

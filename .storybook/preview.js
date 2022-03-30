@@ -1,4 +1,6 @@
-import { defineCustomElements } from '../packages/stencil/loader';
+import { defineCustomElements } from "../packages/stencil/loader";
+import "../packages/ui/styles/globals.css";
+
 defineCustomElements();
 
 export const parameters = {
@@ -9,4 +11,4 @@ export const parameters = {
       date: /Date$/,
     },
   },
-}
+};

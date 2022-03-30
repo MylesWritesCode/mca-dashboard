@@ -6,16 +6,6 @@
  */
 import { HTMLStencilElement, JSXBase } from "@stencil/core/internal";
 export namespace Components {
-    interface MButton {
-        /**
-          * The button type
-         */
-        "type": string;
-        /**
-          * The button variant
-         */
-        "variant": string;
-    }
     interface MyComponent {
         /**
           * The first name
@@ -32,12 +22,6 @@ export namespace Components {
     }
 }
 declare global {
-    interface HTMLMButtonElement extends Components.MButton, HTMLStencilElement {
-    }
-    var HTMLMButtonElement: {
-        prototype: HTMLMButtonElement;
-        new (): HTMLMButtonElement;
-    };
     interface HTMLMyComponentElement extends Components.MyComponent, HTMLStencilElement {
     }
     var HTMLMyComponentElement: {
@@ -45,21 +29,10 @@ declare global {
         new (): HTMLMyComponentElement;
     };
     interface HTMLElementTagNameMap {
-        "m-button": HTMLMButtonElement;
         "my-component": HTMLMyComponentElement;
     }
 }
 declare namespace LocalJSX {
-    interface MButton {
-        /**
-          * The button type
-         */
-        "type"?: string;
-        /**
-          * The button variant
-         */
-        "variant"?: string;
-    }
     interface MyComponent {
         /**
           * The first name
@@ -75,7 +48,6 @@ declare namespace LocalJSX {
         "middle"?: string;
     }
     interface IntrinsicElements {
-        "m-button": MButton;
         "my-component": MyComponent;
     }
 }
@@ -83,7 +55,6 @@ export { LocalJSX as JSX };
 declare module "@stencil/core" {
     export namespace JSX {
         interface IntrinsicElements {
-            "m-button": LocalJSX.MButton & JSXBase.HTMLAttributes<HTMLMButtonElement>;
             "my-component": LocalJSX.MyComponent & JSXBase.HTMLAttributes<HTMLMyComponentElement>;
         }
     }
