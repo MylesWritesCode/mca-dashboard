@@ -5,8 +5,8 @@ export const config: Config = {
   namespace: 'stencil',
   outputTargets: [
     react({
-      componentCorePackage: 'stencil',
-      proxiesFile: '../stencil/src/components/generated/index.ts',
+      componentCorePackage: 'component-library',
+      proxiesFile: '../component-library/src/components/stencil-generated/index.ts',
       includeDefineCustomElements: true,
     }),
     {
@@ -15,13 +15,6 @@ export const config: Config = {
     },
     {
       type: 'dist-custom-elements',
-    },
-    {
-      type: 'docs-readme',
-    },
-    {
-      type: 'www',
-      serviceWorker: null, // disable service workers
     },
   ],
 };

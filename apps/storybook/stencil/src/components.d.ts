@@ -6,8 +6,15 @@
  */
 import { HTMLStencilElement, JSXBase } from "@stencil/core/internal";
 export namespace Components {
-    interface McaButton {
-        "text": string;
+    interface MButton {
+        /**
+          * The button type
+         */
+        "type": string;
+        /**
+          * The button variant
+         */
+        "variant": string;
     }
     interface MyComponent {
         /**
@@ -25,11 +32,11 @@ export namespace Components {
     }
 }
 declare global {
-    interface HTMLMcaButtonElement extends Components.McaButton, HTMLStencilElement {
+    interface HTMLMButtonElement extends Components.MButton, HTMLStencilElement {
     }
-    var HTMLMcaButtonElement: {
-        prototype: HTMLMcaButtonElement;
-        new (): HTMLMcaButtonElement;
+    var HTMLMButtonElement: {
+        prototype: HTMLMButtonElement;
+        new (): HTMLMButtonElement;
     };
     interface HTMLMyComponentElement extends Components.MyComponent, HTMLStencilElement {
     }
@@ -38,13 +45,20 @@ declare global {
         new (): HTMLMyComponentElement;
     };
     interface HTMLElementTagNameMap {
-        "mca-button": HTMLMcaButtonElement;
+        "m-button": HTMLMButtonElement;
         "my-component": HTMLMyComponentElement;
     }
 }
 declare namespace LocalJSX {
-    interface McaButton {
-        "text"?: string;
+    interface MButton {
+        /**
+          * The button type
+         */
+        "type"?: string;
+        /**
+          * The button variant
+         */
+        "variant"?: string;
     }
     interface MyComponent {
         /**
@@ -61,7 +75,7 @@ declare namespace LocalJSX {
         "middle"?: string;
     }
     interface IntrinsicElements {
-        "mca-button": McaButton;
+        "m-button": MButton;
         "my-component": MyComponent;
     }
 }
@@ -69,7 +83,7 @@ export { LocalJSX as JSX };
 declare module "@stencil/core" {
     export namespace JSX {
         interface IntrinsicElements {
-            "mca-button": LocalJSX.McaButton & JSXBase.HTMLAttributes<HTMLMcaButtonElement>;
+            "m-button": LocalJSX.MButton & JSXBase.HTMLAttributes<HTMLMButtonElement>;
             "my-component": LocalJSX.MyComponent & JSXBase.HTMLAttributes<HTMLMyComponentElement>;
         }
     }

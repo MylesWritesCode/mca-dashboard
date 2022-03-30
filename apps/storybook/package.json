@@ -1,0 +1,16 @@
+{
+  "name": "storybook",
+  "version": "0.0.0",
+  "private": true,
+  "scripts": {
+    "dev": "(cd .. && npm run storybook)",
+    "build": "(cd stencil && stencil build --docs)"
+  },
+  "dependencies": {
+    "ui": "*"
+  },
+  "devDependencies": {
+    "config": "*",
+    "tsconfig": "*"
+  }
+}
