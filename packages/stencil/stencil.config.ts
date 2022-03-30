@@ -5,10 +5,10 @@ export const config: Config = {
   namespace: 'MCA',
   outputTargets: [
     react({
-      componentCorePackage: 'ui',
-      proxiesFile: '../../packages/ui/components/index.ts',
-      includeDefineCustomElements: false,
-      loaderDir: '../loader',
+      componentCorePackage: 'stencil',
+      proxiesFile: '../ui/components/index.ts',
+      includeDefineCustomElements: true,
+      loaderDir: 'stencil/loader',
     }),
     {
       type: 'dist',

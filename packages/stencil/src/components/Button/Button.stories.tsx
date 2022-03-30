@@ -1,4 +1,4 @@
-import { ComponentStory, ComponentMeta } from '@storybook/react';
+// import { Button } from './Button';
 import { MButton as Button } from 'ui';
 
 import { h } from '@stencil/core';
@@ -6,9 +6,9 @@ import { h } from '@stencil/core';
 export default {
   title: 'Button',
   component: Button,
-} as ComponentMeta<typeof Button>;
+};
 
-const Template: ComponentStory<typeof Button> = () => {
+const Template = () => {
   return <Button>buttonnnnnnnnnnnnnn</Button>;
 };
 

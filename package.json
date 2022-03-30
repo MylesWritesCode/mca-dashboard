@@ -12,7 +12,8 @@
     "lint": "turbo run lint",
     "format": "prettier --write \"**/*.{ts,tsx,md}\"",
     "storybook": "start-storybook -p 6006",
-    "build-storybook": "build-storybook"
+    "storybook:build": "build-storybook",
+    "turbo:storybook": "turbo run storybook --parallel"
   },
   "devDependencies": {
     "@babel/core": "^7.17.8",
