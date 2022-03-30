@@ -3,7 +3,8 @@ import { Component, Prop, h } from '@stencil/core';
 @Component({
   tag: 'm-button',
   // styleUrl: 'my-component.css',
-  shadow: true,
+  shadow: false,
+  scoped: false,
 })
 export class Button {
   /**
@@ -16,7 +17,15 @@ export class Button {
    */
   @Prop() variant: string;
 
+  private handleClick = () => {
+    console.log('clicked!');
+  };
+
   render() {
-    return <button>hi</button>;
+    return (
+      <button onClick={this.handleClick}>
+        <slot />
+      </button>
+    );
   }
 }

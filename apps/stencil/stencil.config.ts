@@ -2,12 +2,13 @@ import { Config } from '@stencil/core';
 import { reactOutputTarget as react } from '@stencil/react-output-target';
 
 export const config: Config = {
-  namespace: 'stencil',
+  namespace: 'MCA',
   outputTargets: [
     react({
-      componentCorePackage: 'component-library',
-      proxiesFile: '../component-library/src/components/stencil-generated/index.ts',
-      includeDefineCustomElements: true,
+      componentCorePackage: 'ui',
+      proxiesFile: '../../packages/ui/components/index.ts',
+      includeDefineCustomElements: false,
+      loaderDir: '../loader',
     }),
     {
       type: 'dist',

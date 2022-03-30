@@ -1,6 +1,6 @@
 module.exports = {
   "stories": [
-    "../**/*.stories.@(js|jsx|ts|tsx)",
+    "../apps/stencil/**/*.stories.@(js|jsx|ts|tsx)",
   ],
   "addons": [
     "@storybook/addon-links",
