@@ -1,31 +1,17 @@
-import { Component, Prop, h } from '@stencil/core';
+import { FunctionalComponent, h } from '@stencil/core';
+import type { ButtonProps } from './Button.types';
 
-@Component({
-  tag: 'm-button',
-  // styleUrl: 'my-component.css',
-  shadow: false,
-  scoped: false,
-})
-export class Button {
-  /**
-   * The button type
-   */
-  @Prop() type: string;
-
-  /**
-   * The button variant
-   */
-  @Prop() variant: string;
-
-  private handleClick = () => {
-    console.log('clicked!');
-  };
-
-  render() {
-    return (
-      <button onClick={this.handleClick}>
-        <slot />
-      </button>
-    );
+export const Button: FunctionalComponent<ButtonProps> = ({ 
+  variant = "primary", 
+  ...props 
+}) => {
+  function handleClick(e: Event) {
+    console.log('clicked');
   }
-}
+
+  return (
+    <button onClick={handleClick}>
+      { props.children }
+    </button>
+  );
+};

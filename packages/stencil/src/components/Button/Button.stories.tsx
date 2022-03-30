@@ -1,5 +1,4 @@
-// import { Button } from './Button';
-import { MButton as Button } from 'ui';
+import { Button } from './Button';
 
 import { h } from '@stencil/core';
 
@@ -8,8 +7,8 @@ export default {
   component: Button,
 };
 
-const Template = () => {
-  return <Button>buttonnnnnnnnnnnnnn</Button>;
+const Template = args => {
+  return <Button {...args}>buttonnnnnnnnnnnnnn</Button>;
 };
 
 export const Primary = Template.bind({});
