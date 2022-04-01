@@ -7,11 +7,21 @@ export default {
   component: Button,
 };
 
-const Template = args => {
-  return <Button {...args}>buttonnnnnnnnnnnnnn</Button>;
+export const Example = () => {
+  return <Button>Click me!</Button>;
 };
 
-export const Primary = Template.bind({});
-export const Secondary = Template.bind({});
-export const Warn = Template.bind({});
-export const Danger = Template.bind({});
+export const OneButton = args => {
+  return <Button {...args}>Click me!</Button>;
+};
+
+export const MultipleButtons = args => {
+  return (
+    <div>
+      <Button {...args}>Click me!</Button>
+      <Button {...args}>Click me!</Button>
+      <Button {...args}>Click me!</Button>
+      <Button {...args}>Click me!</Button>
+    </div>
+  );
+};
