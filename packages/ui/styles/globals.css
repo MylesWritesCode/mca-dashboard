@@ -1,85 +1,11 @@
 @import url("https://fonts.googleapis.com/css2?family=Roboto&display=swap");
+@import './darker.css';
 
 :root {
-  --primary: var(--blue-sapphire);
-  --secondary: var(--persian-green);
-
-  --blue-sapphire: #05668dff;
-  --metallic-seaweed: #028090ff;
-  --persian-green: #00a896ff;
-  --mountain-meadow: #02c39aff;
-  --pale-spring-bud: #f0f3bdff;
-
-  --gradient-top: linear-gradient(
-    0deg,
-    #05668dff,
-    #028090ff,
-    #00a896ff,
-    #02c39aff,
-    #f0f3bdff
-  );
-  --gradient-right: linear-gradient(
-    90deg,
-    #05668dff,
-    #028090ff,
-    #00a896ff,
-    #02c39aff,
-    #f0f3bdff
-  );
-  --gradient-bottom: linear-gradient(
-    180deg,
-    #05668dff,
-    #028090ff,
-    #00a896ff,
-    #02c39aff,
-    #f0f3bdff
-  );
-  --gradient-left: linear-gradient(
-    270deg,
-    #05668dff,
-    #028090ff,
-    #00a896ff,
-    #02c39aff,
-    #f0f3bdff
-  );
-  --gradient-top-right: linear-gradient(
-    45deg,
-    #05668dff,
-    #028090ff,
-    #00a896ff,
-    #02c39aff,
-    #f0f3bdff
-  );
-  --gradient-bottom-right: linear-gradient(
-    135deg,
-    #05668dff,
-    #028090ff,
-    #00a896ff,
-    #02c39aff
-  );
-  --gradient-top-left: linear-gradient(
-    225deg,
-    #05668dff,
-    #028090ff,
-    #00a896ff,
-    #02c39aff,
-    #f0f3bdff
-  );
-  --gradient-bottom-left: linear-gradient(
-    315deg,
-    #05668dff,
-    #028090ff,
-    #00a896ff,
-    #02c39aff,
-    #f0f3bdff
-  );
-  --gradient-radial: radial-gradient(
-    #05668dff,
-    #028090ff,
-    #00a896ff,
-    #02c39aff,
-    #f0f3bdff
-  );
+  --primary: var(--carolina-blue);
+  --secondary: var(--outer-space-crayola);
+  --warn: var(--rajah);
+  --error: var(--crimson);
 }
 
 body {
@@ -93,4 +19,25 @@ button {
   color: #fff;
   font-weight: 700;
   padding: 1em;
+  margin: 0.5rem;
+}
+
+.btn-primary {
+  background: var(--primary);
+  color: #fff;
+}
+
+.btn-secondary {
+  background: var(--secondary);
+  color: #fff;
+}
+
+.btn-warn {
+  background: var(--warn);
+  color: #fff;
+}
+
+.btn-error {
+  background: var(--error);
+  color: #fff;
 }
