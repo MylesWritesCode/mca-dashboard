@@ -1,13 +1,6 @@
-import React, { useEffect } from "react";
+import type { ButtonProps } from './Button.types';
 
 import './Button.module.css';
-
-export interface ButtonProps {
-  variant?: "primary" | "secondary" | "warning" | "danger" | "success";
-  className?: string;
-  children?: React.ReactNode;
-  styles?: React.CSSProperties;
-}
 
 export function Button({
   children,
