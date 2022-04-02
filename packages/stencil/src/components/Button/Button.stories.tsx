@@ -3,7 +3,7 @@ import { Button } from './Button';
 import { h } from '@stencil/core';
 
 export default {
-  title: 'Button',
+  title: 'Stencil/Button',
   component: Button,
 };
 

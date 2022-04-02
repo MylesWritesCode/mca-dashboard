@@ -7,7 +7,7 @@ export const config: Config = {
   outputTargets: [
     react({
       componentCorePackage: 'stencil',
-      proxiesFile: '../ui/components/index.ts',
+      proxiesFile: '../ui/stencil/index.ts',
       includeDefineCustomElements: true,
       loaderDir: 'loader',
     }),

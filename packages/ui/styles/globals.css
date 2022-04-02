@@ -1,11 +1,13 @@
 @import url("https://fonts.googleapis.com/css2?family=Roboto&display=swap");
-@import './darker.css';
+@import "https://unpkg.com/open-props";
+@import "./darker.css";
 
 :root {
   --primary: var(--carolina-blue);
   --secondary: var(--outer-space-crayola);
-  --warn: var(--rajah);
-  --error: var(--crimson);
+  --warning: var(--rajah);
+  --danger: var(--crimson);
+  --success: var(--keppel);
 }
 
 body {
@@ -20,24 +22,13 @@ button {
   font-weight: 700;
   padding: 1em;
   margin: 0.5rem;
+  box-shadow: var(--shadow-1);
 }
 
-.btn-primary {
-  background: var(--primary);
-  color: #fff;
+button:hover {
+  box-shadow: var(--shadow-2);
 }
 
-.btn-secondary {
-  background: var(--secondary);
-  color: #fff;
-}
-
-.btn-warn {
-  background: var(--warn);
-  color: #fff;
-}
-
-.btn-error {
-  background: var(--error);
-  color: #fff;
+button:active {
+  box-shadow: var(--shadow-1);
 }
