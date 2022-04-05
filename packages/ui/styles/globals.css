@@ -10,6 +10,13 @@
   --success: var(--keppel);
 }
 
+html,
+body,
+body > div:first-child,
+div#__next {
+  min-height: 100%;
+}
+
 body {
   font-family: "Roboto", "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
   margin: 0;
