@@ -1,4 +1,5 @@
-import type { NavigationDrawerItemProps } from "./Navigation.types";
+import { NavigationDrawerItemProps } from "./Navigation.types";
+import Link from "next/link";
 
 import "./Navigation.module.css";
 
@@ -10,11 +11,18 @@ export function NavigationItem({
   type = "nav-header",
   ...props
 }: NavigationDrawerItemProps): JSX.Element {
+  const IconComp = typeof icon === 'function' ? icon : null;
+
   return (
     <>
-      <div className={`nav-item ${type}`}>
-        {false && <img src={icon} alt={name} />} {name}
-      </div>
+      <Link href={url}>
+        <a>
+          <div className={`nav-item ${type}`}>
+            {IconComp && <IconComp className="nav-icon" />}
+            {name}
+          </div>
+        </a>
+      </Link>
       {items &&
         items.map((item, index) => {
           return <NavigationItem {...item} key={index} type="nav-sublink" />;

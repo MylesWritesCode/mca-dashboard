@@ -1,11 +1,14 @@
 /**
  * Story config object
  */
+
+import { FaHome } from 'react-icons/fa';
+
 export const items = [
   {
     name: "Home",
     url: "/",
-    icon: "home",
+    icon: FaHome,
     items: [],
   },
   {

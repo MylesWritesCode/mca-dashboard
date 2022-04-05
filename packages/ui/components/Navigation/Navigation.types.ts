@@ -1,3 +1,5 @@
+import type { IconType } from "react-icons/lib";
+
 export interface NavigationDrawerProps {
   items: NavigationDrawerItemProps[];
 }
@@ -5,7 +7,8 @@ export interface NavigationDrawerProps {
 export interface NavigationDrawerItemProps {
   name: string;
   url: string;
-  icon: string;
+  icon?: IconType; 
   items?: NavigationDrawerItemProps[];
-  type: "nav-header" | "nav-sublink";
+  type?: "nav-header" | "nav-sublink";
 }
+

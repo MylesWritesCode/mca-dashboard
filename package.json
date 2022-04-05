@@ -29,6 +29,7 @@
     "@types/webpack": "^5.28.0",
     "babel-loader": "^8.2.4",
     "prettier": "^2.5.1",
+    "react-icons": "^4.3.1",
     "turbo": "latest",
     "typescript": "^4.6.3"
   },
