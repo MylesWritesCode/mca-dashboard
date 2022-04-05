@@ -5,9 +5,9 @@
   height: 100%;
   justify-content: center;
   left: 0;
-  position: fixed;
+  position: sticky;
   top: 0;
-  transition: all 0.2s ease-in-out;
+  transition: all 0.5s ease-in-out;
   z-index: 100;
 }
 
@@ -28,7 +28,7 @@
   letter-spacing: 0.1rem;
   padding: 0.5rem 1rem;
   text-transform: uppercase;
-  transition: all 0.2s ease-in-out;
+  transition: all 1.5s ease-in-out;
   width: 150px;
 }
 
