@@ -17,14 +17,14 @@ body {
 }
 
 button {
-  background: var(--primary);
-  border-radius: 5px;
-  border: 0;
+  margin: 0.5rem;
   box-shadow: var(--shadow-1);
+  border: 0;
+  border-radius: 5px;
+  background: var(--primary);
+  padding: 1em;
   color: #fff;
   font-weight: 700;
-  margin: 0.5rem;
-  padding: 1em;
 }
 
 button:hover {
