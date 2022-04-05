@@ -5,7 +5,10 @@
  */
 
 import { NavigationDrawer } from "ui/components/Navigation";
+import { Header } from "ui/components/Header";
 import type { NavigationDrawerItemProps } from "../Navigation/Navigation.types";
+
+import "./Layout.css";
 
 interface LayoutProps {
   menuItems: NavigationDrawerItemProps[];
@@ -14,14 +17,12 @@ interface LayoutProps {
 
 export default function Layout({ menuItems, children }: LayoutProps) {
   return (
-    <>
-      {/* should probably have a header */}
-      <div>
+    <div className="layout">
+      <Header />
+      <div className="page">
         <NavigationDrawer items={menuItems} />
-        <main>
-          {children}
-        </main>
+        <main className="content">{children}</main>
       </div>
-    </>
+    </div>
   );
 }

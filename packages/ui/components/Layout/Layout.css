@@ -1,0 +1,20 @@
+.layout {
+  display: flex;
+  flex-direction: column;
+  flex: 1;
+  height: 100%;
+  width: 100%;
+  position: relative;
+  overflow: hidden;
+}
+
+.page {
+  display: flex;
+  flex-direction: row;
+  max-width: 100%;
+  min-height: 100%;
+}
+
+.content {
+  margin: 1rem;
+}

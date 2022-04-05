@@ -9,7 +9,7 @@ export interface NavigationDrawerItemProps {
   url: string;
   icon?: IconType | string; 
   items?: NavigationDrawerItemProps[];
-  type?: "nav-header" | "nav-sublink";
+  type?: "nav-drawer-header" | "nav-drawer-item";
 }
 
 export function isIconType(icon: IconType | string): icon is IconType {
