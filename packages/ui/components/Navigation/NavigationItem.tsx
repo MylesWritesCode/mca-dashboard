@@ -1,7 +1,7 @@
 import { NavigationDrawerItemProps } from "./Navigation.types";
 import Link from "next/link";
 
-import "./Navigation.module.css";
+import "./Navigation.css";
 
 export function NavigationItem({
   name,
