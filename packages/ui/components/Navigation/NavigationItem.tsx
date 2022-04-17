@@ -1,17 +1,17 @@
 import { NavigationDrawerItemProps } from "./Navigation.types";
 import Link from "next/link";
 
-import "./Navigation.module.css";
+import "./Navigation.css";
 
 export function NavigationItem({
   name,
   url,
   icon,
   items,
-  type = "nav-header",
+  type = "nav-drawer-header",
   ...props
 }: NavigationDrawerItemProps): JSX.Element {
-  const IconComp = typeof icon === 'function' ? icon : null;
+  const IconComp = typeof icon === "function" ? icon : null;
 
   return (
     <>
@@ -25,7 +25,9 @@ export function NavigationItem({
       </Link>
       {items &&
         items.map((item, index) => {
-          return <NavigationItem {...item} key={index} type="nav-sublink" />;
+          return (
+            <NavigationItem {...item} key={index} type="nav-drawer-item" />
+          );
         })}
     </>
   );
