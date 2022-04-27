@@ -9,10 +9,8 @@
 
 .page {
   display: flex;
-  flex: 1 0 calc(100vh - 60px);
+  flex: 1 1 calc(100vh - 60px);
   flex-direction: row;
-  max-width: 100%;
-  min-height: 100%;
 }
 
 .nav-section {

@@ -1,6 +1,5 @@
 .nav-drawer {
-  display: flex;
-  position: relative;
+  display: flex; position: relative;
   top: 0;
   left: 0;
   flex-direction: column;
@@ -8,6 +7,8 @@
   transition: all 0.2s ease-in-out;
   background-color: rgba(0, 0, 0, 0.8);
   padding: 1rem 0;
+  width: 250px;
+  flex: 1 0 250px;
 }
 
 .nav-drawer.open {
@@ -24,7 +25,6 @@
   transition: all 0.2s ease-in-out;
   cursor: pointer;
   padding: 0.5rem 1rem;
-  width: 200px;
   color: #fff;
   font-weight: 400;
   font-size: 1rem;
@@ -39,14 +39,11 @@
 
 .nav-drawer-header {
   display: flex;
-  align-items: center;
   transition: all 0.2s ease-in-out;
-  cursor: pointer;
   color: #fff;
   font-weight: 700;
   font-size: 1.2rem;
   letter-spacing: 0.1rem;
-  text-transform: uppercase;
 }
 
 .nav-drawer-item {
