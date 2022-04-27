@@ -1,5 +1,4 @@
-import { Button, NavigationDrawer } from "ui";
-import { MENU_ITEMS } from "../config";
+import { Button } from "ui";
 
 export default function Web() {
   return (

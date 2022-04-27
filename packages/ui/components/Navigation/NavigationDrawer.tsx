@@ -1,7 +1,7 @@
 import type { NavigationDrawerProps } from "./Navigation.types";
 import NavigationItem from "./NavigationItem";
 
-import './Navigation.css';
+import "./Navigation.css";
 
 export function NavigationDrawer({
   items,
