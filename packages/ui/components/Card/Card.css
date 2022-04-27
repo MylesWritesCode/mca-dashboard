@@ -1,5 +1,10 @@
 .card {
-  padding: 1rem;
-  box-shadow: var(--shadow-2);
   width: fit-content;
+  border: 1px solid rgba(255, 255, 255, 1);
+  border-radius: 16px;
+  box-shadow: 0 4px 30px rgba(0, 0, 0, 0.1);
+  background: rgba(255, 255, 255, 0.3);
+  padding: 1rem;
+  backdrop-filter: blur(7px);
+  -webkit-backdrop-filter: blur(7px);
 }

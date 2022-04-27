@@ -1,1 +1,1 @@
-export * from './Component.lite';
+export * from "./Component.lite";

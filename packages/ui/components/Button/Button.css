@@ -10,12 +10,15 @@
 
 .btn-warning {
   background: var(--warning);
+
+
   color: #fff;
 }
 
 .btn-danger {
   background: var(--danger);
   color: #fff;
+  display: flex;
 }
 
 .btn-success {

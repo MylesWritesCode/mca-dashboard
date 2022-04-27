@@ -18,16 +18,16 @@ div#__next {
 }
 
 body {
-  font-family: "Roboto", "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
   margin: 0;
   padding: 0;
+  font-family: "Roboto", "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
 }
 
 button {
   margin: 0.5rem;
-  box-shadow: var(--shadow-1);
   border: 0;
   border-radius: 5px;
+  box-shadow: var(--shadow-1);
   background: var(--primary);
   padding: 1em;
   color: #fff;
