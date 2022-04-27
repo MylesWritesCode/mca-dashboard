@@ -1,6 +1,6 @@
 import type { ButtonProps } from './Button.types';
 
-import './Button.module.css';
+import './Button.css';
 
 export function Button({
   children,

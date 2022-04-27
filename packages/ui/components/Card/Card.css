@@ -1,0 +1,5 @@
+.card {
+  padding: 1rem;
+  box-shadow: var(--shadow-2);
+  width: fit-content;
+}
