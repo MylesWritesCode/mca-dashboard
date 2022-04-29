@@ -34,4 +34,20 @@ export const parameters: Parameters = {
       },
     ],
   },
+  options: {
+    storySort: {
+      order: [
+        'Card', 
+        [
+          "Example", 
+          "Basic", 
+          "With Header", 
+          "With Footer", 
+          "With Header and Footer"
+        ],
+        '*',
+      ],
+      locales: '',
+    }
+  }
 };

@@ -22,7 +22,36 @@ const Composition = () => {
   );
 };
 
-const Template: ComponentStory<typeof CardComponent> = args => {
+export const Example: ComponentStory<typeof CardComponent> = args => {
+  const styles: React.CSSProperties = {
+    display: "grid",
+    height: "90vh",
+    gridTemplateRows: "repeat(2, 50%)",
+    gridTemplateColumns: "repeat(2, 50%)",
+    justifyItems: "center",
+    alignItems: "center",
+    gap: "1rem",
+  }
+
+  return (
+    <div style={styles}>
+      <CardComponent {...args}>
+        <Composition />
+      </CardComponent>
+      <CardComponent {...args}>
+        <Composition />
+      </CardComponent>
+      <CardComponent {...args}>
+        <Composition />
+      </CardComponent>
+      <CardComponent {...args}>
+        <Composition />
+      </CardComponent>
+    </div>
+  );
+};
+
+export const Basic: ComponentStory<typeof CardComponent> = args => {
   return (
     <CardComponent {...args}>
       <Composition />
@@ -30,4 +59,26 @@ const Template: ComponentStory<typeof CardComponent> = args => {
   );
 };
 
-export const Card = Template.bind({});
+export const WithHeader: ComponentStory<typeof CardComponent> = args => {
+  return (
+    <CardComponent {...args}>
+      <Composition />
+    </CardComponent>
+  );
+};
+
+export const WithFooter: ComponentStory<typeof CardComponent> = args => {
+  return (
+    <CardComponent {...args}>
+      <Composition />
+    </CardComponent>
+  );
+};
+
+export const WithHeaderAndFooter: ComponentStory<typeof CardComponent> = args => {
+  return (
+    <CardComponent {...args}>
+      <Composition />
+    </CardComponent>
+  );
+};
