@@ -5,6 +5,10 @@ node_modules
 .pnp
 .pnp.js
 
+# storage
+/data/
+/sql/
+
 # testing
 coverage
 
