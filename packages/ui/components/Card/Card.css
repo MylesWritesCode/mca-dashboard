@@ -5,7 +5,30 @@
   border-radius: 16px;
   box-shadow: 0 4px 30px rgba(0, 0, 0, 0.1);
   background: rgba(255, 255, 255, 0.3);
-  padding: 1rem;
   backdrop-filter: blur(7px);
   -webkit-backdrop-filter: blur(7px);
+  overflow: hidden;
+}
+
+.card-row {
+  width: 100%;
+  margin: 0;
+  padding: 0;
+}
+
+.card-row h3 {
+  margin: 0;
+  padding: 0;
+}
+
+.card-header {
+  padding: 0.5rem; 
+  border-bottom: 1px solid rgba(255, 255, 255, 0.3);
+  background: rgba(255, 255, 255, 0.5);
+}
+
+.card-footer {
+  padding: 0.5rem;
+  border-bottom: 1px solid rgba(255, 255, 255, 0.3);
+  background: rgba(255, 255, 255, 0.5);
 }
