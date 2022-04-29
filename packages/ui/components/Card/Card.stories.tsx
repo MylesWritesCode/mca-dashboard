@@ -8,8 +8,8 @@ export default {
 
 const Composition = () => {
   const style: React.CSSProperties = {
-    height: "200px",
-    width: "200px",
+    // height: "100%",
+    // width: "150px",
     justifyContent: "center",
     display: "flex",
     alignItems: "center",
@@ -25,11 +25,8 @@ const Composition = () => {
 export const Example: ComponentStory<typeof CardComponent> = args => {
   const styles: React.CSSProperties = {
     display: "grid",
-    height: "90vh",
-    minHeight: "100%",
-    minWidth: "500px",
-    gridTemplateRows: "repeat(2, 50%)",
-    gridTemplateColumns: "repeat(2, 50%)",
+    gridTemplateRows: "repeat(2, 250px)",
+    gridTemplateColumns: "repeat(2, 250px)",
     justifyItems: "center",
     alignItems: "center",
     gap: "1rem",

@@ -13,20 +13,16 @@ export function Card({
 
 function Header({ title }: CardHeaderProps): JSX.Element {
   return (
-    <div className="card-row">
-      <div className="card-header">
-        <h3>{title}</h3>
-      </div>
+    <div className="card-header">
+      <h3>{title}</h3>
     </div>
   );
 }
 
 function Footer({ title }: CardFooterProps): JSX.Element {
   return (
-    <div className="card-row">
-      <div className="card-footer">
-        <h3>{title}</h3>
-      </div>
+    <div className="card-footer">
+      <h3>{title}</h3>
     </div>
   );
 }
