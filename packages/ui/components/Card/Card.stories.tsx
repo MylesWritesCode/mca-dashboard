@@ -8,7 +8,6 @@ export default {
 
 const Composition = () => {
   const style: React.CSSProperties = {
-    background: "rgba(0, 0, 0, 0.5)",
     height: "200px",
     width: "200px",
     justifyContent: "center",
