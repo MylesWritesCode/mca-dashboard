@@ -15,7 +15,7 @@ interface LayoutProps {
   children: React.ReactNode;
 }
 
-export default function Layout({ menuItems, children }: LayoutProps) {
+export function Layout({ menuItems, children }: LayoutProps) {
   return (
     <div className="layout">
       <Header />
@@ -26,3 +26,13 @@ export default function Layout({ menuItems, children }: LayoutProps) {
     </div>
   );
 }
+
+export function getLayout(page: React.ReactNode) {
+  return (
+    <Layout menuItems={[]}>
+      {page}
+    </Layout>
+  );
+}
+
+export default Layout;
