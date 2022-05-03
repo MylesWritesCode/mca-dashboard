@@ -1,13 +1,11 @@
+import { AppProps } from 'next/app';
 import { MENU_ITEMS } from "../config";
 
 import { Layout } from "ui/components/Layout";
 
-interface WebProps {
-  Component: React.ComponentType;
-  pageProps: any;
-}
-
-export default function App({ Component, pageProps }: WebProps) {
+// @todo Hacky for now. Layout children type is wrong. The args for this 
+//       component is of type AppProps. 
+export default function App({ Component, pageProps }: any) {
   return (
     <Layout menuItems={MENU_ITEMS}>
       <Component {...pageProps} />

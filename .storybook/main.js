@@ -1,6 +1,4 @@
-import type { StorybookConfig } from "@storybook/core-common";
-
-const config: StorybookConfig = {
+const config = {
   stories: ["../packages/**/*.stories.@(js|jsx|ts|tsx)"],
   addons: [
     "@storybook/addon-links",

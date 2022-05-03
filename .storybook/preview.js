@@ -1,7 +1,6 @@
-import { type Parameters } from "@storybook/react";
 import "../packages/ui/styles/globals.css";
 
-export const parameters: Parameters = {
+export const parameters = {
   actions: { argTypesRegex: "^on[A-Z].*" },
   controls: {
     matchers: {
