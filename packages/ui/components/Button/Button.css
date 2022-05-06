@@ -1,3 +1,7 @@
+button {
+  cursor: pointer;
+}
+
 .btn-primary {
   background: var(--primary);
   color: #fff;
@@ -10,15 +14,13 @@
 
 .btn-warning {
   background: var(--warning);
-
-
   color: #fff;
 }
 
 .btn-danger {
+  display: flex;
   background: var(--danger);
   color: #fff;
-  display: flex;
 }
 
 .btn-success {
