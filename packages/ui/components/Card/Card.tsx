@@ -1,6 +1,8 @@
 import type { CardProps, CardHeaderProps, CardFooterProps } from "./Card.types";
+import { BiDotsVerticalRounded } from "react-icons/bi";
 
 import "./Card.css";
+import { IconBase } from "react-icons/lib";
 
 export function Card({
   children,
@@ -15,6 +17,7 @@ function Header({ title }: CardHeaderProps): JSX.Element {
   return (
     <div className="card-header">
       <h3>{title}</h3>
+      <BiDotsVerticalRounded className="icon" />
     </div>
   );
 }

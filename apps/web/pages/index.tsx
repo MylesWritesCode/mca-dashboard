@@ -1,10 +1,17 @@
-import { Button } from "ui";
+import { Button, Card } from "ui";
 
 export default function Web() {
   return (
     <div>
-      <h1>Web</h1>
-      <Button>This is my button</Button>
+      <Card>
+        <Card.Header title="Card header">Card header</Card.Header>
+        <div style={{ height: "550px" }}>
+
+        </div>
+        <div>
+          <Button>Button</Button>
+        </div>
+      </Card>
     </div>
   );
 }

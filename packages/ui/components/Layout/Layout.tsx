@@ -13,15 +13,16 @@ import "./Layout.css";
 interface LayoutProps {
   menuItems: NavigationDrawerItemProps[];
   children: React.ReactNode;
+  sx?: React.CSSProperties;
 }
 
-export default function Layout({ menuItems, children }: LayoutProps) {
+export default function Layout({ menuItems, children, sx }: LayoutProps) {
   return (
     <div className="layout">
       <Header />
       <div className="page">
         <NavigationDrawer items={menuItems} />
-        <main className="content">{children}</main>
+        <main className="content" style={sx}>{children}</main>
       </div>
     </div>
   );

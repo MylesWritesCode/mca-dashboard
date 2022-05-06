@@ -23,7 +23,7 @@
 
 .content {
   -ms-overflow-style: none;
-  margin: 1rem;
+  padding: 2rem;
   width: 100%;
   overflow: overlay;
   scrollbar-width: none;
