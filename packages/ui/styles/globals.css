@@ -1,13 +1,15 @@
 @import url("https://fonts.googleapis.com/css2?family=Roboto&display=swap");
 @import "https://unpkg.com/open-props";
-@import "./darker.css";
 
 :root {
-  --primary: var(--carolina-blue);
-  --secondary: var(--outer-space-crayola);
-  --warning: var(--rajah);
-  --danger: var(--crimson);
-  --success: var(--keppel);
+  --primary: #fff;
+  --secondary: #f0f0f0;
+  --warning: #FFC759;
+  --danger: #DB3A34;
+  --success: #1B998B;
+  
+  --text-primary: #000;
+  --text-secondary: #000;
 }
 
 html,
@@ -18,20 +20,20 @@ div#__next {
 }
 
 body {
+  box-sizing: border-box;
   margin: 0;
   padding: 0;
   font-family: "Roboto", "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
-  box-sizing: border-box;
 }
 
 button {
   margin: 0.5rem;
+  box-shadow: var(--shadow-1);
   border: 0;
   border-radius: 5px;
-  box-shadow: var(--shadow-1);
   background: var(--primary);
   padding: 1em;
-  color: #fff;
+  color: var(--text-primary);
   font-weight: 700;
 }
 

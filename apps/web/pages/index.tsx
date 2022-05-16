@@ -5,7 +5,7 @@ export default function Web() {
     <div>
       <Card>
         <Card.Header title="Card header">Card header</Card.Header>
-        <div style={{ height: "550px" }}>
+        <div>
           <LineGraph />
         </div>
         <div>
