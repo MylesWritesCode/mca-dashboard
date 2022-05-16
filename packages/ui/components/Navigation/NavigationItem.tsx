@@ -1,6 +1,6 @@
 import { NavigationDrawerItemProps } from "./Navigation.types";
 import Link from "next/link";
-import { MdCheckBoxOutlineBlank } from "react-icons/md";
+import { RiCheckboxCircleFill } from "react-icons/ri";
 
 import "./Navigation.css";
 
@@ -12,15 +12,15 @@ export function NavigationItem({
   type = "nav-drawer-header",
   ...props
 }: NavigationDrawerItemProps): JSX.Element {
-  const IconComp = typeof icon === "function" ? icon : MdCheckBoxOutlineBlank;
+  const IconComp = typeof icon === "function" ? icon : RiCheckboxCircleFill;
 
   return (
     <>
       <Link href={url}>
-        <a>
-          <div className={`nav-item ${type}`}>
+        <a className="nav-item">
+          <div className={type}>
             <IconComp className="nav-icon" />
-            {name}
+            <span>{name}</span>
           </div>
         </a>
       </Link>
