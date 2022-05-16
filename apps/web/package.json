@@ -16,10 +16,10 @@
     "ui": "*"
   },
   "devDependencies": {
-    "@types/node": "^17.0.31",
-    "@types/react": "18.0.8",
+    "@types/node": "^17.0.33",
+    "@types/react": "18.0.9",
     "config": "*",
-    "eslint": "8.14.0",
+    "eslint": "8.15.0",
     "next-transpile-modules": "9.0.0",
     "tsconfig": "*",
     "typescript": "^4.6.4"
