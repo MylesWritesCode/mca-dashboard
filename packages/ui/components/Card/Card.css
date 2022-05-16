@@ -4,7 +4,6 @@
   justify-content: space-between;
   backdrop-filter: blur(7px);
   -webkit-backdrop-filter: blur(7px);
-  transition: all 0.5s var(--ease-elastic-2);
   box-shadow: var(--shadow-1);
   border: 1px solid rgba(255, 255, 255, 1);
   border-radius: 16px;
@@ -34,7 +33,6 @@
 }
 
 .card-header .icon {
-  transition: all 0.5s var(--ease-elastic-2);
   cursor: pointer;
   padding: 0.5rem;
 }

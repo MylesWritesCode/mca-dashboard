@@ -2,12 +2,12 @@
 @import "https://unpkg.com/open-props";
 
 :root {
-  --primary: #fff;
+  --primary: #fafafa;
   --secondary: #f0f0f0;
-  --warning: #FFC759;
-  --danger: #DB3A34;
-  --success: #1B998B;
-  
+  --warning: #ffc759;
+  --danger: #db3a34;
+  --success: #1b998b;
+
   --text-primary: #000;
   --text-secondary: #000;
 }
@@ -19,11 +19,20 @@ div#__next {
   min-height: 100%;
 }
 
-body {
+body, body * {
+  transition: all 0.2s var(--ease-out-1);
   box-sizing: border-box;
   margin: 0;
   padding: 0;
   font-family: "Roboto", "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
+}
+
+h1,
+h2,
+h3,
+h4 {
+  margin: 0;
+  padding: 0;
 }
 
 button {
