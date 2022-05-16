@@ -4,26 +4,26 @@ button {
 
 .btn-primary {
   background: var(--primary);
-  color: #fff;
+  color: var(--text-primary);
 }
 
 .btn-secondary {
   background: var(--secondary);
-  color: #fff;
+  color: var(--text-secondary);
 }
 
 .btn-warning {
   background: var(--warning);
+  color: var(--text-primary);
   color: #fff;
 }
 
 .btn-danger {
-  display: flex;
   background: var(--danger);
-  color: #fff;
+  color: var(--text-primary);
 }
 
 .btn-success {
   background: var(--success);
-  color: #fff;
+  color: var(--text-primary);
 }

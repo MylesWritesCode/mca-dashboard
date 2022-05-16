@@ -7,7 +7,7 @@
   flex-direction: column;
   justify-content: space-between;
   z-index: 100;
-  background-color: var(--primary);
+  background: var(--primary);
   width: 300px;
   color: var(--text-secondary);
 }
@@ -29,7 +29,6 @@
   align-items: center;
   cursor: pointer;
   padding: 0.5rem 1rem;
-  color: #fff;
   font-weight: 400;
   font-size: 1rem;
   letter-spacing: 0.1rem;
@@ -39,6 +38,11 @@
 .nav-item:hover {
   background-color: var(--secondary);
   color: #000;
+}
+
+.nav-icon {
+  font-weight: 700;
+  font-size: 1.2rem;
 }
 
 .nav-drawer-header {

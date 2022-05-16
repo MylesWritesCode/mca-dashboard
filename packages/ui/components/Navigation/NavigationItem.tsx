@@ -1,5 +1,6 @@
 import { NavigationDrawerItemProps } from "./Navigation.types";
 import Link from "next/link";
+import { MdCheckBoxOutlineBlank } from "react-icons/md";
 
 import "./Navigation.css";
 
@@ -11,14 +12,14 @@ export function NavigationItem({
   type = "nav-drawer-header",
   ...props
 }: NavigationDrawerItemProps): JSX.Element {
-  const IconComp = typeof icon === "function" ? icon : null;
+  const IconComp = typeof icon === "function" ? icon : MdCheckBoxOutlineBlank;
 
   return (
     <>
       <Link href={url}>
         <a>
           <div className={`nav-item ${type}`}>
-            {IconComp && <IconComp className="nav-icon" />}
+            <IconComp className="nav-icon" />
             {name}
           </div>
         </a>
