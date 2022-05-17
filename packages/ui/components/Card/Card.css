@@ -33,14 +33,18 @@
 }
 
 .card-header .icon {
+}
+
+.card-header svg {
   cursor: pointer;
-  padding: 0.5rem;
+  font-size: 1.75rem;
+  padding: 0.25rem;
 }
 
 .card-header .icon:hover {
   fill: white;
   box-shadow: var(--shadow-4);
-  border-radius: 10px;
+  border-radius: 6px;
   background: rgba(0, 0, 0, 0.5);
 }
 

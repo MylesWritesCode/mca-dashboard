@@ -10,10 +10,11 @@
   background: var(--primary);
   width: 300px;
   color: var(--text-secondary);
+  user-select: none;
 }
 
 .nav-drawer * {
-  /* transition: all 0.5s var(--ease-1); */
+  transition: all 0.5s var(--ease-1);
 }
 
 .nav-drawer.open {
@@ -40,8 +41,8 @@
 }
 
 .nav-icon {
-  font-size: 1.25rem;
   margin: 0 0.75rem;
+  font-size: 1.25rem;
 }
 
 .nav-drawer-header {
@@ -50,10 +51,4 @@
 
 .nav-drawer-item {
   padding-left: 1.5rem;
-}
-
-.nav-drawer-user {
-  display: flex;
-  justify-content: center;
-  align-items: center;
 }

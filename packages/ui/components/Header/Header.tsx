@@ -1,6 +1,9 @@
 import type { HeaderProps } from "./Header.types";
+import { APP_CONFIG } from "config";
 
 import "./Header.css";
+
+const LINKS = APP_CONFIG.header.resourceLinks;
 
 export function Header({ brand, ...props }: HeaderProps): JSX.Element {
   return (
@@ -12,7 +15,13 @@ export function Header({ brand, ...props }: HeaderProps): JSX.Element {
         <div className="inline-search">todo: inline-search</div>
       </div>
       <div className="right">
-        <div className="nav-settings">todo: nav-settings</div>
+        <div className="nav-settings">
+          {LINKS.map(({ icon: Icon, link }) => (
+            <a target="_blank" href={link}>
+              <Icon />
+            </a>
+          ))}
+        </div>
       </div>
     </div>
   );
