@@ -117,7 +117,7 @@ export function LineGraph({
       .attr("stroke-width", 3)
       .attr("d", d => line(data));
 
-    console.log(data.flatMap(d => [[d.x, d.y]]));
+    // console.log(data.flatMap(d => [[d.x, d.y]]));
   }, [data]);
 
   return <svg ref={svgRef} width={svgWidth} height={svgHeight} />;
