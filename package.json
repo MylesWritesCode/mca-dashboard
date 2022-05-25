@@ -13,7 +13,9 @@
     "format": "prettier --write \"**/*.{ts,tsx,md,css}\"",
     "storybook": "start-storybook -p 6006",
     "storybook:build": "build-storybook",
-    "turbo:storybook": "turbo run storybook --parallel"
+    "turbo:storybook": "turbo run storybook --parallel",
+    "DNU:docker": "turbo run docker --parallel",
+    "docker": "docker compose up"
   },
   "devDependencies": {
     "@babel/core": "^7.17.10",
