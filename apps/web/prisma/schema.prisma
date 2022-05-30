@@ -1,0 +1,48 @@
+datasource db {
+  provider = "postgresql"
+  url      = env("DATABASE_URL")
+}
+
+model User {
+  id          String   @id @default(uuid())
+  name        String   @unique
+  email       String   @unique
+  password    String
+  created_at  DateTime @default(now())
+  modified_at DateTime @default(now())
+
+  OrganizationUsers OrganizationUsers[]
+  @@map("users")
+}
+
+model Organization {
+  id          String   @id @default(uuid())
+  name        String   @unique
+  created_at  DateTime @default(now())
+  modified_at DateTime @default(now())
+
+  OrganizationUsers OrganizationUsers[]
+  Client            Client[]
+  @@map("organizations")
+}
+
+model OrganizationUsers {
+  user_id         String
+  organization_id String
+  organizations   Organization @relation(fields: [organization_id], references: [id])
+  users           User         @relation(fields: [user_id], references: [id])
+
+  @@id([user_id, organization_id])
+  @@map("organization_users")
+}
+
+model Client {
+  id              String   @id @default(uuid())
+  name            String   @unique
+  organization_id String
+  created_at      DateTime @default(now())
+  modified_at     DateTime @default(now())
+
+  organization Organization @relation(fields: [organization_id], references: [id])
+  @@map("clients")
+}

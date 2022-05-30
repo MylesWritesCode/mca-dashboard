@@ -10,6 +10,7 @@
     "docker": "cd ../../ && DOCKER_BUILDKIT=1 docker build -f ./apps/web/Dockerfile ."
   },
   "dependencies": {
+    "@prisma/client": "^3.14.0",
     "mitosis": "*",
     "next": "12.1.6",
     "next-auth": "^4.3.4",
@@ -23,6 +24,7 @@
     "config": "*",
     "eslint": "8.15.0",
     "next-transpile-modules": "9.0.0",
+    "prisma": "^3.14.0",
     "tsconfig": "*",
     "typescript": "^4.6.4"
   }
