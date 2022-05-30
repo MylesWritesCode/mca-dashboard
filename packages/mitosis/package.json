@@ -1,0 +1,13 @@
+{
+  "name": "mitosis",
+  "version": "0.0.0",
+  "main": "./index.ts",
+  "types": "./index.ts",
+  "license": "MIT",
+  "devDependencies": {
+    "@builder.io/mitosis": "^0.0.55",
+    "@builder.io/mitosis-cli": "^0.0.16",
+    "config": "*",
+    "tsconfig": "*"
+  }
+}

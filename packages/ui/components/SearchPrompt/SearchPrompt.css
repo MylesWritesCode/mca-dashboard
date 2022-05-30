@@ -1,0 +1,24 @@
+.search-prompt-container {
+  min-width: 300px;
+}
+
+.search-prompt {
+  display: inline-block;
+  position: relative;
+  -webkit-appearance: none;
+  -moz-appearance: none;
+  appearance: none;
+  cursor: text;
+  margin: 0;
+  outline: none;
+  border: 0;
+  background: transparent;
+  padding: 0;
+  width: 100%;
+  height: 100%;
+  color: inherit;
+  font-style: inherit;
+  font-weight: inherit;
+  font-size: inherit;
+  font-family: inherit;
+}

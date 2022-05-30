@@ -1,0 +1,59 @@
+@import url("https://fonts.googleapis.com/css2?family=Roboto&display=swap");
+@import "https://unpkg.com/open-props";
+
+:root {
+  --primary: #fafafa;
+  --secondary: #f0f0f0;
+  --warning: #ffc759;
+  --danger: #db3a34;
+  --success: #1b998b;
+
+  --text-primary: #000;
+  --text-secondary: #000;
+}
+
+html,
+body,
+body > div:first-child,
+div#__next {
+  min-height: 100%;
+}
+
+body, body * {
+  transition: all 0.2s var(--ease-out-1);
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+  font-family: "Roboto", "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
+}
+
+h1,
+h2,
+h3,
+h4 {
+  margin: 0;
+  padding: 0;
+}
+
+button {
+  margin: 0.5rem;
+  box-shadow: var(--shadow-1);
+  border: 0;
+  border-radius: 5px;
+  background: var(--primary);
+  padding: 1em;
+  color: var(--text-primary);
+  font-weight: 700;
+}
+
+button:hover {
+  box-shadow: var(--shadow-2);
+}
+
+button:active {
+  box-shadow: var(--shadow-1);
+}
+
+a {
+  text-decoration: none;
+}

@@ -1,0 +1,29 @@
+button {
+  cursor: pointer;
+}
+
+.btn-primary {
+  background: var(--primary);
+  color: var(--text-primary);
+}
+
+.btn-secondary {
+  background: var(--secondary);
+  color: var(--text-secondary);
+}
+
+.btn-warning {
+  background: var(--warning);
+  color: var(--text-primary);
+  color: #fff;
+}
+
+.btn-danger {
+  background: var(--danger);
+  color: var(--text-primary);
+}
+
+.btn-success {
+  background: var(--success);
+  color: var(--text-primary);
+}
