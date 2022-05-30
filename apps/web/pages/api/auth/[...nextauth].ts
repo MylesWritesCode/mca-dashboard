@@ -11,7 +11,7 @@ interface User {
 export default NextAuth({
   providers: [
     CredentialsProvider({
-      name: "Email",
+      name: "Username",
       credentials: {
         username: { label: "Username", type: "text", placeholder: "Username" },
         password: {

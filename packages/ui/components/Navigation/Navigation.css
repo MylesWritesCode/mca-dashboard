@@ -9,6 +9,7 @@
   z-index: 100;
   background: var(--primary);
   width: 300px;
+  height: 100%;
   color: var(--text-secondary);
   user-select: none;
 }
