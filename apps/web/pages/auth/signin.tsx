@@ -8,7 +8,6 @@ import {
 import { useEffect } from "react";
 import { useRouter } from "next/router";
 import { CtxOrReq } from "next-auth/client/_utils";
-import { FaGithub, FaGoogle, FaTwitter } from "react-icons/fa";
 
 import styles from "./auth.module.scss";
 
@@ -18,6 +17,7 @@ function SignIn({
 }: InferGetServerSidePropsType<typeof getServerSideProps>) {
   const { data: session } = useSession();
   const router = useRouter();
+
   console.log(providers);
 
   useEffect(() => {
@@ -27,40 +27,47 @@ function SignIn({
   }, [session]);
 
   return (
-    <section className={styles.signup}>
-      <h1>Sign in to continue</h1>
-
-      <div className={styles.formDiv}>
-        <form method="post" action="/api/auth/signin/email">
+    <section className={styles.auth}>
+      <div className={styles.auth__container}>
+        <img src="/logo.png" alt="logo" className={styles.auth__logo} />
+        <form
+          className={styles.auth__form}
+          method="post"
+          action="/api/auth/callback/credentials"
+        >
           <input name="csrfToken" type="hidden" defaultValue={csrfToken} />
-          <input type="email" id="email" name="email" placeholder="Email" />
-          <button className={styles.btn} type="submit">
-            Sign in with Email
+          <label>
+            <span>Username</span>
+            <input name="username" type="text" placeholder="Username" />
+          </label>
+          <label>
+            <span>Password</span>
+            <input name="password" type="password" placeholder="Password" />
+          </label>
+          <button type="submit" className={styles.button}>
+            Sign in
           </button>
         </form>
-        <h1>OR</h1>
-
-        <div className={styles.icons}>
-          {providers &&
-            Object.values(providers).map((provider, i) => {
-              if (provider.id !== "email") {
-                return (
-                  <div key={provider.name} className={styles.icon}>
-                    <div className={styles.icon}>
-                      <FaGithub onClick={() => signIn(provider.id)} />
-                    </div>
-                  </div>
-                );
-              }
-            })}
-
-          <div className={styles.icon}>
-            <FaTwitter />
-          </div>
-          <div className={styles.icon}>
-            <FaGoogle />
-          </div>
+        <div className={styles.divider}>
+          <div className={styles.spacer}></div>
+          <span>or sign in with</span>
+          <div className={styles.spacer}></div>
         </div>
+        {providers &&
+          Object.values(providers).map((provider, i) => {
+            if (provider.id !== "email") {
+              return (
+                <div key={provider.name} className={styles.icon}>
+                  <button
+                    className={styles.button}
+                    onClick={() => signIn(provider.id)}
+                  >
+                    {provider.name}
+                  </button>
+                </div>
+              );
+            }
+          })}
       </div>
     </section>
   );

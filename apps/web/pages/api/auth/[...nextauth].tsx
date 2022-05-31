@@ -11,7 +11,7 @@ interface User {
 export default NextAuth({
   providers: [
     CredentialsProvider({
-      name: "credentials",
+      name: "Credentials",
       credentials: {
         username: { label: "Username", type: "text", placeholder: "Username" },
         password: {
@@ -26,7 +26,9 @@ export default NextAuth({
       ): Awaitable<
         Omit<User, "id" | "password"> | { id?: string | undefined } | null
       > {
-        throw new Error("Function not implemented.");
+        console.log("credentials:", credentials);
+
+        return null;
       },
     }),
     GoogleProvider({
@@ -40,6 +42,7 @@ export default NextAuth({
     logo: "/logo.png",
   },
   pages: {
-    signIn: "auth/signin",
-  }
+    // signIn: "auth/signin",
+    // signOut: "auth/signout",
+  },
 });

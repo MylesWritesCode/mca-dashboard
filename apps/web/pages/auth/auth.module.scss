@@ -1,0 +1,78 @@
+.auth {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  height: 100%;
+}
+
+.auth__container {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  width: 300px;
+  height: 100%;
+
+  .auth__logo {
+    width: 300px;
+  }
+
+  .auth__form {
+    padding: 2rem 0;
+  }
+
+  .divider {
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    align-items: center;
+    margin: 1rem;
+    width: 100%;
+
+    .spacer {
+      margin: 0 0.5rem;
+      background: black;
+      width: 80px;
+      height: 2px;
+    }
+  }
+}
+
+.auth__container form {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  width: 100%;
+  font-weight: 800;
+
+  label {
+    display: flex;
+    flex-direction: column;
+    margin: 0.75rem;
+    width: 100%;
+
+    input {
+      margin: 0;
+      outline: none;
+      box-shadow: 0px 2px black;
+      border: 0;
+      background: transparent;
+      padding: 0.75rem 0;
+      font-weight: 800;
+
+      :active,
+      :focus-within,
+      :focus-visible,
+      :focus {
+        outline: none;
+        border: 0;
+      }
+    }
+  }
+}
+
+.button {
+  width: 300px;
+}
