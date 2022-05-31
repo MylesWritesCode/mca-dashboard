@@ -4,17 +4,25 @@ import { SearchPrompt } from "ui/components/SearchPrompt";
 import type { HeaderProps } from "./Header.types";
 import { APP_CONFIG } from "config";
 
-import "./Header.css";
+import "./Header.scss";
 
 const LINKS = APP_CONFIG.header.resourceLinks;
 
-export function Header({ brand }: HeaderProps): JSX.Element {
+export function Header({ brand = "BRAND", logo }: HeaderProps): JSX.Element {
   return (
     <div className="nav-header">
       <div className="left">
         <Link href="/" passHref={true}>
           <div className="nav-brand">
-            <h1>{brand}</h1>
+            {logo ? (
+              <img
+                className="nav__brand_logo"
+                src={logo}
+                alt={`${brand} logo`}
+              />
+            ) : (
+              <h1>{brand}</h1>
+            )}
           </div>
         </Link>
         <div className="inline-search">

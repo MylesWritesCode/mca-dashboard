@@ -10,14 +10,14 @@
     "docker": "cd ../../ && DOCKER_BUILDKIT=1 docker build -f ./apps/web/Dockerfile ."
   },
   "dependencies": {
-    "@prisma/client": "^3.14.0",
     "assets": "*",
     "mitosis": "*",
+    "ui": "*",
+    "@prisma/client": "^3.14.0",
     "next": "12.1.6",
     "next-auth": "^4.3.4",
     "react": "18.1.0",
-    "react-dom": "18.1.0",
-    "ui": "*"
+    "react-dom": "18.1.0"
   },
   "devDependencies": {
     "@types/node": "^17.0.33",

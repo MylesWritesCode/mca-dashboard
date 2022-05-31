@@ -19,7 +19,7 @@ interface LayoutProps {
 export default function Layout({ menuItems, children, sx }: LayoutProps) {
   return (
     <div className="layout">
-      <Header brand={"BRAND"} />
+      <Header logo="/logo.png" />
       <div className="page">
         <NavigationDrawer items={menuItems} />
         <main className="content" style={sx}>{children}</main>

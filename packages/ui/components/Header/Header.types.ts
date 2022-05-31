@@ -1,6 +1,7 @@
 
 export interface HeaderProps {
-  brand: string,
+  brand?: string,
+  logo?: string,
 }
 
 
