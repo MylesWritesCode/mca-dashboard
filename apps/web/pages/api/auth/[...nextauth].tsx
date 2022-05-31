@@ -1,5 +1,6 @@
 import NextAuth, { Awaitable, IncomingRequest } from "next-auth";
 import CredentialsProvider from "next-auth/providers/credentials";
+import GoogleProvider from "next-auth/providers/google";
 
 interface User {
   id: string;
@@ -7,11 +8,10 @@ interface User {
   password: string;
 }
 
-
 export default NextAuth({
   providers: [
     CredentialsProvider({
-      name: "Username",
+      name: "credentials",
       credentials: {
         username: { label: "Username", type: "text", placeholder: "Username" },
         password: {
@@ -23,9 +23,23 @@ export default NextAuth({
       authorize: function (
         credentials: Omit<User, "id"> | undefined,
         req: Pick<IncomingRequest, "headers" | "body" | "query" | "method">,
-      ): Awaitable<Omit<User, "id" | "password"> | { id?: string | undefined } | null> {
+      ): Awaitable<
+        Omit<User, "id" | "password"> | { id?: string | undefined } | null
+      > {
         throw new Error("Function not implemented.");
       },
     }),
+    GoogleProvider({
+      clientId: process.env.GOOGLE_CLIENT_ID!,
+      clientSecret: process.env.GOOGLE_CLIENT_SECRET!,
+    }),
   ],
+  theme: {
+    colorScheme: "light",
+    brandColor: "#0070f3",
+    logo: "/logo.png",
+  },
+  pages: {
+    signIn: "/auth/login",
+  }
 });
