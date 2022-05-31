@@ -16,7 +16,10 @@
     "storybook:build": "build-storybook",
     "turbo:storybook": "turbo run storybook --parallel",
     "DNU:docker": "turbo run docker --parallel",
-    "docker": "docker compose up"
+    "docker": "docker compose up",
+    "migrate:dev:up": "turbo run migrate:dev:up",
+    "migrate:dev:down": "turbo run migrate:dev:down",
+    "migrate:prod:up": "turbo run migrate:prod:up"
   },
   "devDependencies": {
     "@babel/core": "^7.17.10",

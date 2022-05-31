@@ -7,7 +7,10 @@
     "build": "next build",
     "start": "next start",
     "lint": "next lint",
-    "docker": "cd ../../ && DOCKER_BUILDKIT=1 docker build -f ./apps/web/Dockerfile ."
+    "docker": "cd ../../ && DOCKER_BUILDKIT=1 docker build -f ./apps/web/Dockerfile .",
+    "migrate:dev:up": "prisma migrate dev",
+    "migrate:dev:down": "prisma migrate reset",
+    "migrate:prod:up": "prisma migrate deploy"
   },
   "dependencies": {
     "assets": "*",
