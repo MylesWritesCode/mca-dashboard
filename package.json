@@ -1,6 +1,6 @@
 {
-  "name": "mca-dashboard",
-  "version": "0.0.1",
+  "name": "metadmin",
+  "version": "0.0.5",
   "private": true,
   "workspaces": [
     "apps/*",
@@ -22,25 +22,25 @@
     "migrate:prod:up": "turbo run migrate:prod:up"
   },
   "devDependencies": {
-    "@babel/core": "^7.17.10",
-    "@storybook/addon-actions": "^6.4.22",
-    "@storybook/addon-essentials": "^6.4.22",
-    "@storybook/addon-interactions": "^6.4.22",
-    "@storybook/addon-links": "^6.4.22",
-    "@storybook/builder-webpack5": "^6.4.22",
-    "@storybook/manager-webpack5": "^6.4.22",
-    "@storybook/react": "^6.4.22",
+    "@babel/core": "^7.18.2",
+    "@storybook/addon-actions": "^6.5.6",
+    "@storybook/addon-essentials": "^6.5.6",
+    "@storybook/addon-interactions": "^6.5.6",
+    "@storybook/addon-links": "^6.5.6",
+    "@storybook/builder-webpack5": "^6.5.6",
+    "@storybook/manager-webpack5": "^6.5.6",
+    "@storybook/react": "^6.5.6",
     "@storybook/testing-library": "^0.0.11",
     "@types/lodash.debounce": "^4.0.7",
-    "@types/node": "^17.0.33",
+    "@types/node": "^17.0.38",
     "@types/webpack": "^5.28.0",
     "babel-loader": "^8.2.5",
     "prettier": "^2.6.2",
     "prettier-plugin-css-order": "^1.2.0",
-    "react-icons": "^4.3.1",
+    "react-icons": "^4.4.0",
     "sass": "^1.52.1",
-    "turbo": "^1.2.9",
-    "typescript": "^4.6.4",
+    "turbo": "^1.2.14",
+    "typescript": "^4.7.2",
     "webpack": "^5.72.1"
   },
   "engines": {
@@ -49,8 +49,8 @@
   },
   "packageManager": "yarn@3.2.0",
   "dependencies": {
-    "@types/d3": "^7.1.0",
-    "chart.js": "^3.7.1",
+    "@types/d3": "^7.4.0",
+    "chart.js": "^3.8.0",
     "d3": "^7.4.4",
     "lodash.debounce": "^4.0.8"
   }
