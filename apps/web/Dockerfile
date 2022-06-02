@@ -1,29 +1,36 @@
-FROM node:16-alpine AS base
+FROM node:alpine AS base
 RUN apk update && apk add git
-
-## Globally install turbo
+WORKDIR /app
 RUN yarn global add turbo
 
-# Prune the workspace for the `frontend` app
-FROM base as pruner
-COPY .git ./.git
-COPY ../../ .
-RUN turbo prune --scope=web
-
-# Add pruned lockfile and package.json's of the pruned subworkspace
-FROM pruner AS installer
-COPY --from=builder /app/out/json/ .
-COPY --from=builder /app/out/yarn.lock ./yarn.lock
-RUN yarn install
-
-# Copy source code of pruned subworkspace and build
-FROM installer as builder
+FROM base AS prune
 WORKDIR /app
-COPY --from=pruner .git ./.git
-COPY --from=installer /app/ .
-COPY --from=builder /app/out/full/ .
-RUN turbo run build --scope=web
+COPY . .
+RUN turbo prune --scope=web --docker
 
-# Start the app
-FROM builder as runner
-EXPOSE 3000
+FROM prune AS install
+COPY --from=prune /app/out/json .
+COPY --from=prune /app/out/yarn.lock ./yarn.lock
+RUN yarn install 
+
+FROM install AS build
+WORKDIR /app
+COPY .git .git
+COPY .env .env
+COPY --from=prune /app/out/full/ .
+RUN turbo run build --scope=web --filter=true 
+
+FROM node:alpine AS deploy
+
+COPY .env .env
+ENV NODE_ENV production
+
+RUN addgroup -g 1001 -S nextjs
+RUN adduser -S nextjs -u 1001
+
+COPY --from=build --chown=nexts:nextjs /app/apps/web/.next .next
+COPY --from=build --chown=nexts:nextjs /app/apps/web/public ./public
+COPY --from=build --chown=nexts:nextjs /app/apps/web/package.json ./package.json
+COPY --from=install --chown=nextjs:nextjs /app/node_modules node_modules
+
+USER nextjs

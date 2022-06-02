@@ -31,29 +31,27 @@ services:
           memory: 64M
     command: redis-server --appendonly yes
 
-  # Still need to work on this. For now, I'll just leave this here while I work
-  # on it.
-  # web:
-  #   container_name: web
-  #   image: mb/dashboard
-  #   build:
-  #     context: .
-  #     dockerfile: Dockerfile
-  #   volumes:
-  #     - ./:/mca-dashboard
-  #     - /app/node_modules
-  #   ports:
-  #     - $WEB_PORT:$WEB_PORT
-  #     - $API_PORT:$API_PORT
-  #   env_file: .env
-  #   restart: on-failure
-  #   depends_on:
-  #     - pg
-  #     - rd
-  #   deploy:
-  #     resources:
-  #       limits:
-  #         memory: 4096M
+  web:
+    container_name: web
+    image: web
+    build:
+      context: .
+      dockerfile: ./apps/web/Dockerfile
+    volumes:
+      - ./:/apps/web
+    ports:
+      - $WEB_PORT:$WEB_PORT
+      - $API_PORT:$API_PORT
+    env_file: ./.env
+    restart: on-failure
+    depends_on:
+      - pg
+      - rd
+    deploy:
+      resources:
+        limits:
+          memory: 4096M
+    command: yarn start
 
 networks:
   dashboard:
