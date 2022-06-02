@@ -2,25 +2,33 @@
   "$schema": "https://turborepo.org/schema.json",
   "pipeline": {
     "build": {
-      "dependsOn": ["^build"],
-      "outputs": ["dist/**", ".next/**"]
+      "dependsOn": [
+        "^build"
+      ],
+      "outputs": [
+        "dist/**",
+        ".next/**"
+      ]
     },
     "docker": {
-      "outputs": [""]
+      "outputs": []
     },
     "migrate:dev:up": {
-      "outputs": [""]
+      "outputs": []
     },
     "migrate:dev:down": {
-      "outputs": [""]
+      "outputs": []
     },
     "migrate:prod:up": {
-      "outputs": [""]
+      "outputs": []
     },
     "storybook": {
-      "outputs": [""]
+      "outputs": []
     },
     "lint": {
+      "outputs": []
+    },
+    "test": {
       "outputs": []
     },
     "dev": {
