@@ -15,7 +15,10 @@
     "format": "prettier --write \"**/*.{ts,tsx,md,css}\"",
     "storybook": "start-storybook -p 6006",
     "storybook:build": "build-storybook",
-    "docker": "docker compose up",
+    "docker:dev": "docker compose -f .docker/development.yml --env-file .env up",
+    "docker:dbs": "docker compose -f .docker/databases.yml --env-file .env up",
+    "docker:prod": "docker compose -f .docker/production.yml --env-file .env up",
+    "docker:down": "docker compose down",
     "migrate:dev:up": "turbo run migrate:dev:up",
     "migrate:dev:down": "turbo run migrate:dev:down",
     "migrate:prod:up": "turbo run migrate:prod:up"
@@ -38,9 +41,9 @@
     "prettier-plugin-css-order": "^1.2.0",
     "react-icons": "^4.4.0",
     "sass": "^1.52.1",
-    "turbo": "^1.2.14",
+    "turbo": "^1.2.16",
     "typescript": "^4.7.2",
-    "webpack": "^5.72.1"
+    "webpack": "^5.73.0"
   },
   "engines": {
     "npm": ">=7.0.0",
