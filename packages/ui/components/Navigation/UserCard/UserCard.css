@@ -10,8 +10,9 @@
 }
 
 .user-card-avatar {
-  box-shadow: var(--shadow-2);
-  border-radius: 50%;
+  @apply rounded-full p-2 shadow-md;
+  /* box-shadow: var(--shadow-2); */
+  /* border-radius: 50%; */
   background: var(--gradient-22);
   padding: 5px;
   width: 100%;
@@ -23,33 +24,9 @@
   overflow: hidden;
 }
 
-.user-card-avatar:hover {
-  box-shadow: var(--shadow-3);
-}
-
-.user-card-avatar:active {
-  box-shadow: var(--shadow-1);
-}
-
-.user-card-avatar img {
-  border-radius: 50%;
-  width: 100%;
-  height: 100%;
-  object-fit: cover;
-}
-
 .close .user-card-avatar {
   width: 56px;
   min-width: 56px;
   height: 56px;
   min-height: 56px;
-}
-
-.user-card-info {
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
-  align-items: center;
-  padding: 1.5rem;
-  text-align: center;
 }

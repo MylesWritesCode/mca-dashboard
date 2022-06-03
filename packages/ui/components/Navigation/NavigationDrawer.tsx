@@ -10,13 +10,13 @@ export function NavigationDrawer({
   ...props
 }: NavigationDrawerProps): JSX.Element {
   return (
-    <div className={`nav-drawer${isOpen ? " open" : " close"}`}>
-      <div className="nav-drawer-items">
+    <div className={`nav-drawer ${isOpen ? "open" : "close"}`}>
+      <div className="flex h-full flex-col items-center">
         {items.map((item, index) => {
           return <NavigationItem {...item} isOpen={isOpen} key={index} />;
         })}
       </div>
-      <div className="nav-drawer-user">
+      <div>
         <UserCard
           isOpen={isOpen}
           user={{

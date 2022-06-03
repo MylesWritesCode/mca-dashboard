@@ -28,13 +28,22 @@ export function UserCard({
   className,
 }: UserCardProps): JSX.Element {
   return (
-    <div className={["user-card-container", className].join(" ")}>
-      <div className="user-card-avatar">
-        <img src={user.avatarSrc || USER.avatarSrc} />
+    <div
+      className={[
+        "flex h-full w-full flex-col items-center justify-center py-6",
+        "shadow-[0_-20px_0_-16px] shadow-emerald-700",
+        className,
+      ].join(" ")}
+    >
+      <div className="user-card-avatar hover:shadow-2xl active:shadow-sm">
+        <img
+          src={user.avatarSrc || USER.avatarSrc}
+          className="h-full w-full rounded-full object-cover"
+        />
       </div>
       {isOpen && (
-        <div className="user-card-info">
-          <h3 className="user-card-name">{user.name || USER.name}</h3>
+        <div className="flex flex-col items-center justify-center p-8 align-middle">
+          <h3 className="font-semibold">{user.name || USER.name}</h3>
         </div>
       )}
     </div>

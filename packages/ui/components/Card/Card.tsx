@@ -2,7 +2,6 @@ import type { CardProps, CardHeaderProps, CardFooterProps } from "./Card.types";
 import { BiDotsVerticalRounded } from "react-icons/bi";
 
 import "./Card.css";
-import { IconBase } from "react-icons/lib";
 
 export function Card({
   children,
@@ -10,22 +9,28 @@ export function Card({
   className = "",
   ...props
 }: CardProps): JSX.Element {
-  return <div className="card">{children}</div>;
+  return (
+    <div className="flex h-full w-full select-none flex-col justify-between overflow-hidden border-gray-50 bg-[#FFFFFF55] shadow-sm hover:shadow-xl">
+      {children}
+    </div>
+  );
 }
 
 function Header({ title }: CardHeaderProps): JSX.Element {
   return (
-    <div className="card-header">
-      <h3>{title}</h3>
-      <BiDotsVerticalRounded className="icon" />
+    <div className="flex items-center justify-between bg-[#ffffff88] p-6">
+      <h3 className="font-semibold">{title}</h3>
+      <div className="hover:rounded-sm hover:bg-[#00000033] hover:fill-white hover:shadow-2xl active:shadow-md">
+        <BiDotsVerticalRounded className="h-5 w-5 cursor-pointer" />
+      </div>
     </div>
   );
 }
 
 function Footer({ title }: CardFooterProps): JSX.Element {
   return (
-    <div className="card-footer">
-      <h3>{title}</h3>
+    <div className="flex items-center justify-between bg-[#ffffff88] p-6">
+      <h3 className="font-semibold">{title}</h3>
     </div>
   );
 }

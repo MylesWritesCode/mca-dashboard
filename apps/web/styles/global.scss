@@ -1,4 +1,7 @@
 @import "./admin.scss";
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
 
 .signin {
   background: red;

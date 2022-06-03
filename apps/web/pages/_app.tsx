@@ -2,6 +2,8 @@ import { AppProps } from "next/app";
 import { MENU_ITEMS } from "../config";
 import { SessionProvider } from "next-auth/react";
 
+import "../styles/global.scss";
+
 import { Layout } from "ui";
 
 // @todo Hacky for now. Layout children type is wrong. The args for this

@@ -16,26 +16,19 @@
   transition: all 0.5s var(--ease-1);
 }
 
-.nav-drawer-items {
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  height: 100%;
-}
-
-.nav-drawer.open {
+.open {
   flex: 1 0 300px;
   width: 300px;
 }
 
-.nav-drawer.close {
+.close {
   flex: 1 0 72px;
   width: 72px;
 }
 
 .nav-item,
-.nav-drawer-header,
-.nav-drawer-item {
+.nav-drawer-item,
+.nav-drawer-header {
   display: flex;
   position: relative;
   align-items: center;
@@ -45,6 +38,12 @@
   width: 100%;
   color: var(--text-primary);
   text-transform: uppercase;
+}
+
+.nav-drawer-item,
+.nav-drawer-header {
+  transition: width cubic-bezier(0.215, 0.61, 0.355, 1) 5s;
+  transition-delay: 4s;
 }
 
 .close .nav-drawer-header span {

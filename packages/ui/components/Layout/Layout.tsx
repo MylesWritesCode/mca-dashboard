@@ -16,11 +16,11 @@ interface LayoutProps {
 }
 
 export default function Layout({ menuItems, children, sx }: LayoutProps) {
-  const [isOpen, setIsOpen] = useState(false);
+  const [isOpen, setIsOpen] = useState(true);
 
   useEffect(() => {
     window.onkeydown = (e: KeyboardEvent) => {
-      if (e.code === "Space" && (e.ctrlKey || e.metaKey)) {
+      if (e.code === "KeyB" && (e.ctrlKey || e.metaKey)) {
         e.preventDefault();
         setIsOpen(!isOpen);
       }
