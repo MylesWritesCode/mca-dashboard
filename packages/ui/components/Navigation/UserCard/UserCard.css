@@ -1,6 +1,7 @@
 .user-card-container {
   display: flex;
   flex-direction: column;
+  justify-content: center;
   align-items: center;
   box-shadow: 0px -20px 0px -16px var(--secondary);
   padding: 2rem 0;
@@ -37,6 +38,13 @@
   object-fit: cover;
 }
 
+.close .user-card-avatar {
+  width: 56px;
+  min-width: 56px;
+  height: 56px;
+  min-height: 56px;
+}
+
 .user-card-info {
   display: flex;
   flex-direction: column;
@@ -44,7 +52,4 @@
   align-items: center;
   padding: 1.5rem;
   text-align: center;
-}
-
-.user-card-name {
 }

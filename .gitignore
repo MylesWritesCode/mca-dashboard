@@ -9,7 +9,6 @@ node_modules
 .docker/data
 .data/sql
 
-
 # testing
 coverage
 

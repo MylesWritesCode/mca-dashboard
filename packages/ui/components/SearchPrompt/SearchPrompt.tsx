@@ -14,7 +14,7 @@ export function SearchPrompt({
   const ref = useRef<HTMLInputElement>(null);
 
   useEffect(() => {
-    document.onkeydown = (e: KeyboardEvent) => {
+    window.onkeydown = (e: KeyboardEvent) => {
       if (e.code === "KeyK" && (e.ctrlKey || e.metaKey)) {
         e.preventDefault();
         ref.current?.focus();
