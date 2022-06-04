@@ -30,11 +30,16 @@ function Login({
 
   return (
     <section className="flex h-full flex-col items-center justify-center">
-      <div className="flex h-full w-full flex-col items-center justify-center z-10">
+      <div
+        className={[
+          "flex h-full w-full flex-col items-center justify-center rounded-xl z-10",
+          "bg-gradient-to-tr from-[#40c9ff] to-[#e81cff]",
+          "",
+        ].join(" ")}
+      >
         <Card
           className={[
             "align-center relative flex flex-col justify-center p-12 border-1",
-            "before:bg-gradient-to-tr before:from-[#40c9ff] before:to-[#e81cff] before:blur-none",
             "before:absolute before:z-[-1] before:h-full before:w-full",
             "before:overflow-hidden before:top-0 before:left-0",
           ].join(" ")}
