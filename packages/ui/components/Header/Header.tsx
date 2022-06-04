@@ -1,14 +1,22 @@
 import Link from "next/link";
 import { SearchPrompt } from "ui/components/SearchPrompt";
+import { useSession } from "next-auth/react";
 
 import type { HeaderProps } from "./Header.types";
 import { APP_CONFIG } from "config";
 
 import "./Header.scss";
+import { useEffect, useState } from "react";
 
-const LINKS = APP_CONFIG.header.resourceLinks;
+const LINKS = APP_CONFIG.header;
 
 export function Header({ brand = "BRAND", logo }: HeaderProps): JSX.Element {
+  const { data: session } = useSession();
+
+  useEffect(() => {
+    console.log(LINKS[session ? "signedIn" : "signedOut"]);
+  }, [session]);
+
   return (
     <div className="nav-header">
       <div className="left">
@@ -31,11 +39,13 @@ export function Header({ brand = "BRAND", logo }: HeaderProps): JSX.Element {
       </div>
       <div className="right">
         <div className="nav-settings">
-          {LINKS.map(({ icon: Icon, link }, i) => (
-            <a key={i} href={link} target="_blank">
-              <Icon />
-            </a>
-          ))}
+          {LINKS[session ? "signedIn" : "signedOut"].map(
+            ({ icon: Icon, link }, i) => (
+              <a key={i} href={link}>
+                <Icon />
+              </a>
+            ),
+          )}
         </div>
       </div>
     </div>

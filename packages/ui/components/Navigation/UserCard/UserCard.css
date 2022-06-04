@@ -11,8 +11,6 @@
 
 .user-card-avatar {
   @apply rounded-full p-2 shadow-md;
-  /* box-shadow: var(--shadow-2); */
-  /* border-radius: 50%; */
   background: var(--gradient-22);
   padding: 5px;
   width: 100%;

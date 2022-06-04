@@ -6,6 +6,8 @@ import {
   FaTwitter,
 } from "react-icons/fa";
 
+import { AiOutlineLogin, AiOutlineLogout, AiFillSetting } from "react-icons/ai";
+
 export const APP_CONFIG = {
   header: {
     resourceLinks: [
@@ -24,6 +26,22 @@ export const APP_CONFIG = {
       {
         icon: FaTwitterSquare,
         link: "https://twitter.com/MylesCodesEmoji",
+      },
+    ],
+    signedIn: [
+      {
+        icon: AiFillSetting,
+        link: "settings",
+      },
+      {
+        icon: AiOutlineLogout,
+        link: "signout",
+      },
+    ],
+    signedOut: [
+      {
+        icon: AiOutlineLogin,
+        link: "/signin",
       },
     ],
   },

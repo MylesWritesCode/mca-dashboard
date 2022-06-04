@@ -30,19 +30,19 @@ export function UserCard({
   return (
     <div
       className={[
-        "flex h-full w-full flex-col items-center justify-center py-6",
-        "shadow-[0_-20px_0_-16px] shadow-emerald-700",
+        "flex h-full w-full flex-col items-center justify-center py-5",
+        "shadow-[0_-20px_0_-16px] shadow-emerald-700 transition-all",
         className,
       ].join(" ")}
     >
-      <div className="user-card-avatar hover:shadow-2xl active:shadow-sm">
+      <div className="user-card-avatar transition-all hover:shadow-2xl active:shadow-sm">
         <img
           src={user.avatarSrc || USER.avatarSrc}
           className="h-full w-full rounded-full object-cover"
         />
       </div>
       {isOpen && (
-        <div className="flex flex-col items-center justify-center p-8 align-middle">
+        <div className="flex flex-col items-center justify-center p-8 align-middle transition-all">
           <h3 className="font-semibold">{user.name || USER.name}</h3>
         </div>
       )}
