@@ -10,5 +10,14 @@
   "tabWidth": 2,
   "trailingComma": "all",
   "useTabs": false,
-  "order": "concentric-css"
+  "order": "concentric-css",
+  "importOrder": [
+    "<THIRD_PARTY_MODULES>",
+    "ui",
+    "^ui/(.*)$",
+    "^[./]",
+    "config",
+    "^config/(.*)$"
+  ],
+  "importOrderSeparation": true
 }
