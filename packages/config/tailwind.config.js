@@ -6,16 +6,19 @@ module.exports = {
   theme: {
     extend: {
       colors: {
-        primary: {
+        "primary": {
           light: "#fafafa",
           dark: "#000000",
         },
-        secondary: {
+        "secondary": {
           light: "#f0f0f0",
           dark: "#000000",
         },
+        "maximum-blue-purple": "#acb6e5",
+        "turquoise-blue": "#86fde8",
       },
     },
   },
   plugins: [],
 };
+// linear-gradient(to bottom right,#acb6e5,#86fde8)

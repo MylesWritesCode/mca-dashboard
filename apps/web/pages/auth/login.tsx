@@ -33,8 +33,7 @@ function Login({
       <div
         className={[
           "flex h-full w-full flex-col items-center justify-center rounded-xl z-10",
-          "bg-gradient-to-tr from-[#40c9ff] to-[#e81cff]",
-          "",
+          "bg-gradient-to-br from-indigo-300 to-emerald-200",
         ].join(" ")}
       >
         <Card
