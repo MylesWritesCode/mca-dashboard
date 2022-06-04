@@ -1,17 +1,18 @@
 import { InferGetServerSidePropsType } from "next";
+import { CtxOrReq } from "next-auth/client/_utils";
 import {
   getProviders,
   signIn,
   getCsrfToken,
   useSession,
 } from "next-auth/react";
-import { useEffect } from "react";
+import NextImage from "next/image";
 import { useRouter } from "next/router";
-import { CtxOrReq } from "next-auth/client/_utils";
+import { useEffect } from "react";
 
 import styles from "./auth.module.scss";
 
-function SignIn({
+function Login({
   providers,
   csrfToken,
 }: InferGetServerSidePropsType<typeof getServerSideProps>) {
@@ -24,14 +25,24 @@ function SignIn({
     if (session) {
       router.push("/");
     }
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [session]);
 
   return (
-    <section className={styles.auth}>
-      <div className={styles.auth__container}>
-        <img src="/logo.png" alt="logo" className={styles.auth__logo} />
+    <section className="flex flex-col justify-center items-center h-full">
+      <div className="flex flex-col justify-center items-center w-72 h-full">
+        <NextImage
+          src="/logo.png"
+          alt="logo"
+          height="100%"
+          width="300px"
+          objectFit="contain"
+        />
         <form
-          className={styles.auth__form}
+          className={[
+            "flex flex-col justify-center items-center w-full font-bold",
+            styles.auth__form,
+          ].join(" ")}
           method="post"
           action="/api/auth/callback/credentials"
         >
@@ -44,22 +55,22 @@ function SignIn({
             <span>Password</span>
             <input name="password" type="password" placeholder="Password" />
           </label>
-          <button type="submit" className={styles.button}>
+          <button type="submit" className="w-72 bg-primary-light">
             Sign in
           </button>
         </form>
-        <div className={styles.divider}>
-          <div className={styles.spacer}></div>
+        <div className="flex justify-evenly items-center m-4 w-full">
+          <div className="mx-2 bg-primary-dark w-16 h-[2px]"></div>
           <span>or sign in with</span>
-          <div className={styles.spacer}></div>
+          <div className="mx-2 bg-primary-dark w-16 h-[2px]"></div>
         </div>
         {providers &&
           Object.values(providers).map((provider, i) => {
             if (provider.id !== "email") {
               return (
-                <div key={provider.name} className={styles.icon}>
+                <div key={provider.name}>
                   <button
-                    className={styles.button}
+                    className="w-72 p-2 font-semibold"
                     onClick={() => signIn(provider.id)}
                   >
                     {provider.name}
@@ -82,4 +93,4 @@ export async function getServerSideProps(context: CtxOrReq | undefined) {
   };
 }
 
-export default SignIn;
+export default Login;
