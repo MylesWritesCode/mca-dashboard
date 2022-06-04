@@ -28,14 +28,13 @@ function Login({
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [session]);
 
-  // "linear-gradient(45deg, rgb(64, 201, 255) 0%, rgb(232, 28, 255) 100%);",
   return (
     <section className="flex h-full flex-col items-center justify-center">
       <div className="flex h-full w-full flex-col items-center justify-center z-10">
         <Card
           className={[
             "align-center relative flex flex-col justify-center p-12 border-1",
-            // "before:bg-gradient-to-tr before:from-[#40c9ff] before:to-[#e81cff] before:blur-none",
+            "before:bg-gradient-to-tr before:from-[#40c9ff] before:to-[#e81cff] before:blur-none",
             "before:absolute before:z-[-1] before:h-full before:w-full",
             "before:overflow-hidden before:top-0 before:left-0",
           ].join(" ")}

@@ -17,13 +17,11 @@
 }
 
 .open {
-  flex: 1 0 300px;
-  width: 300px;
+  flex: 1 0 16rem;
 }
 
 .close {
-  flex: 1 0 72px;
-  width: 72px;
+  flex: 1 0 4.5rem;
 }
 
 .nav-item,
