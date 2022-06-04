@@ -23,6 +23,10 @@
     "migrate:dev:down": "turbo run migrate:dev:down",
     "migrate:prod:up": "turbo run migrate:prod:up"
   },
+  "dependencies": {
+    "chart.js": "^3.8.0",
+    "lodash.debounce": "^4.0.8"
+  },
   "devDependencies": {
     "@babel/core": "^7.18.2",
     "@storybook/addon-actions": "^6.5.6",
@@ -53,11 +57,5 @@
     "npm": ">=7.0.0",
     "node": ">=16.0.0"
   },
-  "packageManager": "yarn@3.2.0",
-  "dependencies": {
-    "@types/d3": "^7.4.0",
-    "chart.js": "^3.8.0",
-    "d3": "^7.4.4",
-    "lodash.debounce": "^4.0.8"
-  }
+  "packageManager": "yarn@3.2.0"
 }
