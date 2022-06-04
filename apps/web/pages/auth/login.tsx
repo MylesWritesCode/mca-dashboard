@@ -30,15 +30,14 @@ function Login({
 
   // "linear-gradient(45deg, rgb(64, 201, 255) 0%, rgb(232, 28, 255) 100%);",
   return (
-    <section className="flex flex-col justify-center items-center h-full">
-      {/* <div className="w-1/2 h-1/2 bg-gradient-to-tr from-[rgb(64, 201, 255)] to-[rgb(232, 28, 255)]"> */}
-      <div className="flex flex-col justify-center items-center w-72 h-full">
+    <section className="flex h-full flex-col items-center justify-center">
+      <div className="flex h-full w-full flex-col items-center justify-center z-10">
         <Card
           className={[
-            "p-8 flex flex-col justify-center align-center",
-            // "before:bg-gradient-to-tr before:from-[rgb(64, 201, 255)] before:to-[rgb(232, 28, 255)]",
-            "before:bg-gradient-to-r before:from-cyan-500 before:to-blue-500",
-            "before:absolute before:top-0 before:left-0 before:h-full before:w-full before:z-[-1]",
+            "align-center relative flex flex-col justify-center p-12 border-1",
+            // "before:bg-gradient-to-tr before:from-[#40c9ff] before:to-[#e81cff] before:blur-none",
+            "before:absolute before:z-[-1] before:h-full before:w-full",
+            "before:overflow-hidden before:top-0 before:left-0",
           ].join(" ")}
         >
           <NextImage
@@ -50,7 +49,7 @@ function Login({
           />
           <form
             className={[
-              "flex flex-col justify-center items-center w-full font-bold",
+              "flex w-full flex-col items-center justify-center font-bold",
               styles.auth__form,
             ].join(" ")}
             method="post"
@@ -65,15 +64,15 @@ function Login({
               <span>Password</span>
               <input name="password" type="password" placeholder="Password" />
             </label>
-            <button type="submit" className="w-72 bg-primary-light">
+            <button type="submit" className="bg-primary-light w-72">
               Sign in
             </button>
           </form>
           {providers && Object.keys(providers).length > 1 && (
-            <div className="flex justify-evenly items-center m-4 w-full">
-              <div className="mx-2 bg-primary-dark w-16 h-[2px]"></div>
+            <div className="m-4 flex w-full items-center justify-evenly">
+              <div className="bg-primary-dark mx-2 h-[2px] w-16"></div>
               <span>or sign in with</span>
-              <div className="mx-2 bg-primary-dark w-16 h-[2px]"></div>
+              <div className="bg-primary-dark mx-2 h-[2px] w-16"></div>
             </div>
           )}
           {providers &&
