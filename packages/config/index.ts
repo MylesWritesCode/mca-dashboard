@@ -41,7 +41,7 @@ export const APP_CONFIG = {
     signedOut: [
       {
         icon: AiOutlineLogin,
-        link: "/signin",
+        link: "signin",
       },
     ],
   },

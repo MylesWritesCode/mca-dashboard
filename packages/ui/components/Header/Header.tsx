@@ -39,8 +39,17 @@ export function Header({ brand = "BRAND", logo }: HeaderProps): JSX.Element {
             ({ icon: Icon, link }, i) => (
               <a
                 key={i}
-                href={link === "signIn" || "signOut" ? "" : link}
+                href={link === "signin" || "signout" ? "#" : link}
                 className="cursor-pointer hover:bg-[#00000022] hover:rounded-md"
+                onClick={() => {
+                  if (link === "signin") {
+                    signIn();
+                  } else if (link === "signout") {
+                    signOut();
+                  } else {
+                    return;
+                  }
+                }}
               >
                 <Icon />
               </a>
