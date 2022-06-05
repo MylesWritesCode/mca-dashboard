@@ -15,15 +15,13 @@
     "format": "prettier --write \"**/*.{ts,tsx,md,css}\"",
     "storybook": "start-storybook -p 6006",
     "storybook:build": "build-storybook",
-    "docker:dev": "docker compose -f .docker/development.yml --env-file .env up",
-    "docker:dbs": "docker compose -f .docker/databases.yml --env-file .env up",
-    "docker:prod": "docker compose -f .docker/production.yml --env-file .env up",
-    "docker:down": "docker compose down",
-    "migrate:dev:up": "turbo run migrate:dev:up",
-    "migrate:dev:down": "turbo run migrate:dev:down",
-    "migrate:prod:up": "turbo run migrate:prod:up"
+    "docker:dev": "docker compose -f .docker/development.yml --env-file .env",
+    "docker:dbs": "docker compose -f .docker/databases.yml --env-file .env",
+    "docker:prod": "docker compose -f .docker/production.yml --env-file .env",
+    "docker:down": "docker compose down"
   },
   "dependencies": {
+    "@next-auth/prisma-adapter": "^1.0.3",
     "chart.js": "^3.8.0",
     "lodash.debounce": "^4.0.8"
   },
@@ -39,7 +37,7 @@
     "@storybook/testing-library": "^0.0.11",
     "@trivago/prettier-plugin-sort-imports": "^3.2.0",
     "@types/lodash.debounce": "^4.0.7",
-    "@types/node": "^17.0.38",
+    "@types/node": "^17.0.39",
     "@types/webpack": "^5.28.0",
     "autoprefixer": "^10.4.7",
     "babel-loader": "^8.2.5",
@@ -48,10 +46,10 @@
     "prettier-plugin-css-order": "^1.2.0",
     "prettier-plugin-tailwindcss": "^0.1.11",
     "react-icons": "^4.4.0",
-    "sass": "^1.52.1",
+    "sass": "^1.52.2",
     "tailwindcss": "^3.0.24",
     "turbo": "^1.2.16",
-    "typescript": "^4.7.2",
+    "typescript": "^4.7.3",
     "webpack": "^5.73.0"
   },
   "engines": {

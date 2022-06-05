@@ -1,12 +1,12 @@
 /**
  * This will be the base component for all layouts
  */
-
 import { useEffect, useState } from "react";
-import { NavigationDrawer } from "ui/components/Navigation";
-import { Header } from "ui/components/Header";
-import type { NavigationDrawerItemProps } from "../Navigation/Navigation.types";
 
+import { Header } from "ui/components/Header";
+import { NavigationDrawer } from "ui/components/Navigation";
+
+import type { NavigationDrawerItemProps } from "../Navigation/Navigation.types";
 import "./Layout.css";
 
 interface LayoutProps {
