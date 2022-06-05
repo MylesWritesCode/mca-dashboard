@@ -20,11 +20,6 @@
     "docker:prod": "docker compose -f .docker/production.yml --env-file .env",
     "docker:down": "docker compose down"
   },
-  "dependencies": {
-    "@next-auth/prisma-adapter": "^1.0.3",
-    "chart.js": "^3.8.0",
-    "lodash.debounce": "^4.0.8"
-  },
   "devDependencies": {
     "@babel/core": "^7.18.2",
     "@storybook/addon-actions": "^6.5.6",
@@ -35,12 +30,15 @@
     "@storybook/manager-webpack5": "^6.5.6",
     "@storybook/react": "^6.5.6",
     "@storybook/testing-library": "^0.0.11",
+    "@testing-library/cypress": "^8.0.3",
     "@trivago/prettier-plugin-sort-imports": "^3.2.0",
     "@types/lodash.debounce": "^4.0.7",
     "@types/node": "^17.0.39",
     "@types/webpack": "^5.28.0",
     "autoprefixer": "^10.4.7",
     "babel-loader": "^8.2.5",
+    "cypress": "^10.0.2",
+    "cypress-social-logins": "^1.14.0",
     "postcss": "^8.4.14",
     "prettier": "^2.6.2",
     "prettier-plugin-css-order": "^1.2.0",
