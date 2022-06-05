@@ -1,3 +1,7 @@
+import "./UserCard.css";
+
+import { PLACEHOLDER } from "config";
+
 /**
  * Still unsure of what the user will look like or where the entity will live,
  * so I'm going to just leave the typedef in this file.
@@ -9,10 +13,6 @@ type User = {
   name: string;
   avatarSrc: string;
 };
-
-import { PLACEHOLDER } from "config";
-import { useEffect } from "react";
-import "./UserCard.css";
 
 interface UserCardProps {
   user: User;
@@ -28,14 +28,13 @@ export function UserCard({
   className,
 }: UserCardProps): JSX.Element {
   return (
-    <div
-      className={[
-        "flex h-full w-full flex-col items-center justify-center py-5",
-        "shadow-[0_-20px_0_-16px] shadow-emerald-700 transition-all",
-        className,
-      ].join(" ")}
-    >
-      <div className="user-card-avatar transition-all hover:shadow-2xl active:shadow-sm">
+    <div className="flex h-full w-full flex-col items-center justify-center py-5">
+      <div
+        className={[
+          "user-card-avatar p-1 transition-all shadow-md hover:shadow-2xl active:shadow-sm",
+          "w-28 h-28 rounded-full bg-gradient-to-br from-indigo-300 to-emerald-200",
+        ].join(" ")}
+      >
         <img
           src={user.avatarSrc || USER.avatarSrc}
           className="h-full w-full rounded-full object-cover"

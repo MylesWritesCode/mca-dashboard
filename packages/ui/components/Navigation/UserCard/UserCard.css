@@ -9,19 +9,6 @@
   height: 100%;
 }
 
-.user-card-avatar {
-  @apply rounded-full p-2 shadow-md;
-  background: var(--gradient-22);
-  padding: 5px;
-  width: 100%;
-  min-width: 100px;
-  max-width: 100px;
-  height: 100%;
-  min-height: 100px;
-  max-height: 100px;
-  overflow: hidden;
-}
-
 .close .user-card-avatar {
   width: 56px;
   min-width: 56px;
