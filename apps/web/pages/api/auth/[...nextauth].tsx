@@ -28,25 +28,16 @@ export default NextAuth({
       async authorize(credentials, req) {
         if (!credentials) return null;
 
-        const user = await prisma.user.findUnique({
-          where: {
-            username: credentials.username,
-          },
-        });
-
+        const user = await prisma.user.findUnique({ where: { username: credentials.username } });
         if (!user) return null;
 
-        const isValid = await argon2.verify(
-          user.password,
-          credentials.password,
-        );
-
+        const isValid = await argon2.verify(user.password, credentials.password);
         if (isValid) return user;
+
         return null;
       },
     }),
   ],
-  jwt: {},
   theme: {
     colorScheme: "light",
     brandColor: "#0070f3",
@@ -55,5 +46,6 @@ export default NextAuth({
   pages: {
     signIn: "/auth/login",
     // signOut: "auth/signout",
+    // error: "/auth/error",
   },
 });
