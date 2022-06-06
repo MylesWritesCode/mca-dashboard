@@ -44,7 +44,7 @@ function Login({ csrfToken }: InferGetServerSidePropsType<typeof getServerSidePr
         method="POST"
         onSubmit={handleSubmitForm}
       >
-        <input name="csrfToken" type="hidden" defaultValue={csrfToken} />
+        <input name="csrfToken" type="hidden" defaultValue={csrfToken || undefined} />
         <TextField
           label="Username"
           fullWidth
@@ -89,7 +89,7 @@ export async function getServerSideProps(context: CtxOrReq | undefined) {
   const csrfToken = await getCsrfToken(context);
 
   return {
-    props: { csrfToken },
+    props: { csrfToken: csrfToken ?? null },
   };
 }
 

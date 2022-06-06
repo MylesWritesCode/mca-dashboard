@@ -1,4 +1,4 @@
-import "../packages/ui/styles/globals.css";
+import "../../packages/ui/styles/globals.css";
 
 export const parameters = {
   actions: { argTypesRegex: "^on[A-Z].*" },
@@ -39,13 +39,7 @@ export const parameters = {
         "WIP",
         "Navigation",
         "Card",
-        [
-          "Example",
-          "Basic",
-          "With Header",
-          "With Footer",
-          "With Header and Footer",
-        ],
+        ["Example", "Basic", "With Header", "With Footer", "With Header and Footer"],
         "Button",
       ],
       locales: "",

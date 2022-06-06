@@ -2,14 +2,10 @@ import { AuthCard } from "@/components";
 import { InferGetServerSidePropsType } from "next";
 import { CtxOrReq } from "next-auth/client/_utils";
 import { getProviders, signIn, getCsrfToken, useSession } from "next-auth/react";
-import NextImage from "next/image";
 import { useRouter } from "next/router";
 import { useEffect } from "react";
 
 import { TextField, Button } from "@mui/material";
-import { Card } from "ui/components/Card";
-
-import styles from "./auth.module.scss";
 
 function Login({ providers, csrfToken }: InferGetServerSidePropsType<typeof getServerSideProps>) {
   const { data: session } = useSession();
