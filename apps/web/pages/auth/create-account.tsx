@@ -3,11 +3,9 @@ import { Action, reducer } from "@/utils/formReducer";
 import { InferGetServerSidePropsType } from "next";
 import { CtxOrReq } from "next-auth/client/_utils";
 import { getCsrfToken, useSession } from "next-auth/react";
-import { useReducer, useState } from "react";
+import { useReducer } from "react";
 
-import { TextField } from "@mui/material";
-
-import styles from "./auth.module.scss";
+import { Button, TextField } from "@mui/material";
 
 const initialState = {
   username: "",
@@ -16,6 +14,8 @@ const initialState = {
   confirmPassword: "",
   organization: "",
 };
+
+const initialError = {};
 
 function Login({ csrfToken }: InferGetServerSidePropsType<typeof getServerSideProps>) {
   const { data: session } = useSession();
@@ -77,9 +77,9 @@ function Login({ csrfToken }: InferGetServerSidePropsType<typeof getServerSidePr
           required
           onChange={e => handleInputChange("organization", e)}
         />
-        <button type="submit" className="bg-primary-light w-72">
+        <Button variant="outlined" color="primary" type="submit" fullWidth size="large">
           Create account
-        </button>
+        </Button>
       </form>
     </AuthCard>
   );

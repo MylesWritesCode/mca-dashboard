@@ -1,24 +1,17 @@
 import { AuthCard } from "@/components";
 import { InferGetServerSidePropsType } from "next";
 import { CtxOrReq } from "next-auth/client/_utils";
-import {
-  getProviders,
-  signIn,
-  getCsrfToken,
-  useSession,
-} from "next-auth/react";
+import { getProviders, signIn, getCsrfToken, useSession } from "next-auth/react";
 import NextImage from "next/image";
 import { useRouter } from "next/router";
 import { useEffect } from "react";
 
+import { TextField, Button } from "@mui/material";
 import { Card } from "ui/components/Card";
 
 import styles from "./auth.module.scss";
 
-function Login({
-  providers,
-  csrfToken,
-}: InferGetServerSidePropsType<typeof getServerSideProps>) {
+function Login({ providers, csrfToken }: InferGetServerSidePropsType<typeof getServerSideProps>) {
   const { data: session } = useSession();
   const router = useRouter();
 
@@ -32,25 +25,16 @@ function Login({
   return (
     <AuthCard>
       <form
-        className={[
-          "flex w-full flex-col items-center justify-center font-bold",
-          styles.auth__form,
-        ].join(" ")}
-        method="post"
+        className="flex w-full flex-col items-center justify-center font-bold gap-6"
+        method="POST"
         action="/api/auth/callback/credentials"
       >
         <input name="csrfToken" type="hidden" defaultValue={csrfToken} />
-        <label>
-          <span>Username</span>
-          <input name="username" type="text" placeholder="Username" />
-        </label>
-        <label>
-          <span>Password</span>
-          <input name="password" type="password" placeholder="Password" />
-        </label>
-        <button type="submit" className="bg-primary-light w-72">
-          Sign in
-        </button>
+        <TextField label="Username" name="username" fullWidth variant="filled" required />
+        <TextField type="password" name="password" label="Password" fullWidth variant="filled" required />
+        <Button variant="outlined" color="primary" type="submit" fullWidth size="large">
+          Create account
+        </Button>
       </form>
       {providers && Object.keys(providers).length > 1 && (
         <div className="m-4 flex w-full items-center justify-evenly">
@@ -65,10 +49,7 @@ function Login({
           if (provider.id !== "email") {
             return (
               <div key={provider.name}>
-                <button
-                  className="w-72 p-2 font-semibold"
-                  onClick={() => signIn(provider.id)}
-                >
+                <button className="w-72 p-2 font-semibold" onClick={() => signIn(provider.id)}>
                   {provider.name}
                 </button>
               </div>
