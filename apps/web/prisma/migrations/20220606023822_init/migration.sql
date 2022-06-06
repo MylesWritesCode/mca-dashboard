@@ -30,7 +30,8 @@ CREATE TABLE "Sessions" (
 CREATE TABLE "Users" (
     "id" TEXT NOT NULL,
     "name" TEXT,
-    "displayName" TEXT,
+    "username" TEXT,
+    "password" TEXT NOT NULL,
     "email" TEXT,
     "emailVerified" TIMESTAMP(3),
     "image" TEXT,
@@ -81,7 +82,7 @@ CREATE UNIQUE INDEX "Accounts_provider_providerAccountId_key" ON "Accounts"("pro
 CREATE UNIQUE INDEX "Sessions_sessionToken_key" ON "Sessions"("sessionToken");
 
 -- CreateIndex
-CREATE UNIQUE INDEX "Users_displayName_key" ON "Users"("displayName");
+CREATE UNIQUE INDEX "Users_username_key" ON "Users"("username");
 
 -- CreateIndex
 CREATE UNIQUE INDEX "Users_email_key" ON "Users"("email");

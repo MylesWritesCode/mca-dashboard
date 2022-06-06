@@ -26,20 +26,22 @@ export default NextAuth({
         },
       },
       async authorize(credentials, req) {
-        console.log(credentials);
+        if (!credentials) return null;
 
         const user = await prisma.user.findUnique({
-
+          where: {
+            username: credentials.username,
+          },
         });
 
-        try {
+        if (!user) return null;
 
-        } catch (e) {
-          // handle the error lol
-          console.warn(e);
-          return null;
-        }
+        const isValid = await argon2.verify(
+          user.password,
+          credentials.password,
+        );
 
+        if (isValid) return user;
         return null;
       },
     }),

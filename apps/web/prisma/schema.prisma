@@ -9,17 +9,17 @@ generator client {
 
 model Account {
   id                String  @id @default(cuid())
-  userId            String  @map("userId")
+  userId            String
   type              String
   provider          String
-  providerAccountId String  @map("providerAccountId")
-  refreshToken      String? @map("refreshToken") @db.Text
-  accessToken       String? @map("accessToken") @db.Text
-  expiresAt         Int?    @map("expiresAt")
-  tokenType         String? @map("tokenType")
+  providerAccountId String
+  refreshToken      String? @db.Text
+  accessToken       String? @db.Text
+  expiresAt         Int?
+  tokenType         String?
   scope             String?
-  idToken           String? @map("idToken") @db.Text
-  sessionState      String? @map("sessionState")
+  idToken           String? @db.Text
+  sessionState      String?
 
   user User @relation(fields: [userId], references: [id], onDelete: Cascade)
 
@@ -29,8 +29,8 @@ model Account {
 
 model Session {
   id           String   @id @default(cuid())
-  sessionToken String   @unique @map("sessionToken")
-  userId       String   @map("userId")
+  sessionToken String   @unique
+  userId       String
   expires      DateTime
   user         User     @relation(fields: [userId], references: [id], onDelete: Cascade)
 
@@ -40,7 +40,8 @@ model Session {
 model User {
   id            String    @id @default(cuid())
   name          String?
-  displayName   String?   @unique @map("displayName")
+  username      String?   @unique
+  password      String
   email         String?   @unique
   emailVerified DateTime?
   image         String?
@@ -63,8 +64,8 @@ model VerificationToken {
 model Organization {
   id         String   @id @default(uuid())
   name       String   @unique
-  createdAt  DateTime @default(now()) @map("createdAt")
-  modifiedAt DateTime @default(now()) @map("modifiedAt")
+  createdAt  DateTime @default(now())
+  modifiedAt DateTime @default(now())
 
   OrganizationUsers OrganizationUsers[]
   Client            Client[]
@@ -72,8 +73,8 @@ model Organization {
 }
 
 model OrganizationUsers {
-  userId         String       @map("userId")
-  organizationId String       @map("organizationId")
+  userId         String
+  organizationId String
   organizations  Organization @relation(fields: [organizationId], references: [id])
   users          User         @relation(fields: [userId], references: [id])
 
@@ -83,9 +84,9 @@ model OrganizationUsers {
 model Client {
   id             String   @id @default(uuid())
   name           String   @unique
-  organizationId String   @map("organizationId")
-  createdAt      DateTime @default(now()) @map("createdAt")
-  modifiedAt     DateTime @default(now()) @map("modifiedAt")
+  organizationId String
+  createdAt      DateTime @default(now())
+  modifiedAt     DateTime @default(now())
 
   organization Organization @relation(fields: [organizationId], references: [id])
   @@map("Clients")
