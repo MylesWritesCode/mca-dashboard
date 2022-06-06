@@ -4,49 +4,51 @@ datasource db {
 }
 
 generator client {
-  provider        = "prisma-client-js"
+  provider = "prisma-client-js"
 }
 
 model Account {
-  id                 String  @id @default(cuid())
-  userId             String
-  type               String
-  provider           String
-  providerAccountId  String
-  refresh_token      String?  @db.Text
-  access_token       String?  @db.Text
-  expires_at         Int?
-  token_type         String?
-  scope              String?
-  id_token           String?  @db.Text
-  session_state      String?
+  id                String  @id @default(cuid())
+  userId            String  @map("userId")
+  type              String
+  provider          String
+  providerAccountId String  @map("providerAccountId")
+  refreshToken      String? @map("refreshToken") @db.Text
+  accessToken       String? @map("accessToken") @db.Text
+  expiresAt         Int?    @map("expiresAt")
+  tokenType         String? @map("tokenType")
+  scope             String?
+  idToken           String? @map("idToken") @db.Text
+  sessionState      String? @map("sessionState")
 
   user User @relation(fields: [userId], references: [id], onDelete: Cascade)
 
   @@unique([provider, providerAccountId])
-  @@map("accounts")
+  @@map("Accounts")
 }
 
 model Session {
   id           String   @id @default(cuid())
-  sessionToken String   @unique
-  userId       String
+  sessionToken String   @unique @map("sessionToken")
+  userId       String   @map("userId")
   expires      DateTime
   user         User     @relation(fields: [userId], references: [id], onDelete: Cascade)
-  @@map("sessions")
+
+  @@map("Sessions")
 }
 
 model User {
   id            String    @id @default(cuid())
   name          String?
+  displayName   String?   @unique @map("displayName")
   email         String?   @unique
   emailVerified DateTime?
   image         String?
   accounts      Account[]
   sessions      Session[]
-  
+
   OrganizationUsers OrganizationUsers[]
-  @@map("users")
+  @@map("Users")
 }
 
 model VerificationToken {
@@ -55,37 +57,36 @@ model VerificationToken {
   expires    DateTime
 
   @@unique([identifier, token])
-  @@map("verification_tokens")
-}  
+  @@map("VerificationTokens")
+}
 
 model Organization {
-  id          String   @id @default(uuid())
-  name        String   @unique
-  created_at  DateTime @default(now())
-  modified_at DateTime @default(now())
+  id         String   @id @default(uuid())
+  name       String   @unique
+  createdAt  DateTime @default(now()) @map("createdAt")
+  modifiedAt DateTime @default(now()) @map("modifiedAt")
 
   OrganizationUsers OrganizationUsers[]
   Client            Client[]
-  @@map("organizations")
+  @@map("Organizations")
 }
 
 model OrganizationUsers {
-  user_id         String
-  organization_id String
-  organizations   Organization @relation(fields: [organization_id], references: [id])
-  users           User         @relation(fields: [user_id], references: [id])
+  userId         String       @map("userId")
+  organizationId String       @map("organizationId")
+  organizations  Organization @relation(fields: [organizationId], references: [id])
+  users          User         @relation(fields: [userId], references: [id])
 
-  @@id([user_id, organization_id])
-  @@map("organization_users")
+  @@id([userId, organizationId])
 }
 
 model Client {
-  id              String   @id @default(uuid())
-  name            String   @unique
-  organization_id String
-  created_at      DateTime @default(now())
-  modified_at     DateTime @default(now())
+  id             String   @id @default(uuid())
+  name           String   @unique
+  organizationId String   @map("organizationId")
+  createdAt      DateTime @default(now()) @map("createdAt")
+  modifiedAt     DateTime @default(now()) @map("modifiedAt")
 
-  organization Organization @relation(fields: [organization_id], references: [id])
-  @@map("clients")
+  organization Organization @relation(fields: [organizationId], references: [id])
+  @@map("Clients")
 }
