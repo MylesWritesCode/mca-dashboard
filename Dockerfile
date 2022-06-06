@@ -15,11 +15,11 @@ RUN yarn install
 
 FROM prune AS prod_deps
 RUN yarn workspaces focus --all --production
-RUN yarn workspace web prisma generate
 
 FROM build_deps AS build
 WORKDIR /app
 COPY --from=prune /app/out/full/ .
+RUN npx prisma generate
 RUN turbo run build --scope=web --filter=true --no-deps
 
 FROM node:16-alpine AS deploy

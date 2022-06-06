@@ -15,7 +15,6 @@ RUN yarn install
 
 FROM prune AS prod_deps
 RUN yarn workspaces focus --all --production
-RUN yarn workspace web prisma generate
 
 FROM build_deps AS build
 WORKDIR /app
@@ -32,7 +31,6 @@ RUN adduser -S nextjs -u 1001
 
 COPY --from=build --chown=nexts:nextjs /app/apps/web/.next .next
 COPY --from=build --chown=nexts:nextjs /app/apps/web/public ./public
-COPY --from=build --chown=nexts:nextjs /app/apps/web/prisma ./prisma
 COPY --from=build --chown=nexts:nextjs /app/apps/web/package.json ./package.json
 COPY --from=prod_deps --chown=nextjs:nextjs /app/node_modules node_modules
 

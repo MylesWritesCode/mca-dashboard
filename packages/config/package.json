@@ -6,12 +6,10 @@
   "files": [
     "eslint-preset.js"
   ],
-  "dependencies": {
+  "devDependencies": {
+    "eslint": "^8.17.0",
     "eslint-config-next": "^12.1.6",
     "eslint-config-prettier": "^8.5.0",
     "eslint-plugin-react": "7.30.0"
-  },
-  "devDependencies": {
-    "eslint": "^8.17.0"
   }
 }

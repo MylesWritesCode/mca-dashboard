@@ -12,11 +12,7 @@ services:
     ports:
       - $WEB_PORT:$WEB_PORT
       - $API_PORT:$API_PORT
-    env_file: ./.env
     restart: on-failure
-    depends_on:
-      - pg
-      - rd
     deploy:
       resources:
         limits:
