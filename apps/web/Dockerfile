@@ -30,10 +30,9 @@ ENV NODE_ENV production
 RUN addgroup -g 1001 -S nextjs
 RUN adduser -S nextjs -u 1001
 
-COPY --from=build --chown=nexts:nextjs /app/apps/web/.next .next
-COPY --from=build --chown=nexts:nextjs /app/apps/web/public ./public
-COPY --from=build --chown=nexts:nextjs /app/apps/web/prisma ./prisma
-COPY --from=build --chown=nexts:nextjs /app/apps/web/package.json ./package.json
+COPY --from=build --chown=nextjs:nextjs /app/apps/web/.next .next
+COPY --from=build --chown=nextjs:nextjs /app/apps/web/public ./public
+COPY --from=build --chown=nextjs:nextjs /app/apps/web/package.json ./package.json
 COPY --from=prod_deps --chown=nextjs:nextjs /app/node_modules node_modules
 
 USER nextjs

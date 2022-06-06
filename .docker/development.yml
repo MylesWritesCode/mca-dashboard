@@ -42,7 +42,7 @@ services:
       context: ../
       dockerfile: ./apps/web/Dockerfile
     volumes:
-      - ./:/apps/web
+      - ./data/apps/web:/apps/web
     ports:
       - $WEB_PORT:$WEB_PORT
       - $API_PORT:$API_PORT
