@@ -6,16 +6,18 @@ import { useEffect, useState } from "react";
 import { Header } from "ui/components/Header";
 import { NavigationDrawer } from "ui/components/Navigation";
 
+import { HeaderLinks } from "../Header/Header.types";
 import type { NavigationDrawerItemProps } from "../Navigation/Navigation.types";
 import "./Layout.css";
 
 interface LayoutProps {
   menuItems: NavigationDrawerItemProps[];
+  headerItems: HeaderLinks[];
   children: React.ReactNode;
   sx?: React.CSSProperties;
 }
 
-export default function Layout({ menuItems, children, sx }: LayoutProps) {
+export default function Layout({ menuItems, headerItems, children, sx }: LayoutProps) {
   const [isOpen, setIsOpen] = useState(true);
 
   useEffect(() => {
@@ -29,7 +31,7 @@ export default function Layout({ menuItems, children, sx }: LayoutProps) {
 
   return (
     <div className="layout">
-      <Header logo="/logo.png" />
+      <Header logo="/logo.png" links={headerItems} />
       <div className="page">
         <NavigationDrawer items={menuItems} isOpen={isOpen} />
         <main className="content" style={sx}>

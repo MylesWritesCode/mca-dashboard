@@ -1,6 +1,5 @@
+import { PLACEHOLDER } from "../../../config/placeholders";
 import "./UserCard.css";
-
-import { PLACEHOLDER } from "config";
 
 /**
  * Still unsure of what the user will look like or where the entity will live,
@@ -22,11 +21,7 @@ interface UserCardProps {
 
 const USER = PLACEHOLDER.user;
 
-export function UserCard({
-  user,
-  isOpen,
-  className,
-}: UserCardProps): JSX.Element {
+export function UserCard({ user, isOpen, className }: UserCardProps): JSX.Element {
   return (
     <div className="flex h-full w-full flex-col items-center justify-center py-5">
       <div
@@ -35,10 +30,7 @@ export function UserCard({
           "w-28 h-28 rounded-full bg-gradient-to-br from-indigo-300 to-emerald-200",
         ].join(" ")}
       >
-        <img
-          src={user.avatarSrc || USER.avatarSrc}
-          className="h-full w-full rounded-full object-cover"
-        />
+        <img src={user.avatarSrc || USER.avatarSrc} className="h-full w-full rounded-full object-cover" />
       </div>
       {isOpen && (
         <div className="flex flex-col items-center justify-center p-8 align-middle transition-all">

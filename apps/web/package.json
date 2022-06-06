@@ -21,12 +21,12 @@
     "next-auth": "^4.3.4",
     "react": "18.1.0",
     "react-dom": "18.1.0",
-    "ui": "*"
+    "ui": "*",
+    "config": "*"
   },
   "devDependencies": {
     "@types/node": "^17.0.39",
     "@types/react": "18.0.11",
-    "config": "*",
     "eslint": "8.17.0",
     "next-transpile-modules": "9.0.0",
     "prisma": "^3.14.0",

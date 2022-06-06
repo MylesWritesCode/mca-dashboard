@@ -1,5 +1,5 @@
 version: "3.9"
-container_name: "metadmin_production"
+name: "metadmin_production"
 services:
   web:
     container_name: web

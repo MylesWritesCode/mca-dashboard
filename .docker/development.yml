@@ -1,5 +1,5 @@
 version: "3.9"
-container_name: "metadmin_development"
+name: "metadmin_development"
 services:
   pg:
     container_name: pg

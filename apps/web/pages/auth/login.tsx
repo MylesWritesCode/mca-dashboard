@@ -29,7 +29,7 @@ function Login({ providers, csrfToken }: InferGetServerSidePropsType<typeof getS
         method="POST"
         action="/api/auth/callback/credentials"
       >
-        <input name="csrfToken" type="hidden" defaultValue={csrfToken} />
+        <input name="csrfToken" type="hidden" defaultValue={csrfToken || undefined} />
         <TextField label="Username" name="username" fullWidth variant="filled" required />
         <TextField type="password" name="password" label="Password" fullWidth variant="filled" required />
         <Button variant="outlined" color="primary" type="submit" fullWidth size="large">
@@ -65,7 +65,7 @@ export async function getServerSideProps(context: CtxOrReq | undefined) {
   const csrfToken = await getCsrfToken(context);
 
   return {
-    props: { providers, csrfToken },
+    props: { providers, csrfToken: csrfToken ?? null },
   };
 }
 
