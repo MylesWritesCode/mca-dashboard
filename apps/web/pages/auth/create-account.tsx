@@ -7,14 +7,8 @@ import { useEffect, useReducer, useRef } from "react";
 
 import { Button, TextField } from "@mui/material";
 import PopperUnstyled from '@mui/base/PopperUnstyled';
+import { type CreateAccountReqType } from '../api/auth/create-account';
 
-interface CreateAccountReqType {
-  username: string;
-  email: string;
-  password: string;
-  confirmPassword: string;
-  organization: string;
-}
 
 function CreateAccount({ csrfToken }: InferGetServerSidePropsType<typeof getServerSideProps>) {
   const { data: session } = useSession();
@@ -23,14 +17,6 @@ function CreateAccount({ csrfToken }: InferGetServerSidePropsType<typeof getServ
   const [errors, errorDispatch] = useReducer(reducer<CreateAccountReqType>, {});
   const ref = useRef(null);
 
-  /**
-   * Password validation. The password must be:
-   * - between 8 and 64 characters
-   * - contain at least one number
-   * - contain at least one uppercase letter
-   * - contain at least one lowercase letter
-   * - contain at least one special character
-   */
   function validate(password: string) {
     var minMaxLength = /^[\s\S]{8,64}$/,
       upper = /[A-Z]/,
@@ -50,7 +36,7 @@ function CreateAccount({ csrfToken }: InferGetServerSidePropsType<typeof getServ
     return false;
   }
 
-  function handleSubmitForm(e: React.FormEvent<HTMLFormElement>) {
+  async function handleSubmitForm(e: React.FormEvent<HTMLFormElement>) {
     e.preventDefault();
     errorDispatch({ type: Action.RESET, value: {} });
 
@@ -68,11 +54,24 @@ function CreateAccount({ csrfToken }: InferGetServerSidePropsType<typeof getServ
       }
     });
 
-    if (Object.keys(errors).length > 0) return;
+    if (Object.keys(errors).length > 0 || !csrfToken) return;
 
-    // @todo Send call to API to create a new user
     console.log(state);
 
+    const res = await fetch("/api/auth/create-account", {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json",
+        "X-CSRF-Token": csrfToken
+      },
+      body: JSON.stringify({
+        session,
+        data: state,
+      })
+    });
+
+    const body = await res.json();
+    console.log(body);
   }
 
   function handleInputChange(key: string, e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>) {
