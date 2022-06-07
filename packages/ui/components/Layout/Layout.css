@@ -26,7 +26,8 @@
   -ms-overflow-style: none;
   padding: 2rem;
   width: 100%;
-  overflow: overlay;
+  height: calc(100vh - 72px);
+  overflow: scroll;
   scrollbar-width: none;
 }
 

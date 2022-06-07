@@ -21,30 +21,31 @@
 <!-- [![Stargazers][stars-shield]][stars-url] -->
 <!-- [![Issues][issues-shield]][issues-url] -->
 <!-- [![MIT License][license-shield]][license-url] -->
+
 [![Twitter][twitter-shield]][twitter-url]
 [![LinkedIn][linkedin-shield]][linkedin-url]
 
 <!-- PROJECT LOGO -->
 <br />
 <div align="center">
-  <a href="https://github.com/MylesWritesCode/mca-dashboard">
+  <a href="https://github.com/treelights/metadmin">
     <img 
-      src="https://via.placeholder.com/160x160/303030/ffffff.png?text=PREVIEW" alt="Logo" width="160" height="160">
+      src="/assets/logo.png" alt="Logo" height="160">
   </a>
 
-<h3 align="center">MCA Dashboard</h3>
+<h3 align="center">Metadmin</h3>
 
   <p align="center">
     A readme too big for a boilerplate project
     <br />
-    <a href="https://github.com/MylesWritesCode/mca-dashboard"><strong>Explore the docs »</strong></a>
+    <a href="https://github.com/treelights/metadmin"><strong>Explore the docs »</strong></a>
     <br />
     <br />
-    <a href="https://github.com/MylesWritesCode/mca-dashboard">View Demo</a>
+    <a href="https://github.com/treelights/metadmin">View Demo</a>
     ·
-    <a href="https://github.com/MylesWritesCode/mca-dashboard/issues">Report Bug</a>
+    <a href="https://github.com/treelights/metadmin/issues">Report Bug</a>
     ·
-    <a href="https://github.com/MylesWritesCode/mca-dashboard/issues">Request Feature</a>
+    <a href="https://github.com/treelights/metadmin/issues">Request Feature</a>
   </p>
 </div>
 
@@ -119,7 +120,7 @@ install them.
 1. Get a free API Key at [https://example.com](https://example.com)
 2. Clone the repo
    ```sh
-   git clone https://github.com/MylesWritesCode/mca-dashboard.git
+   git clone https://github.com/treelights/metadmin.git
    ```
 3. Install NPM packages
    ```sh
@@ -151,7 +152,7 @@ _For more examples, please refer to the [Documentation](https://example.com)_
 - [ ] Feature 3
   - [ ] Nested Feature
 
-See the [open issues](https://github.com/MylesWritesCode/mca-dashboard/issues) for a full list of proposed features (and known issues).
+See the [open issues](https://github.com/treelights/metadmin/issues) for a full list of proposed features (and known issues).
 
 <p align="right">(<a href="#top">back to top</a>)</p>
 
@@ -189,7 +190,7 @@ Distributed under the MIT License. See `LICENSE.txt` for more information.
 
 Myles Berueda - [@MylesCodesEmoji](https://twitter.com/MylesCodesEmoji) - me@themapletree.io
 
-Project Link: [https://github.com/MylesWritesCode/mca-dashboard](https://github.com/MylesWritesCode/mca-dashboard)
+Project Link: [https://github.com/treelights/metadmin](https://github.com/treelights/metadmin)
 
 <p align="right">(<a href="#top">back to top</a>)</p>
 
@@ -205,16 +206,16 @@ Project Link: [https://github.com/MylesWritesCode/mca-dashboard](https://github.
 <!-- MARKDOWN LINKS & IMAGES -->
 <!-- https://www.markdownguide.org/basic-syntax/#reference-style-links -->
 
-[contributors-shield]: https://img.shields.io/github/contributors/MylesWritesCode/mca-dashboard.svg?style=for-the-badge
-[contributors-url]: https://github.com/MylesWritesCode/mca-dashboard/graphs/contributors
-[forks-shield]: https://img.shields.io/github/forks/MylesWritesCode/mca-dashboard.svg?style=for-the-badge
-[forks-url]: https://github.com/MylesWritesCode/mca-dashboard/network/members
-[stars-shield]: https://img.shields.io/github/stars/MylesWritesCode/mca-dashboard.svg?style=for-the-badge
-[stars-url]: https://github.com/MylesWritesCode/mca-dashboard/stargazers
-[issues-shield]: https://img.shields.io/github/issues/MylesWritesCode/mca-dashboard.svg?style=for-the-badge
-[issues-url]: https://github.com/MylesWritesCode/mca-dashboard/issues
-[license-shield]: https://img.shields.io/github/license/MylesWritesCode/mca-dashboard.svg?style=for-the-badge
-[license-url]: https://github.com/MylesWritesCode/mca-dashboard/blob/master/LICENSE.txt
+[contributors-shield]: https://img.shields.io/github/contributors/treelights/metadmin.svg?style=for-the-badge
+[contributors-url]: https://github.com/treelights/metadmin/graphs/contributors
+[forks-shield]: https://img.shields.io/github/forks/treelights/metadmin.svg?style=for-the-badge
+[forks-url]: https://github.com/treelights/metadmin/network/members
+[stars-shield]: https://img.shields.io/github/stars/treelights/metadmin.svg?style=for-the-badge
+[stars-url]: https://github.com/treelights/metadmin/stargazers
+[issues-shield]: https://img.shields.io/github/issues/treelights/metadmin.svg?style=for-the-badge
+[issues-url]: https://github.com/treelights/metadmin/issues
+[license-shield]: https://img.shields.io/github/license/treelights/metadmin.svg?style=for-the-badge
+[license-url]: https://github.com/treelights/metadmin/blob/master/LICENSE.txt
 [linkedin-shield]: https://img.shields.io/badge/-LinkedIn-black.svg?style=for-the-badge&logo=linkedin&colorB=555
 [linkedin-url]: https://linkedin.com/in/myles-berueda
 [twitter-shield]: https://img.shields.io/twitter/follow/MylesCodesEmoji?style=for-the-badge

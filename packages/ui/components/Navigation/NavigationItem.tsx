@@ -9,8 +9,8 @@ export function NavigationItem({
   url,
   icon,
   items,
+  isOpen,
   type = "nav-drawer-header",
-  ...props
 }: NavigationDrawerItemProps): JSX.Element {
   const IconComp = typeof icon === "function" ? icon : RiCheckboxCircleFill;
 
@@ -20,14 +20,21 @@ export function NavigationItem({
         <a className="nav-item">
           <div className={type}>
             <IconComp className="nav-icon" />
-            <span>{name}</span>
+            <span className="nav-text">{name}</span>
           </div>
         </a>
       </Link>
       {items &&
         items.map((item, index) => {
           return (
-            <NavigationItem {...item} key={index} type="nav-drawer-item" />
+            isOpen && (
+              <NavigationItem
+                {...item}
+                key={index}
+                isOpen={isOpen}
+                type="nav-drawer-item"
+              />
+            )
           );
         })}
     </>

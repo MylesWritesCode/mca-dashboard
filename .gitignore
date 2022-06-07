@@ -6,8 +6,8 @@ node_modules
 .pnp.js
 
 # storage
-/data/
-/sql/
+**/data
+**/sql
 
 # testing
 coverage

@@ -1,9 +1,14 @@
-.git
 .gitignore
+.github
 .vscode
+.env.example
 .dockerignore
 *docker-compose*
 *Dockerfile*
 **/node_modules
 **/build
 **/out
+**/data
+**/.next
+**/*.log
+README.md

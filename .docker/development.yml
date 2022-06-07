@@ -1,0 +1,61 @@
+version: "3.9"
+name: "metadmin_development"
+services:
+  pg:
+    container_name: pg
+    image: postgres:alpine
+    volumes:
+      - ./data/postgres:/var/lib/postgresql/data
+    ports:
+      - $DB_PORT:$DB_PORT
+    environment:
+      - POSTGRES_USER=$DB_USER
+      - POSTGRES_PASSWORD=$DB_PASS
+      - POSTGRES_DB=$DB_NAME
+    restart: unless-stopped
+    deploy:
+      resources:
+        limits:
+          memory: 512M
+    command: postgres -c listen_addresses='*'
+
+  rd:
+    container_name: rd
+    image: redis:alpine
+    volumes:
+      - ./data/redis:/data
+    ports:
+      - $RD_PORT:$RD_PORT
+    deploy:
+      resources:
+        limits:
+          memory: 64M
+    command: redis-server --appendonly yes
+
+  web:
+    container_name: web
+    image: web
+    env_file: ../.env
+    environment:
+      - "DATABASE_URL=postgres://$DB_USER:$DB_PASS@$DB_HOST:$DB_PORT/$DB_NAME"
+    build:
+      context: ../
+      dockerfile: ./apps/web/Dockerfile
+    volumes:
+      - ./data/apps/web:/apps/web
+    ports:
+      - $WEB_PORT:$WEB_PORT
+      - $API_PORT:$API_PORT
+    restart: on-failure
+    depends_on:
+      - pg
+      - rd
+    deploy:
+      resources:
+        limits:
+          memory: 4096M
+    command: yarn start
+
+networks:
+  dashboard:
+    driver: bridge

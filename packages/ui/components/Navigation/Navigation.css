@@ -3,12 +3,11 @@
   position: relative;
   top: 0;
   left: 0;
-  flex: 1 0 300px;
   flex-direction: column;
   justify-content: space-between;
   z-index: 100;
   background: var(--primary);
-  width: 300px;
+  height: 100%;
   color: var(--text-secondary);
   user-select: none;
 }
@@ -17,23 +16,47 @@
   transition: all 0.5s var(--ease-1);
 }
 
-.nav-drawer.open {
-  transform: translateX(0);
+.open {
+  flex: 1 0 16rem;
 }
 
-.nav-drawer.close {
-  transform: translateX(-100%);
+.close {
+  flex: 1 0 4.5rem;
 }
 
 .nav-item,
-.nav-drawer-header,
-.nav-drawer-item {
+.nav-drawer-item,
+.nav-drawer-header {
   display: flex;
+  position: relative;
   align-items: center;
+  transition: all 0.5s var(--ease-1);
   cursor: pointer;
   padding: 0.25rem 0;
+  width: 100%;
   color: var(--text-primary);
   text-transform: uppercase;
+}
+
+.nav-drawer-item,
+.nav-drawer-header {
+  transition: width cubic-bezier(0.215, 0.61, 0.355, 1) 5s;
+  transition-delay: 4s;
+}
+
+.close .nav-drawer-header span {
+  display: none;
+}
+
+.close .nav-drawer-item {
+  position: relative;
+  left: -100%;
+}
+
+.close .nav-drawer-header .nav-text {
+  position: relative;
+  top: -100%;
+  left: -100%;
 }
 
 .nav-item:hover {
@@ -41,8 +64,8 @@
 }
 
 .nav-icon {
-  margin: 0 0.75rem;
-  font-size: 1.25rem;
+  margin: 0 0.75rem 0 1.5rem;
+  font-size: 1.5rem;
 }
 
 .nav-drawer-header {

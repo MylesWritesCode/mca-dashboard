@@ -19,7 +19,8 @@ div#__next {
   min-height: 100%;
 }
 
-body, body * {
+body,
+body * {
   transition: all 0.2s var(--ease-out-1);
   box-sizing: border-box;
   margin: 0;

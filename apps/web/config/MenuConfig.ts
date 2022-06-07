@@ -2,7 +2,6 @@
  * Story config object
  */
 import { FaHome } from "react-icons/fa";
-import { MdCheckBoxOutlineBlank } from "react-icons/md";
 
 export const MENU_ITEMS = [
   {

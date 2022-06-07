@@ -1,6 +1,5 @@
-import { useEffect, useMemo, useRef } from "react";
-
 import debounce from "lodash.debounce";
+import { useEffect, useMemo, useRef } from "react";
 
 import "./SearchPrompt.css";
 
@@ -14,7 +13,7 @@ export function SearchPrompt({
   const ref = useRef<HTMLInputElement>(null);
 
   useEffect(() => {
-    document.onkeydown = (e: KeyboardEvent) => {
+    window.onkeydown = (e: KeyboardEvent) => {
       if (e.code === "KeyK" && (e.ctrlKey || e.metaKey)) {
         e.preventDefault();
         ref.current?.focus();
@@ -36,7 +35,6 @@ export function SearchPrompt({
     if (value.length < 3) return;
 
     // @todo Add search functionality based on value.
-    console.log(value);
   }
 
   const debouncedHandleChange = useMemo(() => debounce(handleChange, 500), []);

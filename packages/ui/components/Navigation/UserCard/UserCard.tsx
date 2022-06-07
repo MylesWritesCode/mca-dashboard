@@ -1,5 +1,6 @@
-import { PLACEHOLDER } from "config";
+import { PLACEHOLDER } from "../../../config/placeholders";
 import "./UserCard.css";
+
 /**
  * Still unsure of what the user will look like or where the entity will live,
  * so I'm going to just leave the typedef in this file.
@@ -14,20 +15,28 @@ type User = {
 
 interface UserCardProps {
   user: User;
+  isOpen?: boolean;
   className?: string;
 }
 
 const USER = PLACEHOLDER.user;
 
-export function UserCard({ user, className }: UserCardProps): JSX.Element {
+export function UserCard({ user, isOpen, className }: UserCardProps): JSX.Element {
   return (
-    <div className={["user-card-container", className].join(" ")}>
-      <div className="user-card-avatar">
-        <img src={user.avatarSrc || USER.avatarSrc} />
+    <div className="flex h-full w-full flex-col items-center justify-center py-5">
+      <div
+        className={[
+          "user-card-avatar p-1 transition-all shadow-md hover:shadow-2xl active:shadow-sm",
+          "w-28 h-28 rounded-full bg-gradient-to-br from-indigo-300 to-emerald-200",
+        ].join(" ")}
+      >
+        <img src={user.avatarSrc || USER.avatarSrc} className="h-full w-full rounded-full object-cover" />
       </div>
-      <div className="user-card-info">
-        <h3 className="user-card-name">{user.name || USER.name}</h3>
-      </div>
+      {isOpen && (
+        <div className="flex flex-col items-center justify-center p-8 align-middle transition-all">
+          <h3 className="font-semibold">{user.name || USER.name}</h3>
+        </div>
+      )}
     </div>
   );
 }

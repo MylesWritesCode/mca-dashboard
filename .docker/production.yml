@@ -1,0 +1,20 @@
+version: "3.9"
+name: "metadmin_production"
+services:
+  web:
+    container_name: web
+    image: web
+    build:
+      context: ../
+      dockerfile: ./apps/web/Dockerfile
+    volumes:
+      - ./:/apps/web
+    ports:
+      - $WEB_PORT:$WEB_PORT
+      - $API_PORT:$API_PORT
+    restart: on-failure
+    deploy:
+      resources:
+        limits:
+          memory: 4096M
+    command: yarn start

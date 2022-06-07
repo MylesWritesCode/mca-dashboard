@@ -1,20 +1,20 @@
+import { useSession, signIn, signOut } from "next-auth/react";
 import Link from "next/link";
+
 import { SearchPrompt } from "ui/components/SearchPrompt";
 
+import "./Header.scss";
 import type { HeaderProps } from "./Header.types";
-import { APP_CONFIG } from "config";
 
-import "./Header.css";
+export function Header({ brand = "BRAND", logo, links }: HeaderProps): JSX.Element {
+  const { data: session } = useSession();
 
-const LINKS = APP_CONFIG.header.resourceLinks;
-
-export function Header({ brand }: HeaderProps): JSX.Element {
   return (
     <div className="nav-header">
       <div className="left">
         <Link href="/" passHref={true}>
           <div className="nav-brand">
-            <h1>{brand}</h1>
+            {logo ? <img className="nav__brand_logo" src={logo} alt={`${brand} logo`} /> : <h1>{brand}</h1>}
           </div>
         </Link>
         <div className="inline-search">
@@ -23,8 +23,21 @@ export function Header({ brand }: HeaderProps): JSX.Element {
       </div>
       <div className="right">
         <div className="nav-settings">
-          {LINKS.map(({ icon: Icon, link }, i) => (
-            <a key={i} href={link} target="_blank">
+          {links?.map(({ icon: Icon, link }, i) => (
+            <a
+              key={i}
+              href={link === "signin" || "signout" ? "#" : link}
+              className="cursor-pointer hover:bg-[#00000022] hover:rounded-md"
+              onClick={() => {
+                if (link === "signin") {
+                  signIn();
+                } else if (link === "signout") {
+                  signOut();
+                } else {
+                  return;
+                }
+              }}
+            >
               <Icon />
             </a>
           ))}

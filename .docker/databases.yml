@@ -1,0 +1,37 @@
+version: "3.9"
+name: "metadmin_databases"
+services:
+  pg:
+    container_name: pg
+    image: postgres:alpine
+    volumes:
+      - ./data/postgres:/var/lib/postgresql/data
+    ports:
+      - $DB_PORT:$DB_PORT
+    environment:
+      - POSTGRES_USER=$DB_USER
+      - POSTGRES_PASSWORD=$DB_PASS
+      - POSTGRES_DB=$DB_NAME
+    restart: unless-stopped
+    deploy:
+      resources:
+        limits:
+          memory: 512M
+    command: postgres -c listen_addresses='*'
+
+  rd:
+    container_name: rd
+    image: redis:alpine
+    volumes:
+      - ./data/redis:/data
+    ports:
+      - $RD_PORT:$RD_PORT
+    deploy:
+      resources:
+        limits:
+          memory: 64M
+    command: redis-server --appendonly yes
+
+networks:
+  dashboard:
+    driver: bridge

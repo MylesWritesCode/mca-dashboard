@@ -6,20 +6,24 @@ import "./Navigation.css";
 
 export function NavigationDrawer({
   items,
+  isOpen = true,
   ...props
 }: NavigationDrawerProps): JSX.Element {
   return (
-    <div className="nav-drawer">
-      <div className="nav-drawer-items">
+    <div className={`nav-drawer ${isOpen ? "open" : "close"}`}>
+      <div className="flex h-full flex-col items-center">
         {items.map((item, index) => {
-          return <NavigationItem {...item} key={index} />;
+          return <NavigationItem {...item} isOpen={isOpen} key={index} />;
         })}
       </div>
-      <div className="nav-drawer-user">
-        <UserCard user={{
-          name: "",
-          avatarSrc: ""
-        }} />
+      <div>
+        <UserCard
+          isOpen={isOpen}
+          user={{
+            name: "",
+            avatarSrc: "",
+          }}
+        />
       </div>
     </div>
   );

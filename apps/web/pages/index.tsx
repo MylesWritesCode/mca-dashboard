@@ -1,13 +1,11 @@
-import { Button, Card, LineGraph } from "ui";
+import { Button, Card } from "ui";
 
 export default function Web() {
   return (
     <div>
       <Card>
         <Card.Header title="Card header">Card header</Card.Header>
-        <div>
-          <LineGraph />
-        </div>
+        <div className="h-36 w-36"></div>
         <div>
           <Button>Button</Button>
         </div>
