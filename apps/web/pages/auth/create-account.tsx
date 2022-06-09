@@ -56,8 +56,6 @@ function CreateAccount({ csrfToken }: InferGetServerSidePropsType<typeof getServ
 
     if (Object.keys(errors).length > 0 || !csrfToken) return;
 
-    console.log(state);
-
     const res = await fetch("/api/auth/create-account", {
       method: "POST",
       headers: {
