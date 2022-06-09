@@ -7,6 +7,7 @@ import { useEffect, useReducer, useRef } from "react";
 
 import { Button, TextField } from "@mui/material";
 import PopperUnstyled from '@mui/base/PopperUnstyled';
+
 import { type CreateAccountReqType } from '../api/auth/create-account';
 
 
@@ -56,6 +57,8 @@ function CreateAccount({ csrfToken }: InferGetServerSidePropsType<typeof getServ
 
     if (Object.keys(errors).length > 0 || !csrfToken) return;
 
+    const { organization, ...user } = state;
+
     const res = await fetch("/api/auth/create-account", {
       method: "POST",
       headers: {
@@ -64,7 +67,7 @@ function CreateAccount({ csrfToken }: InferGetServerSidePropsType<typeof getServ
       },
       body: JSON.stringify({
         session,
-        data: state,
+        data: state
       })
     });
 

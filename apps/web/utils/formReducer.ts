@@ -8,7 +8,6 @@ export type FormReducerDispatch = (action: FormReducerAction) => void;
 
 export enum Action {
   SET,
-  DELETE,
   INITIALIZE,
   RESET,
 }
