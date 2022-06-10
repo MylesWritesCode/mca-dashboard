@@ -4,12 +4,6 @@ import * as argon2 from "argon2";
 import NextAuth from "next-auth";
 import CredentialsProvider from "next-auth/providers/credentials";
 
-interface User {
-  id: string;
-  username: string;
-  password: string;
-}
-
 const prisma = new PrismaClient();
 
 export default NextAuth({
@@ -28,12 +22,18 @@ export default NextAuth({
       async authorize(credentials, req) {
         if (!credentials) return null;
 
-        const user = await prisma.user.findUnique({ where: { username: credentials.username } });
+        const user = await prisma.user.findFirst({ where: { username: credentials.username } });
+        prisma.$disconnect();
         if (!user) return null;
 
         const isValid = await argon2.verify(user.password, credentials.password);
-        if (isValid) return user;
-
+        if (isValid) {
+          return {
+            id: user.id,
+            username: user.username,
+            email: user.email,
+          };
+        }
         return null;
       },
     }),

@@ -10,7 +10,6 @@ import PopperUnstyled from '@mui/base/PopperUnstyled';
 
 import { type CreateAccountReqType } from '../api/auth/create-account';
 
-
 function CreateAccount({ csrfToken }: InferGetServerSidePropsType<typeof getServerSideProps>) {
   const { data: session } = useSession();
 
@@ -57,8 +56,6 @@ function CreateAccount({ csrfToken }: InferGetServerSidePropsType<typeof getServ
 
     if (Object.keys(errors).length > 0 || !csrfToken) return;
 
-    const { organization, ...user } = state;
-
     const res = await fetch("/api/auth/create-account", {
       method: "POST",
       headers: {
@@ -72,7 +69,6 @@ function CreateAccount({ csrfToken }: InferGetServerSidePropsType<typeof getServ
     });
 
     const body = await res.json();
-    console.log(body);
   }
 
   function handleInputChange(key: string, e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>) {
