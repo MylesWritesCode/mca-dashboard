@@ -1,5 +1,5 @@
 import withErrorHandler, { ResponseError } from "@/lib/withErrorHandler";
-import { Organization, PrismaClient, User } from "@prisma/client";
+import { Organization, OrganizationUsers, PrismaClient, User } from "@prisma/client";
 import * as argon2 from "argon2";
 import type { NextApiRequest, NextApiResponse } from "next";
 import { Session } from "next-auth";
@@ -21,14 +21,16 @@ export async function CreateAccount(req: NextApiRequest, res: NextApiResponse) {
   async function POST() {
     const { session, data }: CreateAccountReqType = req.body;
     let { organization: orgName, password, confirmPassword, ...userData } = data;
-    let sponsor = null;
+    let sponsor: (User & { OrganizationUsers: (OrganizationUsers & { organizations: Organization })[] }) | undefined =
+      undefined;
 
     const transaction = await client.$transaction(async prisma => {
       if (session) {
-        sponsor = await prisma.user.findFirst({
-          where: { id: session.user.id },
-          include: { OrganizationUsers: { include: { organizations: true } } },
-        });
+        sponsor =
+          (await prisma.user.findFirst({
+            where: { id: session.user.id },
+            include: { OrganizationUsers: { include: { organizations: true } } },
+          })) || undefined;
         orgName = sponsor?.OrganizationUsers[0].organizations.name || orgName;
       }
 
@@ -42,7 +44,7 @@ export async function CreateAccount(req: NextApiRequest, res: NextApiResponse) {
 
       const user: User = await prisma.user
         .create({
-          data: { ...userData, password: await argon2.hash(password) },
+          data: { ...userData, password: await argon2.hash(password), userId: sponsor?.id },
         })
         .catch(e => {
           throw new ResponseError(
