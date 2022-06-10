@@ -22,22 +22,39 @@ export default NextAuth({
       async authorize(credentials, req) {
         if (!credentials) return null;
 
-        const user = await prisma.user.findFirst({ where: { username: credentials.username } });
+        const user = await prisma.user.findFirst({
+          where: { OR: [{ username: credentials.username }, { email: credentials.username }] },
+          include: { OrganizationUsers: { include: { organizations: true } } },
+        });
         prisma.$disconnect();
         if (!user) return null;
 
         const isValid = await argon2.verify(user.password, credentials.password);
-        if (isValid) {
-          return {
-            id: user.id,
-            username: user.username,
-            email: user.email,
-          };
-        }
-        return null;
+        const res = isValid
+          ? {
+              id: user.id,
+              email: user.email,
+              name: user.name,
+              image: user.image,
+              organization: user.OrganizationUsers[0].organizations.name,
+            }
+          : null;
+
+        return res;
       },
     }),
   ],
+  callbacks: {
+    session({ session, token, user }) {
+      return session;
+    },
+  },
+  jwt: {
+    maxAge: 60 * 60 * 24 * 7,
+  },
+  session: {
+    strategy: "jwt",
+  },
   theme: {
     colorScheme: "light",
     brandColor: "#0070f3",

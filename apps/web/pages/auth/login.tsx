@@ -23,35 +23,39 @@ function Login({ providers, csrfToken }: InferGetServerSidePropsType<typeof getS
       <form
         className="flex w-full flex-col items-center justify-center font-bold gap-6"
         method="POST"
-        action="/api/auth/callback/credentials"
-      >
+        action="/api/auth/callback/credentials">
         <input name="csrfToken" type="hidden" defaultValue={csrfToken || undefined} />
         <TextField label="Username" name="username" fullWidth variant="filled" required />
         <TextField type="password" name="password" label="Password" fullWidth variant="filled" required />
         <Button variant="outlined" color="primary" type="submit" fullWidth size="large">
-          Create account
+          Sign in
         </Button>
+        {providers && Object.keys(providers).length > 1 && (
+          <div className="m-4 flex w-full items-center justify-evenly">
+            <div className="bg-primary-dark mx-2 h-[2px] w-16"></div>
+            <span>or sign in with</span>
+            <div className="bg-primary-dark mx-2 h-[2px] w-16"></div>
+          </div>
+        )}
+        {providers &&
+          Object.keys(providers).length > 1 &&
+          Object.values(providers).map((provider, i) => {
+            if (provider.id !== "email") {
+              return (
+                <Button
+                  key={provider.name}
+                  variant="outlined"
+                  color="primary"
+                  type="submit"
+                  fullWidth
+                  size="large"
+                  onClick={() => signIn(provider.id)}>
+                  {Object.keys(providers).length == 1 ? "Sign in" : provider.name}
+                </Button>
+              );
+            }
+          })}
       </form>
-      {providers && Object.keys(providers).length > 1 && (
-        <div className="m-4 flex w-full items-center justify-evenly">
-          <div className="bg-primary-dark mx-2 h-[2px] w-16"></div>
-          <span>or sign in with</span>
-          <div className="bg-primary-dark mx-2 h-[2px] w-16"></div>
-        </div>
-      )}
-      {providers &&
-        Object.keys(providers).length > 1 &&
-        Object.values(providers).map((provider, i) => {
-          if (provider.id !== "email") {
-            return (
-              <div key={provider.name}>
-                <button className="w-72 p-2 font-semibold" onClick={() => signIn(provider.id)}>
-                  {provider.name}
-                </button>
-              </div>
-            );
-          }
-        })}
     </AuthCard>
   );
 }

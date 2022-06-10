@@ -1,4 +1,5 @@
 import withErrorHandler, { ResponseError } from "@/lib/withErrorHandler";
+import * as logger from "@/utils/logger";
 import { Organization, OrganizationUsers, PrismaClient, User } from "@prisma/client";
 import * as argon2 from "argon2";
 import type { NextApiRequest, NextApiResponse } from "next";
@@ -42,6 +43,8 @@ export async function CreateAccount(req: NextApiRequest, res: NextApiResponse) {
             throw new ResponseError(`Organization ${orgName} not found.`, e.code, 400, e.meta?.target);
           });
 
+      if (organization) logger.info(`Organization ${organization.name} created.`);
+
       const user: User = await prisma.user
         .create({
           data: { ...userData, password: await argon2.hash(password), userId: sponsor?.id },
@@ -55,21 +58,29 @@ export async function CreateAccount(req: NextApiRequest, res: NextApiResponse) {
           );
         });
 
+      if (user) logger.info(`User ${user.username} created`);
+
       if (organization && user) {
         await prisma.organizationUsers.create({
           data: { userId: user.id, organizationId: organization.id },
         });
 
-        return {
+        const res = {
           id: user.id,
           username: user.username,
           email: user.email,
+          organization: organization.name,
+          sponsor: sponsor?.username,
         };
+
+        logger.info(
+          `User ${user.username} added to organization ${organization.name} with details: ${JSON.stringify(res)}`,
+        );
+
+        return res;
       }
     });
     client.$disconnect();
-
-    console.log("transaction:", transaction);
 
     return res.status(201).json({ user: { ...transaction } });
   }
