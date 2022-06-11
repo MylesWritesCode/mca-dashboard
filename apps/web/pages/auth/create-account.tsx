@@ -16,6 +16,12 @@ function CreateAccount({ csrfToken }: InferGetServerSidePropsType<typeof getServ
   const [state, stateDispatch] = useReducer(reducer<CreateAccountReqType>, {});
   const [errors, errorDispatch] = useReducer(reducer<CreateAccountReqType>, {});
   const ref = useRef(null);
+  
+  useEffect(() => {
+    if (session) {
+      stateDispatch({ type: Action.SET, key: "organization", value: session.user.organization });
+    }
+  }, [session]);
 
   function validate(password: string) {
     var minMaxLength = /^[\s\S]{8,64}$/,
@@ -72,8 +78,6 @@ function CreateAccount({ csrfToken }: InferGetServerSidePropsType<typeof getServ
   }
 
   function handleInputChange(key: string, e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>) {
-    if (key === "organization" && session) return;
-
     stateDispatch({
       type: Action.SET,
       key,
@@ -147,8 +151,9 @@ function CreateAccount({ csrfToken }: InferGetServerSidePropsType<typeof getServ
           name="organization"
           fullWidth
           variant="filled"
-          InputProps={{ readOnly: !!session }}
           required
+          InputProps={{readOnly: !!session}}
+          value={state.organization || ""}
           error={!!errors.organization}
           helperText={errors.organization}
           onChange={e => handleInputChange("organization", e)} />
