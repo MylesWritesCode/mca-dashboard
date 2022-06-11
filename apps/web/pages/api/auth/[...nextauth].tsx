@@ -2,6 +2,7 @@ import { PrismaAdapter } from "@next-auth/prisma-adapter";
 import { PrismaClient } from "@prisma/client";
 import * as argon2 from "argon2";
 import NextAuth from "next-auth";
+import { JWTEncodeParams } from "next-auth/jwt";
 import CredentialsProvider from "next-auth/providers/credentials";
 
 const prisma = new PrismaClient();

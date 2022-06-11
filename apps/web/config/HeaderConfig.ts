@@ -3,7 +3,7 @@ import { FaGithubSquare, FaLinkedin, FaGlobe, FaTwitterSquare } from "react-icon
 
 import { HeaderLinks } from "@/../../packages/ui/components/Header/Header.types";
 
-export const HEADER_CONFIG: Record<string, HeaderLinks[]> = {
+export const HEADER_CONFIG: Record<"resourceLinks" | "signedIn" | "signedOut", HeaderLinks[]> = {
   resourceLinks: [
     {
       icon: FaGithubSquare,
