@@ -1,8 +1,7 @@
 import { PrismaAdapter } from "@next-auth/prisma-adapter";
 import { PrismaClient } from "@prisma/client";
 import * as argon2 from "argon2";
-import NextAuth from "next-auth";
-import { JWTEncodeParams } from "next-auth/jwt";
+import NextAuth, { User } from "next-auth";
 import CredentialsProvider from "next-auth/providers/credentials";
 
 const prisma = new PrismaClient();
@@ -46,8 +45,21 @@ export default NextAuth({
     }),
   ],
   callbacks: {
-    session({ session, token, user }) {
-      return session;
+    jwt: async ({ token, user, account, profile, isNewUser }) => {
+      if (user) {
+        token.organization = user.organization;
+      }
+      return Promise.resolve(token);
+    },
+    session: async ({ session, token, user }) => {
+     console.log("token", token);
+     const u: User = user;
+      if (token.sub && token.organization) {
+        session.user.id = token.sub;
+        session.user.organization = token.organization;
+      }
+
+      return Promise.resolve(session);
     },
   },
   jwt: {

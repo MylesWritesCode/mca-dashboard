@@ -1,6 +1,7 @@
 export interface HeaderLinks {
   icon: any;
-  link: string;
+  link?: string;
+  action?: () => void;
 }
 
 export interface HeaderProps {
