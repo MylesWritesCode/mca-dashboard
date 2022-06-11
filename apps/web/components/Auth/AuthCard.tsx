@@ -11,7 +11,7 @@ export function AuthCard({ children }: AuthCardProps) {
     <section className="flex h-full flex-col items-center justify-center">
       <div
         className={[
-          "flex h-full w-full flex-col items-center justify-center rounded-xl z-10",
+          "flex h-full w-full flex-col items-center justify-center z-10",
           "bg-gradient-to-br from-indigo-300 to-emerald-200",
         ].join(" ")}
       >

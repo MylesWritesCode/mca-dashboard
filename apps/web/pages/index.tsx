@@ -3,7 +3,7 @@ import { useEffect } from "react";
 
 import { Button, Card } from "ui";
 
-export default function Web() {
+export default function Index() {
   const { data: session } = useSession();
 
   useEffect(() => {
