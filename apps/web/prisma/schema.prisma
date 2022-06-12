@@ -10,10 +10,10 @@ generator client {
 
 model Account {
   id                 String  @id @default(cuid())
-  userId             String
+  userId             String  @map("user_id")
   type               String
   provider           String
-  providerAccountId  String
+  providerAccountId  String  @map("provider_account_id")
   refresh_token      String? @db.Text
   access_token       String? @db.Text
   expires_at         Int?
@@ -27,35 +27,37 @@ model Account {
   user User @relation(fields: [userId], references: [id], onDelete: Cascade)
 
   @@unique([provider, providerAccountId])
-  @@map("Accounts")
+  @@map("accounts")
 }
 
 model Session {
   id           String   @id @default(cuid())
-  sessionToken String   @unique
-  userId       String
+  sessionToken String   @unique @map("session_token")
+  userId       String   @map("user_id")
   expires      DateTime
   user         User     @relation(fields: [userId], references: [id], onDelete: Cascade)
 
-  @@map("Sessions")
+  @@map("sessions")
 }
 
 model User {
-  id              String    @id @default(cuid())
-  name            String?
-  username        String?   @unique
-  password        String
-  email           String?   @unique
-  emailVerified   DateTime?
-  image           String?
-  accounts        Account[]
-  sessions        Session[]
-  createdBy       User?     @relation("createdBy", fields: [userId], references: [id])
-  accountsCreated User[]    @relation("createdBy")
-  userId          String?
+  id            String    @id @default(cuid())
+  name          String?
+  username      String?   @unique
+  password      String
+  email         String?   @unique
+  emailVerified DateTime? @map("email_verified")
+  image         String?
+  accounts      Account[]
+  sessions      Session[]
+  createdById   String?   @map("created_by_id")
+  createdBy     User?     @relation("created_by", fields: [createdById], references: [id])
+  usersCreated  User[]    @relation("created_by")
+  createdAt     DateTime  @default(now()) @map("created_at")
+  modifiedAt    DateTime  @updatedAt @map("modified_at")
 
   OrganizationUsers OrganizationUsers[]
-  @@map("Users")
+  @@map("users")
 }
 
 model VerificationToken {
@@ -64,36 +66,37 @@ model VerificationToken {
   expires    DateTime
 
   @@unique([identifier, token])
-  @@map("VerificationTokens")
+  @@map("verification_tokens")
 }
 
 model Organization {
   id         String   @id @default(cuid())
   name       String   @unique
-  createdAt  DateTime @default(now())
-  modifiedAt DateTime @default(now())
+  createdAt  DateTime @default(now()) @map("created_at")
+  modifiedAt DateTime @updatedAt @map("modified_at")
 
   OrganizationUsers OrganizationUsers[]
   Client            Client[]
-  @@map("Organizations")
+  @@map("organizations")
 }
 
 model OrganizationUsers {
-  userId         String
-  organizationId String
+  userId         String       @map("user_id")
+  organizationId String       @map("organization_id")
   organizations  Organization @relation(fields: [organizationId], references: [id])
   users          User         @relation(fields: [userId], references: [id])
 
   @@id([userId, organizationId])
+  @@map("organization_users")
 }
 
 model Client {
   id             String   @id @default(cuid())
   name           String   @unique
-  organizationId String
-  createdAt      DateTime @default(now())
-  modifiedAt     DateTime @default(now())
+  organizationId String   @map("organization_id")
+  createdAt      DateTime @default(now()) @map("created_at")
+  modifiedAt     DateTime @updatedAt @map("modified_at")
 
   organization Organization @relation(fields: [organizationId], references: [id])
-  @@map("Clients")
+  @@map("clients")
 }

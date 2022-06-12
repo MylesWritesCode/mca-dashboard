@@ -36,26 +36,33 @@ export async function CreateAccount(req: NextApiRequest, res: NextApiResponse) {
       }
 
       const organization: Organization | null = !session
-        ? await prisma.organization.create({ data: { name: orgName } }).catch(e => {
-            throw new ResponseError(`Organization ${orgName} already exists.`, e.code, 400, e.meta?.target);
-          })
-        : await prisma.organization.findFirst({ where: { name: orgName } }).catch(e => {
-            throw new ResponseError(`Organization ${orgName} not found.`, e.code, 400, e.meta?.target);
-          });
-
-      if (organization) logger.info(`Organization ${organization.name} created.`);
+        ? await prisma.organization
+            .create({ data: { name: orgName } })
+            .then(organization => {
+              logger.info(`Organization ${organization.name} created.`);
+              return organization;
+            })
+            .catch(e => {
+              throw new ResponseError(`Organization ${orgName} already exists.`, e.code, 400, e.meta?.target);
+            })
+        : await prisma.organization
+            .findFirst({ where: { name: orgName } })
+            .then(organization => {
+              organization && logger.info(`Organization ${organization.name} found.`);
+              return organization;
+            })
+            .catch(e => {
+              throw new ResponseError(`Error while searching for organization ${orgName}`, e.code, 400, e.meta?.target);
+            });
 
       const user: User = await prisma.user
         .create({
-          data: { ...userData, password: await argon2.hash(password), userId: sponsor?.id },
+          data: { ...userData, password: await argon2.hash(password), createdBy: { connect: { id: sponsor?.id } } },
         })
         .catch(e => {
-          throw new ResponseError(
-            `User with ${e.meta?.target[0] === "email" ? userData.email : userData.username} already exists.`,
-            e.code,
-            400,
-            e.meta?.target,
-          );
+          const targetMessage =
+            e.meta?.target[0] === "email" ? `email ${userData.email}` : `username ${userData.username}`;
+          throw new ResponseError(`User with ${targetMessage} already exists.`, e.code, 400, e.meta?.target);
         });
 
       if (user) logger.info(`User ${user.username} created`);
