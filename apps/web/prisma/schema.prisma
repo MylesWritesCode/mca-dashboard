@@ -41,22 +41,28 @@ model Session {
 }
 
 model User {
-  id            String    @id @default(cuid())
-  name          String?
-  username      String?   @unique
-  password      String
-  email         String?   @unique
-  emailVerified DateTime? @map("email_verified")
-  image         String?
-  accounts      Account[]
-  sessions      Session[]
-  createdById   String?   @map("created_by_id")
-  createdBy     User?     @relation("created_by", fields: [createdById], references: [id])
-  usersCreated  User[]    @relation("created_by")
-  createdAt     DateTime  @default(now()) @map("created_at")
-  modifiedAt    DateTime  @updatedAt @map("modified_at")
+  id             String       @id @default(cuid())
+  name           String?
+  username       String?      @unique
+  password       String
+  email          String?      @unique
+  emailVerified  DateTime?    @map("email_verified")
+  image          String?
+  accounts       Account[]
+  sessions       Session[]
+  organization   Organization @relation(fields: [organizationId], references: [id])
+  organizationId String       @map("organization_id")
+  createdById    String?      @map("created_by_id")
+  createdBy      User?        @relation("created_by", fields: [createdById], references: [id])
+  usersCreated   User[]       @relation("created_by")
+  managerId      String?      @map("manager_id")
+  manager        User?        @relation("manager", fields: [managerId], references: [id])
+  staff          User[]       @relation("manager")
+  role           Role?        @relation(fields: [roleId], references: [id])
+  roleId         String?
+  createdAt      DateTime     @default(now()) @map("created_at")
+  modifiedAt     DateTime     @updatedAt @map("modified_at")
 
-  OrganizationUsers OrganizationUsers[]
   @@map("users")
 }
 
@@ -74,29 +80,31 @@ model Organization {
   name       String   @unique
   createdAt  DateTime @default(now()) @map("created_at")
   modifiedAt DateTime @updatedAt @map("modified_at")
+  clients    Client[]
+  roles      Role[]
+  users      User[]
 
-  OrganizationUsers OrganizationUsers[]
-  Client            Client[]
   @@map("organizations")
 }
 
-model OrganizationUsers {
-  userId         String       @map("user_id")
+model Role {
+  id             String       @id @default(cuid())
+  name           String
+  organization   Organization @relation(fields: [organizationId], references: [id])
   organizationId String       @map("organization_id")
-  organizations  Organization @relation(fields: [organizationId], references: [id])
-  users          User         @relation(fields: [userId], references: [id])
+  users          User[]
 
-  @@id([userId, organizationId])
-  @@map("organization_users")
+  @@unique([name, organizationId])
+  @@map("roles")
 }
 
 model Client {
-  id             String   @id @default(cuid())
-  name           String   @unique
-  organizationId String   @map("organization_id")
-  createdAt      DateTime @default(now()) @map("created_at")
-  modifiedAt     DateTime @updatedAt @map("modified_at")
+  id             String       @id @default(cuid())
+  name           String       @unique
+  createdAt      DateTime     @default(now()) @map("created_at")
+  modifiedAt     DateTime     @updatedAt @map("modified_at")
+  organizationId String       @map("organization_id")
+  organization   Organization @relation(fields: [organizationId], references: [id])
 
-  organization Organization @relation(fields: [organizationId], references: [id])
   @@map("clients")
 }

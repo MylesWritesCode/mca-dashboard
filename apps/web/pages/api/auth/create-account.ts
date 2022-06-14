@@ -22,17 +22,16 @@ export async function CreateAccount(req: NextApiRequest, res: NextApiResponse) {
   async function POST() {
     const { session, data }: CreateAccountReqType = req.body;
     let { organization: orgName, password, confirmPassword, ...userData } = data;
-    let sponsor: (User & { OrganizationUsers: (OrganizationUsers & { organizations: Organization })[] }) | undefined =
-      undefined;
+    let sponsor: (User & { organization: { name: string } }) | undefined = undefined;
 
     const transaction = await client.$transaction(async prisma => {
       if (session) {
         sponsor =
           (await prisma.user.findFirst({
             where: { id: session.user.id },
-            include: { OrganizationUsers: { include: { organizations: true } } },
+            include: { organization: { select: { name: true } } },
           })) || undefined;
-        orgName = sponsor?.OrganizationUsers[0].organizations.name || orgName;
+        orgName = sponsor?.organization.name || orgName;
       }
 
       const organization: Organization | null = !session
@@ -55,9 +54,11 @@ export async function CreateAccount(req: NextApiRequest, res: NextApiResponse) {
               throw new ResponseError(`Error while searching for organization ${orgName}`, e.code, 400, e.meta?.target);
             });
 
+      if (!organization) return;
+
       const user: User = await prisma.user
         .create({
-          data: { ...userData, password: await argon2.hash(password), createdBy: { connect: { id: sponsor?.id } } },
+          data: { ...userData, password: await argon2.hash(password), organizationId: organization.id },
         })
         .catch(e => {
           const targetMessage =
