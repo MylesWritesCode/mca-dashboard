@@ -24,7 +24,7 @@ export default NextAuth({
 
         const user = await prisma.user.findFirst({
           where: { OR: [{ username: credentials.username }, { email: credentials.username }] },
-          include: { OrganizationUsers: { include: { organizations: true } } },
+          include: { organization: { select: { name: true } } },
         });
         prisma.$disconnect();
         if (!user) return null;
@@ -36,7 +36,7 @@ export default NextAuth({
               email: user.email,
               name: user.name,
               image: user.image,
-              organization: user.OrganizationUsers[0].organizations.name,
+              organization: user.organization.name,
             }
           : null;
 

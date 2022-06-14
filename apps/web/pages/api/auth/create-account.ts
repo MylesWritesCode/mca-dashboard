@@ -1,6 +1,6 @@
 import withErrorHandler, { ResponseError } from "@/lib/withErrorHandler";
 import * as logger from "@/utils/logger";
-import { Organization, OrganizationUsers, PrismaClient, User } from "@prisma/client";
+import { Organization, PrismaClient, User } from "@prisma/client";
 import * as argon2 from "argon2";
 import type { NextApiRequest, NextApiResponse } from "next";
 import { Session } from "next-auth";
@@ -68,25 +68,19 @@ export async function CreateAccount(req: NextApiRequest, res: NextApiResponse) {
 
       if (user) logger.info(`User ${user.username} created`);
 
-      if (organization && user) {
-        await prisma.organizationUsers.create({
-          data: { userId: user.id, organizationId: organization.id },
-        });
+      const res = {
+        id: user.id,
+        username: user.username,
+        email: user.email,
+        organization: organization.name,
+        sponsor: sponsor?.username,
+      };
 
-        const res = {
-          id: user.id,
-          username: user.username,
-          email: user.email,
-          organization: organization.name,
-          sponsor: sponsor?.username,
-        };
+      logger.info(
+        `User ${user.username} added to organization ${organization.name} with details: ${JSON.stringify(res)}`,
+      );
 
-        logger.info(
-          `User ${user.username} added to organization ${organization.name} with details: ${JSON.stringify(res)}`,
-        );
-
-        return res;
-      }
+      return res;
     });
     client.$disconnect();
 
