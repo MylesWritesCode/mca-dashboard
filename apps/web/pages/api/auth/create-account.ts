@@ -58,7 +58,12 @@ export async function CreateAccount(req: NextApiRequest, res: NextApiResponse) {
 
       const user: User = await prisma.user
         .create({
-          data: { ...userData, password: await argon2.hash(password), organizationId: organization.id },
+          data: {
+            ...userData,
+            password: await argon2.hash(password),
+            organization: { connect: { id: organization.id } },
+            createdBy: { connect: { id: session?.user.id } },
+          },
         })
         .catch(e => {
           const targetMessage =
