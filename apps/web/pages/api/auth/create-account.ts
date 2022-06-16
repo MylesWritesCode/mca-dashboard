@@ -1,4 +1,4 @@
-import { prismaClient } from "@/lib/prisma.client";
+import prismaClient from "@/lib/prisma.client";
 import withErrorHandler, { ResponseError } from "@/lib/withErrorHandler";
 import { logger } from "@/utils/logger";
 import { Organization, User } from "@prisma/client";

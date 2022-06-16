@@ -1,6 +1,4 @@
 import pino from "pino";
-import { TransportBaseOptions } from "pino";
-import pretty from "pino-pretty";
 
 const { NODE_ENV } = process.env;
 

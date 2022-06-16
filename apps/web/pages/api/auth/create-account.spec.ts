@@ -73,25 +73,33 @@ describe('/auth/create-account', () => {
   });
 
   it('should create a new organiation and user without a sponsor', async () => {
-
-    // prismaMock.organization.create.mockResolvedValue(EXPECTED_ORGANIZATION).mockName('createOrganization');
-    // prismaMock.user.create.mockResolvedValue(EXPECTED_USER).mockName('createUser');
     prismaMock.$transaction.mockResolvedValue(EXPECTED_TRANSACTION);
+
+    // prismaMock.user.create.mockResolvedValue(EXPECTED_USER);
+    // prismaMock.organization.create.mockResolvedValue(EXPECTED_ORGANIZATION);
+    
+    // prismaMock.$transaction(async prismaMock => {
+    // })
 
     const { req, res } = createMocks({ method: 'POST', body: FRONTEND_REQ, url: '/auth/create-account' });
 
     await CreateAccount(req, res);
 
+
     const expected = {
-      id: EXPECTED_USER.id,
-      username: FRONTEND_REQ.data.username,
-      email: FRONTEND_REQ.data.email,
-      organization: FRONTEND_REQ.data.organization,
+      user: {
+        id: EXPECTED_USER.id,
+        username: FRONTEND_REQ.data.username,
+        email: FRONTEND_REQ.data.email,
+        organization: FRONTEND_REQ.data.organization,
+      }
     };
     
+    console.log('expected:', expected);
+    console.log('actual:', res._getJSONData());
 
-    // expect(res._getStatusCode()).toBe(201);
-    // expect(res._getJSONData()).toEqual(expect.objectContaining(expected));
+    expect(res._getStatusCode()).toBe(201);
+    expect(res._getJSONData()).toMatchObject(expected);
     expect(true).toBe(true);
   });
 });
