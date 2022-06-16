@@ -12,6 +12,16 @@ export class ResponseError extends Error {
   ) {
     super(message);
   }
+
+  public toObject(): Object {
+    return {
+      message: this.message,
+      code: this.code,
+      status: this.status,
+      target: this.target,
+      url: this.url,
+    };
+  }
 }
 
 export default async function withErrorHandler(
@@ -22,28 +32,28 @@ export default async function withErrorHandler(
   try {
     const method = req.method;
     if (method && !Object.keys(actions).includes(method)) {
-      throw { message: `Method ${method} not supported`, status: 405 };
+      throw new ResponseError(`Method ${method} not allowed.`, undefined, 405);
     }
 
     if (method) await actions[method]();
   } catch (e: any) {
-    let error: ResponseError = new ResponseError(e);
-    error.url = req.url;
-    e.status && (error.status = e.status);
+    let error: ResponseError = new ResponseError(e.message, e.code, e.status, e.target, req.url);
 
-    if (e instanceof ResponseError) {
-      error.message = e.message;
-      error.code = e.code;
-      error.status = e.status;
-      error.target = e.target;
-    } else if (e instanceof PrismaClientKnownRequestError) {
-      error.message = e.message.split("\n")[1].trim();
-      error.code = e.code;
-      error.status = 400;
-      error.target = (e.meta?.target as string[]) || [];
+    if (e instanceof PrismaClientKnownRequestError) {
+      error = new ResponseError(e.message.split("\n")[1].trim(), e.code, 400, (e.meta?.target as string[]) || []);
     }
 
-    logger.error(JSON.stringify({ ...error, message: error.message }));
-    res.status(error.status).json({ error: { ...error, message: error.message } });
+    logger.error(new Object(error.toObject));
+
+    const logMsg = {
+      status: error.status,
+      code: error.code,
+      url: error.url,
+      target: error.target,
+      message: error.message,
+    };
+
+    logger.error(JSON.stringify(logMsg));
+    res.status(error.status).json({ error: logMsg });
   }
 }

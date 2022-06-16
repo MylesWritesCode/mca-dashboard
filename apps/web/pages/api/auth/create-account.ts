@@ -1,4 +1,4 @@
-import { SingletonClient } from "@/lib/prisma.client";
+import { prismaClient } from "@/lib/prisma.client";
 import withErrorHandler, { ResponseError } from "@/lib/withErrorHandler";
 import * as logger from "@/utils/logger";
 import { Organization, User } from "@prisma/client";
@@ -17,21 +17,32 @@ export interface CreateAccountReqType {
   };
 }
 
+export interface CreateAccountResType {
+  id: string | null;
+  username: string | null;
+  email: string | null;
+  organization: string;
+  sponsor: string | null | undefined;
+}
+
 export async function CreateAccount(req: NextApiRequest, res: NextApiResponse) {
   async function POST() {
     const { session, data }: CreateAccountReqType = req.body;
     let { organization: orgName, password, confirmPassword, ...userData } = data;
     let sponsor: (User & { organization: { name: string } }) | undefined = undefined;
 
-    const transaction = await SingletonClient.$transaction(async prisma => {
-      if (session) {
-        sponsor =
-          (await prisma.user.findFirst({
-            where: { id: session.user.id },
-            include: { organization: { select: { name: true } } },
-          })) || undefined;
-        orgName = sponsor?.organization.name || orgName;
-      }
+    if (session) {
+      sponsor =
+        (await prismaClient.user.findFirst({
+          where: { id: session.user.id },
+          include: { organization: { select: { name: true } } },
+        })) || undefined;
+      orgName = sponsor?.organization.name || orgName;
+    }
+
+    console.log("outside transaction");
+    const transaction = await prismaClient.$transaction(async prisma => {
+      console.log("in transaction");
 
       const organization: Organization | null = !session
         ? await prisma.organization
@@ -66,15 +77,21 @@ export async function CreateAccount(req: NextApiRequest, res: NextApiResponse) {
             createdById: sponsor?.id,
           },
         })
+        .then(user => {
+          logger.info(`User ${user.username} created`);
+          return user;
+        })
         .catch(e => {
           const targetMessage =
             e.meta?.target[0] === "email" ? `email ${userData.email}` : `username ${userData.username}`;
           throw new ResponseError(`User with ${targetMessage} already exists.`, e.code, 400, e.meta?.target);
         });
 
-      if (user) logger.info(`User ${user.username} created`);
+      if (!user) {
+        throw new ResponseError("Missing organization - returning.", "", 400);
+      }
 
-      const res = {
+      const res: CreateAccountResType = {
         id: user.id,
         username: user.username,
         email: user.email,
