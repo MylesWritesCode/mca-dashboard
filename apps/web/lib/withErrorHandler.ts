@@ -12,16 +12,6 @@ export class ResponseError extends Error {
   ) {
     super(message);
   }
-
-  public toObject(): Object {
-    return {
-      message: this.message,
-      code: this.code,
-      status: this.status,
-      target: this.target,
-      url: this.url,
-    };
-  }
 }
 
 export default async function withErrorHandler(
