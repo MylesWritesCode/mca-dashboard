@@ -1,6 +1,7 @@
+import { SingletonClient } from "@/lib/prisma.client";
 import withErrorHandler, { ResponseError } from "@/lib/withErrorHandler";
 import * as logger from "@/utils/logger";
-import { Organization, PrismaClient, User } from "@prisma/client";
+import { Organization, User } from "@prisma/client";
 import * as argon2 from "argon2";
 import type { NextApiRequest, NextApiResponse } from "next";
 import { Session } from "next-auth";
@@ -16,15 +17,13 @@ export interface CreateAccountReqType {
   };
 }
 
-const client = new PrismaClient();
-
 export async function CreateAccount(req: NextApiRequest, res: NextApiResponse) {
   async function POST() {
     const { session, data }: CreateAccountReqType = req.body;
     let { organization: orgName, password, confirmPassword, ...userData } = data;
     let sponsor: (User & { organization: { name: string } }) | undefined = undefined;
 
-    const transaction = await client.$transaction(async prisma => {
+    const transaction = await SingletonClient.$transaction(async prisma => {
       if (session) {
         sponsor =
           (await prisma.user.findFirst({
