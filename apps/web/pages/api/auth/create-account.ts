@@ -1,6 +1,6 @@
 import prismaClient from "@/lib/prisma.client";
 import withErrorHandler, { ResponseOutput } from "@/lib/withErrorHandler";
-import { logger } from "@/utils/logger";
+import { log } from "@/utils/logger";
 import { User } from "@prisma/client";
 import * as argon2 from "argon2";
 import type { NextApiRequest, NextApiResponse } from "next";
@@ -42,7 +42,7 @@ export async function CreateAccount(req: NextApiRequest, res: NextApiResponse) {
       ? await prismaClient.organization
           .create({ data: { name: orgName } })
           .then(organization => {
-            logger.info(JSON.stringify(new ResponseOutput(`Organization ${organization.name} created.`, 201, req.url)));
+            log.info(new ResponseOutput(`Organization ${organization.name} created.`, 201, req.url));
             return organization;
           })
           .catch(e => {
@@ -51,8 +51,7 @@ export async function CreateAccount(req: NextApiRequest, res: NextApiResponse) {
       : await prismaClient.organization
           .findFirst({ where: { name: orgName } })
           .then(organization => {
-            organization &&
-              logger.info(JSON.stringify(new ResponseOutput(`Organization ${organization.name} found.`, 200, req.url)));
+            organization && log.info(new ResponseOutput(`Organization ${organization.name} found.`, 200, req.url));
             return organization;
           })
           .catch(e => {
@@ -79,7 +78,7 @@ export async function CreateAccount(req: NextApiRequest, res: NextApiResponse) {
         },
       })
       .then(user => {
-        logger.info(`User ${user.username} created`);
+        log.info(new ResponseOutput(`User ${user.username} created`, 201, req.url));
         return user;
       })
       .catch(e => {
@@ -92,13 +91,7 @@ export async function CreateAccount(req: NextApiRequest, res: NextApiResponse) {
       throw new ResponseOutput("Missing user - returning.", 400);
     }
 
-    logger.info(
-      new ResponseOutput(
-        `User ${user.username} added to organization ${organization.name} with details: ${JSON.stringify(res)}`,
-        201,
-        req.url,
-      ),
-    );
+    log.info(new ResponseOutput(`User ${user.username} added to organization ${organization.name}.`, 201, req.url));
 
     return res.status(201).json({
       user: {

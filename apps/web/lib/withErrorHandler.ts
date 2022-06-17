@@ -1,4 +1,4 @@
-import { logger } from "@/utils/logger";
+import { log } from "@/utils/logger";
 import { PrismaClientKnownRequestError } from "@prisma/client/runtime";
 import { NextApiRequest, NextApiResponse } from "next";
 
@@ -12,7 +12,7 @@ export class ResponseOutput {
   ) {}
 }
 
-type ResponseOutputType = {
+export type ResponseOutputType = {
   message: string;
   status: number;
   url?: string;
@@ -45,7 +45,7 @@ export default async function withErrorHandler(
       );
     }
 
-    logger.error(JSON.stringify(error));
+    log.error(error);
     res.status(error.status).json({ error });
   }
 }
