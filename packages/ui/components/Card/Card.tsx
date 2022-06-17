@@ -3,12 +3,7 @@ import { BiDotsVerticalRounded } from "react-icons/bi";
 import "./Card.css";
 import type { CardProps, CardHeaderProps, CardFooterProps } from "./Card.types";
 
-export function Card({
-  children,
-  styles,
-  className = "",
-  ...props
-}: CardProps): JSX.Element {
+export function Card({ children, styles, className = "", ...props }: CardProps): JSX.Element {
   return (
     <div
       className={[
@@ -16,8 +11,7 @@ export function Card({
         "border-2 border-[bg-secondary-dark]",
         "hover:shadow-xl",
         className,
-      ].join(" ")}
-    >
+      ].join(" ")}>
       {children}
     </div>
   );

@@ -1,5 +1,5 @@
 import prismaClient from "@/lib/prisma.client";
-import withErrorHandler, { ResponseError } from "@/lib/withErrorHandler";
+import withErrorHandler, { ResponseOutput } from "@/lib/withErrorHandler";
 import { logger } from "@/utils/logger";
 import { User } from "@prisma/client";
 import * as argon2 from "argon2";
@@ -42,24 +42,31 @@ export async function CreateAccount(req: NextApiRequest, res: NextApiResponse) {
       ? await prismaClient.organization
           .create({ data: { name: orgName } })
           .then(organization => {
-            logger.info(`Organization ${organization.name} created.`);
+            logger.info(JSON.stringify(new ResponseOutput(`Organization ${organization.name} created.`, 201, req.url)));
             return organization;
           })
           .catch(e => {
-            throw new ResponseError(`Organization ${orgName} already exists.`, e.code, 400, e.meta?.target);
+            throw new ResponseOutput(`Organization ${orgName} already exists.`, 400, req.url, e.meta?.target, e.code);
           })
       : await prismaClient.organization
           .findFirst({ where: { name: orgName } })
           .then(organization => {
-            organization && logger.info(`Organization ${organization.name} found.`);
+            organization &&
+              logger.info(JSON.stringify(new ResponseOutput(`Organization ${organization.name} found.`, 200, req.url)));
             return organization;
           })
           .catch(e => {
-            throw new ResponseError(`Error while searching for organization ${orgName}`, e.code, 400, e.meta?.target);
+            throw new ResponseOutput(
+              `Error while searching for organization ${orgName}`,
+              400,
+              req.url,
+              ...e.meta?.target,
+              e.code,
+            );
           });
 
     if (!organization) {
-      throw new ResponseError("Missing organization - returning.", "", 400);
+      throw new ResponseOutput("Missing organization - returning.", 400);
     }
 
     const user: User = await prismaClient.user
@@ -78,15 +85,19 @@ export async function CreateAccount(req: NextApiRequest, res: NextApiResponse) {
       .catch(e => {
         const targetMessage =
           e.meta?.target[0] === "email" ? `email ${userData.email}` : `username ${userData.username}`;
-        throw new ResponseError(`User with ${targetMessage} already exists.`, e.code, 400, e.meta?.target);
+        throw new ResponseOutput(`User with ${targetMessage} already exists.`, 400, req.url, e.meta?.target, e.code);
       });
 
     if (!user) {
-      throw new ResponseError("Missing user - returning.", "", 400);
+      throw new ResponseOutput("Missing user - returning.", 400);
     }
 
     logger.info(
-      `User ${user.username} added to organization ${organization.name} with details: ${JSON.stringify(res)}`,
+      new ResponseOutput(
+        `User ${user.username} added to organization ${organization.name} with details: ${JSON.stringify(res)}`,
+        201,
+        req.url,
+      ),
     );
 
     return res.status(201).json({

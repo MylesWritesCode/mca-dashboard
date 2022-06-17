@@ -2,17 +2,23 @@ import { logger } from "@/utils/logger";
 import { PrismaClientKnownRequestError } from "@prisma/client/runtime";
 import { NextApiRequest, NextApiResponse } from "next";
 
-export class ResponseError extends Error {
+export class ResponseOutput {
   constructor(
     public message: string = "Internal server error.",
-    public code?: string,
     public status = 500,
-    public target?: string[],
     public url?: string,
-  ) {
-    super(message);
-  }
+    public target?: string[],
+    public code?: string,
+  ) {}
 }
+
+type ResponseOutputType = {
+  message: string;
+  status: number;
+  url?: string;
+  target?: string[];
+  code?: string;
+};
 
 export default async function withErrorHandler(
   req: NextApiRequest,
@@ -22,26 +28,24 @@ export default async function withErrorHandler(
   try {
     const method = req.method;
     if (method && !Object.keys(actions).includes(method)) {
-      throw new ResponseError(`Method ${method} not allowed.`, undefined, 405);
+      throw new ResponseOutput(`Method ${method} not allowed.`, 405);
     }
 
     if (method) await actions[method]();
   } catch (e: any) {
-    let error: ResponseError = new ResponseError(e.message, e.code, e.status, e.target, req.url);
+    let error: ResponseOutput = new ResponseOutput(e.message, e.status, req.url, e.target, e.code);
 
     if (e instanceof PrismaClientKnownRequestError) {
-      error = new ResponseError(e.message.split("\n")[1].trim(), e.code, 400, (e.meta?.target as string[]) || []);
+      error = new ResponseOutput(
+        e.message.split("\n")[1].trim(),
+        400,
+        req.url,
+        (e.meta?.target as string[]) || [],
+        e.code,
+      );
     }
 
-    const logMsg = {
-      status: error.status,
-      code: error.code,
-      url: error.url,
-      target: error.target,
-      message: error.message,
-    };
-
-    logger.error(JSON.stringify(logMsg));
-    res.status(error.status).json({ error: logMsg });
+    logger.error(JSON.stringify(error));
+    res.status(error.status).json({ error });
   }
 }
