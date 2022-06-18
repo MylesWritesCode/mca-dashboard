@@ -48,21 +48,10 @@ export async function CreateAccount(req: NextApiRequest, res: NextApiResponse) {
           .catch(e => {
             throw new ResponseOutput(`Organization ${orgName} already exists.`, 400, req.url, e.meta?.target, e.code);
           })
-      : await prismaClient.organization
-          .findFirst({ where: { name: orgName } })
-          .then(organization => {
-            organization && log.info(new ResponseOutput(`Organization ${organization.name} found.`, 200, req.url));
-            return organization;
-          })
-          .catch(e => {
-            throw new ResponseOutput(
-              `Error while searching for organization ${orgName}`,
-              400,
-              req.url,
-              ...e.meta?.target,
-              e.code,
-            );
-          });
+      : await prismaClient.organization.findFirst({ where: { name: orgName } }).then(organization => {
+          organization && log.info(new ResponseOutput(`Organization ${organization.name} found.`, 200, req.url));
+          return organization;
+        });
 
     if (!organization) {
       throw new ResponseOutput("Missing organization - returning.", 400);

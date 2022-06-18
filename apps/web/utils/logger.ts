@@ -1,5 +1,5 @@
-import pino from "pino";
 import { ResponseOutput } from "@/lib/withErrorHandler";
+import pino from "pino";
 
 const { NODE_ENV } = process.env;
 
@@ -18,13 +18,14 @@ const DEV_OPTIONS: (pino.LoggerOptions & Record<string, any>) | undefined =
 const TEST_OPTIONS: (pino.LoggerOptions & Record<string, any>) | undefined =
   NODE_ENV === "test"
     ? {
-        enabled: true,
+        enabled: false,
         transport: {
           target: "pino-pretty",
           options: {
             colorize: true,
           },
         },
+        sync: true,
       }
     : undefined;
 

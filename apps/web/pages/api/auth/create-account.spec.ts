@@ -1,4 +1,5 @@
 import { prismaMock } from "@/lib/prisma.mock";
+import { ResponseOutput } from "@/lib/withErrorHandler";
 import * as argon from "argon2";
 import { createMocks, RequestMethod } from "node-mocks-http";
 
@@ -154,5 +155,40 @@ describe("/auth/create-account", () => {
 
     expect(res._getStatusCode()).toBe(201);
     expect(res._getJSONData()).toMatchObject(expected);
+  });
+
+  it("should reject a req with a duplicate organization", async () => {
+    const { data } = FRONTEND_REQ;
+    const { req, res } = createMocks({ method: "POST", body: { data }, url: "/auth/create-account" });
+
+    prismaMock.organization.create.mockRejectedValue(new ResponseOutput());
+    await CreateAccount(req, res);
+
+    expect(res._getStatusCode()).toBe(400);
+    expect(res._getJSONData()).toMatchObject({
+      error: {
+        message: `Organization ${ORGANIZATION.name} already exists.`,
+        status: 400,
+        url: req.url,
+      },
+    });
+  });
+
+  it("should reject a req with a duplicate username", async () => {
+    const { data } = FRONTEND_REQ;
+    const { req, res } = createMocks({ method: "POST", body: { data }, url: "/auth/create-account" });
+
+    prismaMock.organization.create.mockResolvedValue(ORGANIZATION);
+    prismaMock.user.create.mockRejectedValue(new ResponseOutput());
+    await CreateAccount(req, res);
+
+    expect(res._getStatusCode()).toBe(400);
+    expect(res._getJSONData()).toMatchObject({
+      error: {
+        message: `User with username ${data.username} already exists.`,
+        status: 400,
+        url: req.url,
+      },
+    });
   });
 });
