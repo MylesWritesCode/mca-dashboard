@@ -9,26 +9,14 @@ interface AuthCardProps {
 export function AuthCard({ children }: AuthCardProps) {
   return (
     <section className="flex h-full flex-col items-center justify-center">
-      <div
-        className={[
-          "flex h-full w-full flex-col items-center justify-center z-10",
-          "bg-gradient-to-br from-indigo-300 to-emerald-200",
-        ].join(" ")}
-      >
+      <div className="flex h-full w-full flex-col items-center justify-center z-10">
         <Card
           className={[
             "align-center relative flex flex-col justify-center p-12 border-1",
             "before:absolute before:z-[-1] before:h-full before:w-full",
             "before:overflow-hidden before:top-0 before:left-0",
-          ].join(" ")}
-        >
-          <NextImage
-            src="/logo.png"
-            alt="logo"
-            height="100%"
-            width="300px"
-            objectFit="contain"
-          />
+          ].join(" ")}>
+          <NextImage src="/logo.png" alt="logo" height="100%" width="300px" objectFit="contain" />
           {children}
         </Card>
       </div>

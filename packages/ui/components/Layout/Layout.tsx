@@ -11,10 +11,11 @@ import "./Layout.css";
 interface LayoutProps {
   menuItems: NavigationDrawerItemProps[];
   children: React.ReactNode;
+  contentClassName?: string;
   sx?: React.CSSProperties;
 }
 
-export default function Layout({ menuItems, children, sx }: LayoutProps) {
+export default function Layout({ menuItems, children, contentClassName, sx }: LayoutProps) {
   const [isOpen, setIsOpen] = useState(true);
 
   useEffect(() => {
@@ -30,7 +31,7 @@ export default function Layout({ menuItems, children, sx }: LayoutProps) {
     <div className="layout">
       <div className="page">
         <NavigationDrawer items={menuItems} isOpen={isOpen} />
-        <main className="content" style={sx}>
+        <main className={["content", contentClassName].join(" ")} style={sx}>
           {children}
         </main>
       </div>

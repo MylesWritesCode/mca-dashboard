@@ -25,7 +25,7 @@ function AppLayout({ children }: { children: React.ReactNode }) {
     <div className="h-[calc(100vh-72px)]">
       <Header logo="/logo.png" links={HEADER_CONFIG[session ? "signedIn" : "signedOut"]} />
       {session ? (
-        <Layout menuItems={MENU_ITEMS} sx={{ background: "var(--pewter-blue)" }}>
+        <Layout menuItems={MENU_ITEMS} contentClassName="main-content">
           {children}
         </Layout>
       ) : (
