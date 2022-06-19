@@ -1,0 +1,9 @@
+.auth-card-container {
+  @apply z-10 flex h-full w-full flex-col items-center justify-center;
+}
+
+.auth-card {
+  @apply relative flex flex-col items-center justify-center border p-12 
+  before:absolute before:top-0 before:left-0 before:h-full before:w-full 
+  before:overflow-hidden;
+}
