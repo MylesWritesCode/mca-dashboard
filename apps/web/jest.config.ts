@@ -36,10 +36,7 @@ export default {
   coverageDirectory: "coverage",
 
   // An array of regexp pattern strings used to skip coverage collection
-  coveragePathIgnorePatterns: [
-    "/node_modules/",
-    "logger.ts"
-  ],
+  coveragePathIgnorePatterns: ["/node_modules/", "logger.ts"],
 
   // Indicates which provider should be used to instrument code for coverage
   coverageProvider: "v8",
@@ -102,7 +99,10 @@ export default {
   moduleNameMapper: pathsToModuleNameMapper(compilerOptions.paths, { prefix: "<rootDir>" }),
 
   // An array of regexp pattern strings, matched against all module paths before considered 'visible' to the module loader
-  // modulePathIgnorePatterns: ["<rootDir>/node_modules/"],
+  modulePathIgnorePatterns: [
+    "<rootDir>/node_modules/", 
+    "<rootDir>"
+  ],
 
   // Activates notifications for test results
   // notify: false,
