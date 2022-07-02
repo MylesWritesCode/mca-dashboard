@@ -1,38 +1,45 @@
-import { NextApiHandler, NextApiRequest, NextApiResponse } from "next";
+import * as logger from "@/utils/logger";
+import { PrismaClientKnownRequestError } from "@prisma/client/runtime";
+import { NextApiRequest, NextApiResponse } from "next";
 
-export type ErrorType = { message: string; code: string; status: number; target?: string[] };
+export class ErrorType extends Error {
+  constructor(
+    public message: string = "Internal server error.",
+    public code?: string,
+    public status = 500,
+    public target?: string[],
+    public url?: string,
+  ) {
+    super(message);
+  }
+}
 
-export default async function withErrorHandler(req: NextApiRequest, res: NextApiResponse) {
+export default async function withErrorHandler(
+  req: NextApiRequest,
+  res: NextApiResponse,
+  actions: { [key: string]: () => Promise<void> },
+) {
   try {
-    return async function (handler: NextApiHandler) {
-      return handler(req, res);
-    };
-  } catch (e: any) {
-    const error: ErrorType = { message: "Unknown server error.", code: "0000", status: 400 };
-
-    console.log("does this error out");
-
-    console.log("from error handler:", e);
-
-    if (e.message) {
-      console.log("found message");
-      error.message = e.message;
+    const method = req.method;
+    if (method && !Object.keys(actions).includes(method)) {
+      throw { message: `Method ${method} not supported`, status: 405 };
     }
 
-    return new Response(
-      JSON.stringify({
-        // error: error.message || "Unknown server error.",
-        // code: error.code || "0000",
-        error: "Unknown server error.",
-        code: "0000",
-      }),
-      {
-        // status: error.status || 300,
-        status: 300,
-        headers: {
-          "Content-Type": "application/json",
-        },
-      },
-    );
+    if (method) await actions[method]();
+  } catch (e: any) {
+    let error: ErrorType = new ErrorType(e);
+    error.url = req.url;
+
+    if (e instanceof ErrorType) {
+      error = e as ErrorType;
+    } else if (e instanceof PrismaClientKnownRequestError) {
+      error.message = e.message.split("\n")[1].trim();
+      error.code = e.code;
+      error.status = 400;
+      error.target = (e.meta?.target as string[]) || [];
+    }
+
+    logger.error(JSON.stringify({ ...error, message: error.message }));
+    res.status(error.status).json({ error: { ...error, message: error.message } });
   }
 }
