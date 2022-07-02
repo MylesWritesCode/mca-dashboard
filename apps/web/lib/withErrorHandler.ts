@@ -29,6 +29,7 @@ export default async function withErrorHandler(
   } catch (e: any) {
     let error: ResponseError = new ResponseError(e);
     error.url = req.url;
+    e.status && (error.status = e.status);
 
     if (e instanceof ResponseError) {
       error.message = e.message;

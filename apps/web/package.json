@@ -7,6 +7,7 @@
     "build": "next build",
     "start": "next start",
     "lint": "next lint",
+    "test": "jest",
     "migrate:dev:up": "prisma migrate dev",
     "migrate:dev:down": "prisma migrate reset",
     "migrate:prod:up": "prisma migrate deploy"
@@ -26,11 +27,17 @@
     "ui": "*"
   },
   "devDependencies": {
+    "@types/jest": "^28.1.1",
     "@types/node": "^17.0.41",
     "@types/react": "18.0.12",
     "eslint": "8.17.0",
+    "jest": "^28.1.1",
+    "jest-mock-extended": "^2.0.6",
     "next-transpile-modules": "9.0.0",
+    "node-mocks-http": "^1.11.0",
     "prisma": "^3.15.0",
+    "ts-jest": "^28.0.5",
+    "ts-node": "^10.8.1",
     "tsconfig": "*",
     "typescript": "^4.7.3"
   }

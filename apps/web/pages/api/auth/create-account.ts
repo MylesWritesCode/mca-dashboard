@@ -6,7 +6,7 @@ import type { NextApiRequest, NextApiResponse } from "next";
 import { Session } from "next-auth";
 
 export interface CreateAccountReqType {
-  session: Session;
+  session?: Session;
   data: {
     username: string;
     email: string;
@@ -54,15 +54,17 @@ export async function CreateAccount(req: NextApiRequest, res: NextApiResponse) {
               throw new ResponseError(`Error while searching for organization ${orgName}`, e.code, 400, e.meta?.target);
             });
 
-      if (!organization) return;
+      if (!organization) {
+        throw new ResponseError("Missing organization - returning.", "", 400);
+      }
 
       const user: User = await prisma.user
         .create({
           data: {
             ...userData,
             password: await argon2.hash(password),
-            organization: { connect: { id: organization.id } },
-            createdBy: { connect: { id: session?.user.id } },
+            organizationId: organization.id,
+            createdById: sponsor?.id,
           },
         })
         .catch(e => {
@@ -87,7 +89,6 @@ export async function CreateAccount(req: NextApiRequest, res: NextApiResponse) {
 
       return res;
     });
-    client.$disconnect();
 
     return res.status(201).json({ user: { ...transaction } });
   }
