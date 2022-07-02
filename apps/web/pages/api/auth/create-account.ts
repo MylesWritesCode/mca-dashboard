@@ -1,4 +1,4 @@
-import { Organization, Prisma, PrismaClient } from "@prisma/client";
+import { PrismaClient } from "@prisma/client";
 import * as argon2 from "argon2";
 import type { NextApiRequest, NextApiResponse } from "next";
 import { Session } from "next-auth";
@@ -18,12 +18,13 @@ const client = new PrismaClient();
 
 export default async function CreateAccount(req: NextApiRequest, res: NextApiResponse) {
   const { session, data }: CreateAccountReqType = req.body;
+  const { organization: orgName, ...rest } = data;
 
   if (session) {
-    const sponsor = await client.user.findFirst({}).OrganizationUsers({ where: { userId: session.user.id } });
-  }
+    const sponsor = await client.user.findFirst({}).OrganizationUsers({ where: { userId: id } });
+  
 
-  const { password, confirmPassword, organization: organizationName, ...userToCreate } = data;
+  const { password, confirmPassword, ...userToCreate } = rest;
   const [org, user] = await client.$transaction([
     client.organization.create({ data: { name: organizationName } }),
     client.user.create({ data: { ...userToCreate, password: await argon2.hash(password) } }),

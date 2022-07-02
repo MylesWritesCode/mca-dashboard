@@ -108,6 +108,7 @@ function CreateAccount({ csrfToken }: InferGetServerSidePropsType<typeof getServ
         <input name="csrfToken" type="hidden" defaultValue={csrfToken || undefined} />
         <TextField
           label="Username"
+          name="username"
           fullWidth
           variant="filled"
           required
@@ -116,6 +117,7 @@ function CreateAccount({ csrfToken }: InferGetServerSidePropsType<typeof getServ
           onChange={e => handleInputChange("username", e)} />
         <TextField
           type="email"
+          name="email"
           label="Email"
           fullWidth
           variant="filled"
@@ -124,6 +126,7 @@ function CreateAccount({ csrfToken }: InferGetServerSidePropsType<typeof getServ
           onChange={e => handleInputChange("email", e)} />
         <TextField
           type="password"
+          name="password"
           ref={ref}
           label="Password"
           fullWidth
@@ -132,35 +135,10 @@ function CreateAccount({ csrfToken }: InferGetServerSidePropsType<typeof getServ
           error={!!errors.password}
           helperText={errors.password}
           onChange={e => handleInputChange("password", e)} />
-        <PopperUnstyled 
-          className="bg-white p-4 z-[1000]" 
-          open={!!errors.password} 
-          anchorEl={ref && ref.current} 
-          placement="right" 
-          modifiers={[
-            {
-              name: "offset",
-              options: {
-                offset: [0, 10],
-              },
-            }
-          ]}>
-          <div className="font-light text-xs">
-            Your password must be:
-            {
-              [
-                "between 8 and 64 characters",
-                "contain at least one number",
-                "contain at least one uppercase letter",
-                "contain at least one lowercase letter",
-                "contain at least one special character",
-              ].map((text, i) => <li key={i}>{text}</li>)
-            }
-          </div>
-        </PopperUnstyled>
         <TextField
           type="password"
-          label="Current password"
+          name="confirm-password"
+          label="Confirm password"
           fullWidth
           variant="filled"
           required
@@ -169,6 +147,7 @@ function CreateAccount({ csrfToken }: InferGetServerSidePropsType<typeof getServ
           onChange={e => handleInputChange("confirmPassword", e)} />
         <TextField
           label="Organization"
+          name="organization"
           fullWidth
           variant="filled"
           InputProps={{ readOnly: !!session }}
@@ -180,7 +159,34 @@ function CreateAccount({ csrfToken }: InferGetServerSidePropsType<typeof getServ
           Create account
         </Button>
       </form>
+      <PopperUnstyled
+        className="bg-white p-4 z-[1000]"
+        open={!!errors.password}
+        anchorEl={ref && ref.current}
+        placement="right"
+        modifiers={[
+          {
+            name: "offset",
+            options: {
+              offset: [0, 10],
+            },
+          }
+        ]}>
+        <div className="font-light text-xs">
+          Your password must be:
+          {
+            [
+              "between 8 and 64 characters",
+              "contain at least one number",
+              "contain at least one uppercase letter",
+              "contain at least one lowercase letter",
+              "contain at least one special character",
+            ].map((text, i) => <li key={i}>{text}</li>)
+          }
+        </div>
+      </PopperUnstyled>
     </AuthCard>
+
   );
 }
 

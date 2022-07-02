@@ -62,7 +62,7 @@ model VerificationToken {
 }
 
 model Organization {
-  id         String   @id @default(uuid())
+  id         String   @id @default(cuid())
   name       String   @unique
   createdAt  DateTime @default(now())
   modifiedAt DateTime @default(now())
@@ -82,7 +82,7 @@ model OrganizationUsers {
 }
 
 model Client {
-  id             String   @id @default(uuid())
+  id             String   @id @default(cuid())
   name           String   @unique
   organizationId String
   createdAt      DateTime @default(now())
