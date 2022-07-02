@@ -1,3 +1,6 @@
+import { useSession } from "next-auth/react";
+import { useEffect } from "react";
+
 import { PLACEHOLDER } from "../../../config/placeholders";
 import "./UserCard.css";
 
@@ -22,6 +25,8 @@ interface UserCardProps {
 const USER = PLACEHOLDER.user;
 
 export function UserCard({ user, isOpen, className }: UserCardProps): JSX.Element {
+  const { data: session } = useSession();
+
   return (
     <div className="flex h-full w-full flex-col items-center justify-center py-5">
       <div

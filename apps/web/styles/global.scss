@@ -1,8 +1,15 @@
 @import "./admin.scss";
+@import "./auth.scss";
+
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
 
-.signin {
-  background: red;
+.btn {
+  @apply p-2
 }
+
+.main-content {
+  @apply bg-gradient-to-br from-indigo-300 to-emerald-200;
+}
+

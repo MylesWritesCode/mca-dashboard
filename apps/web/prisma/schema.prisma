@@ -4,52 +4,39 @@ datasource db {
 }
 
 generator client {
-  provider = "prisma-client-js"
+  provider        = "prisma-client-js"
+  previewFeatures = ["interactiveTransactions"]
 }
 
 model Account {
-  id                String  @id @default(cuid())
-  userId            String
-  type              String
-  provider          String
-  providerAccountId String
-  refreshToken      String? @db.Text
-  accessToken       String? @db.Text
-  expiresAt         Int?
-  tokenType         String?
-  scope             String?
-  idToken           String? @db.Text
-  sessionState      String?
-
-  user User @relation(fields: [userId], references: [id], onDelete: Cascade)
+  id                 String  @id @default(cuid())
+  userId             String  @map("user_id")
+  type               String
+  provider           String
+  providerAccountId  String  @map("provider_account_id")
+  refresh_token      String? @db.Text
+  access_token       String? @db.Text
+  expires_at         Int?
+  token_type         String?
+  scope              String?
+  id_token           String? @db.Text
+  session_state      String?
+  oauth_token_secret String?
+  oauth_token        String?
+  user               User    @relation(fields: [userId], references: [id], onDelete: Cascade)
 
   @@unique([provider, providerAccountId])
-  @@map("Accounts")
+  @@map("accounts")
 }
 
 model Session {
   id           String   @id @default(cuid())
-  sessionToken String   @unique
-  userId       String
+  sessionToken String   @unique @map("session_token")
+  userId       String   @map("user_id")
   expires      DateTime
   user         User     @relation(fields: [userId], references: [id], onDelete: Cascade)
 
-  @@map("Sessions")
-}
-
-model User {
-  id            String    @id @default(cuid())
-  name          String?
-  username      String?   @unique
-  password      String
-  email         String?   @unique
-  emailVerified DateTime?
-  image         String?
-  accounts      Account[]
-  sessions      Session[]
-
-  OrganizationUsers OrganizationUsers[]
-  @@map("Users")
+  @@map("sessions")
 }
 
 model VerificationToken {
@@ -58,36 +45,70 @@ model VerificationToken {
   expires    DateTime
 
   @@unique([identifier, token])
-  @@map("VerificationTokens")
+  @@map("verification_tokens")
+}
+
+model Events {
+  id   String @id @default(cuid())
+  type String
+  data Json
+
+  @@map("events")
+}
+
+model User {
+  id             String       @id @default(cuid())
+  name           String?
+  username       String?      @unique
+  password       String
+  email          String?      @unique
+  emailVerified  DateTime?    @map("email_verified")
+  image          String?
+  accounts       Account[]
+  sessions       Session[]
+  organizationId String       @map("organization_id")
+  organization   Organization @relation(fields: [organizationId], references: [id])
+  createdById    String?      @map("created_by_id")
+  createdBy      User?        @relation("created_by", fields: [createdById], references: [id])
+  usersCreated   User[]       @relation("created_by")
+  roleId         String?
+  role           Role?        @relation(fields: [roleId], references: [id])
+  createdAt      DateTime     @default(now()) @map("created_at")
+  modifiedAt     DateTime     @updatedAt @map("modified_at")
+
+  @@map("users")
 }
 
 model Organization {
-  id         String   @id @default(uuid())
+  id         String   @id @default(cuid())
   name       String   @unique
-  createdAt  DateTime @default(now())
-  modifiedAt DateTime @default(now())
+  clients    Client[]
+  roles      Role[]
+  users      User[]
+  createdAt  DateTime @default(now()) @map("created_at")
+  modifiedAt DateTime @updatedAt @map("modified_at")
 
-  OrganizationUsers OrganizationUsers[]
-  Client            Client[]
-  @@map("Organizations")
+  @@map("organizations")
 }
 
-model OrganizationUsers {
-  userId         String
-  organizationId String
-  organizations  Organization @relation(fields: [organizationId], references: [id])
-  users          User         @relation(fields: [userId], references: [id])
+model Role {
+  id             String       @id @default(cuid())
+  name           String
+  organization   Organization @relation(fields: [organizationId], references: [id])
+  organizationId String       @map("organization_id")
+  users          User[]
 
-  @@id([userId, organizationId])
+  @@unique([name, organizationId])
+  @@map("roles")
 }
 
 model Client {
-  id             String   @id @default(uuid())
-  name           String   @unique
-  organizationId String
-  createdAt      DateTime @default(now())
-  modifiedAt     DateTime @default(now())
+  id             String       @id @default(cuid())
+  name           String       @unique
+  organizationId String       @map("organization_id")
+  organization   Organization @relation(fields: [organizationId], references: [id])
+  createdAt      DateTime     @default(now()) @map("created_at")
+  modifiedAt     DateTime     @updatedAt @map("modified_at")
 
-  organization Organization @relation(fields: [organizationId], references: [id])
-  @@map("Clients")
+  @@map("clients")
 }

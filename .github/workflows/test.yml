@@ -7,7 +7,7 @@ jobs:
     runs-on: ubuntu-latest
     strategy:
       matrix:
-        node-version: [16.x]
+        node-version: [16.15.1]
 
     steps:
       - uses: actions/checkout@v2
@@ -19,5 +19,6 @@ jobs:
         uses: c-py/action-dotenv-to-setenv@v2
         with:
           env-file: .env.example
-      - run: yarn install --immutable
+      - run: yarn install 
+      - run: yarn workspace web prisma generate
       - run: yarn test

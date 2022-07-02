@@ -1,9 +1,10 @@
 import { AiOutlineLogin, AiOutlineLogout, AiFillSetting } from "react-icons/ai";
 import { FaGithubSquare, FaLinkedin, FaGlobe, FaTwitterSquare } from "react-icons/fa";
 
-import { HeaderLinks } from "@/../../packages/ui/components/Header/Header.types";
+import { HeaderLinks } from "ui/components/Header/Header.types";
+import { signIn, signOut } from "next-auth/react";
 
-export const HEADER_CONFIG: Record<string, HeaderLinks[]> = {
+export const HEADER_CONFIG: Record<"resourceLinks" | "signedIn" | "signedOut", HeaderLinks[]> = {
   resourceLinks: [
     {
       icon: FaGithubSquare,
@@ -29,13 +30,14 @@ export const HEADER_CONFIG: Record<string, HeaderLinks[]> = {
     },
     {
       icon: AiOutlineLogout,
-      link: "signout",
+      action: signOut,
+
     },
   ],
   signedOut: [
     {
       icon: AiOutlineLogin,
-      link: "signin",
+      action: signIn,
     },
   ],
 };

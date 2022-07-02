@@ -1,7 +1,8 @@
 /**
  * Story config object
  */
-import { FaHome } from "react-icons/fa";
+import { FaHome, FaBuilding, FaUserMinus, FaUserPlus, FaUserFriends } from "react-icons/fa";
+import { IoIosSettings } from 'react-icons/io'
 
 export const MENU_ITEMS = [
   {
@@ -11,29 +12,36 @@ export const MENU_ITEMS = [
     items: [],
   },
   {
-    name: "Link 1",
+    name: "Organization",
     url: "/",
-    icon: "home",
+    icon: FaBuilding,
     items: [
       {
-        name: "Sublink 1",
-        url: "/",
-        icon: "home",
+        name: "Create account",
+        url: "/auth/create-account",
+        icon: FaUserPlus,
       },
       {
-        name: "Sublink 2",
-        url: "/",
-        icon: "home",
+        name: "Settings",
+        url: "/organization/settings",
+        icon: IoIosSettings,
       },
     ],
   },
   {
-    name: "Link 2",
-    url: "/",
-    icon: "home",
+    name: "Clients",
+    url: "/clients",
+    icon: FaUserFriends,
+    items: [
+      {
+        name: "Create client",
+        url: "/clients/create",
+        icon: FaUserPlus,
+      },
+    ],
   },
   {
-    name: "Link 3",
+    name: "With sub-links",
     url: "/",
     icon: "home",
     items: [
@@ -53,5 +61,10 @@ export const MENU_ITEMS = [
         icon: "home",
       },
     ],
+  },
+  {
+    name: "Only top-level",
+    url: "/",
+    icon: "home",
   },
 ];

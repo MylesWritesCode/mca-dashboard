@@ -1,6 +1,17 @@
+import { useSession } from "next-auth/react";
+import { useEffect } from "react";
+
 import { Button, Card } from "ui";
 
-export default function Web() {
+export default function Index() {
+  const { data: session } = useSession();
+
+  useEffect(() => {
+    if (session) {
+      console.log("user:", session.user);
+    }
+  }, [session]);
+
   return (
     <div>
       <Card>

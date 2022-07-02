@@ -23,21 +23,8 @@ export function Header({ brand = "BRAND", logo, links }: HeaderProps): JSX.Eleme
       </div>
       <div className="right">
         <div className="nav-settings">
-          {links?.map(({ icon: Icon, link }, i) => (
-            <a
-              key={i}
-              href={link === "signin" || "signout" ? "#" : link}
-              className="cursor-pointer hover:bg-[#00000022] hover:rounded-md"
-              onClick={() => {
-                if (link === "signin") {
-                  signIn();
-                } else if (link === "signout") {
-                  signOut();
-                } else {
-                  return;
-                }
-              }}
-            >
+          {links?.map(({ icon: Icon, link, action }, i) => (
+            <a key={i} href={link} className="cursor-pointer hover:bg-[#00000022] hover:rounded-md" onClick={action}>
               <Icon />
             </a>
           ))}

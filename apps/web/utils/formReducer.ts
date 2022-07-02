@@ -9,6 +9,7 @@ export type FormReducerDispatch = (action: FormReducerAction) => void;
 export enum Action {
   SET,
   INITIALIZE,
+  RESET,
 }
 
 export function reducer<T>(state: T, action: FormReducerAction) {
@@ -17,6 +18,8 @@ export function reducer<T>(state: T, action: FormReducerAction) {
       return { ...state, [action.key]: action.value };
     case Action.INITIALIZE:
       return { ...state, ...action.value };
+    case Action.RESET:
+      return action.value;
     default:
       return state;
   }
