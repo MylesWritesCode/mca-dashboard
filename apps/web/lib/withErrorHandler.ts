@@ -1,4 +1,4 @@
-import * as logger from "@/utils/logger";
+import { logger } from "@/utils/logger";
 import { PrismaClientKnownRequestError } from "@prisma/client/runtime";
 import { NextApiRequest, NextApiResponse } from "next";
 
@@ -42,8 +42,6 @@ export default async function withErrorHandler(
     if (e instanceof PrismaClientKnownRequestError) {
       error = new ResponseError(e.message.split("\n")[1].trim(), e.code, 400, (e.meta?.target as string[]) || []);
     }
-
-    logger.error(new Object(error.toObject));
 
     const logMsg = {
       status: error.status,

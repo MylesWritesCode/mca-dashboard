@@ -1,6 +1,6 @@
 import { prismaClient } from "@/lib/prisma.client";
 import withErrorHandler, { ResponseError } from "@/lib/withErrorHandler";
-import * as logger from "@/utils/logger";
+import { logger } from "@/utils/logger";
 import { Organization, User } from "@prisma/client";
 import * as argon2 from "argon2";
 import type { NextApiRequest, NextApiResponse } from "next";

@@ -1,14 +1,36 @@
-/* eslint-disable no-console */
-type LoggerScope = "info" | "debug" | "error" | "warn" | "log";
+import pino from "pino";
+import { TransportBaseOptions } from "pino";
+import pretty from "pino-pretty";
 
-const prefix = (scope: LoggerScope) => `[${scope}]:`;
+const { NODE_ENV } = process.env;
 
-function logger(scope: LoggerScope = "log") {
-  return (...message: any[]) => console[scope](prefix(scope), ...message);
-}
+const DEV_OPTIONS: (pino.LoggerOptions & Record<string, any>) | undefined =
+  NODE_ENV === "development"
+    ? {
+        transport: {
+          target: "pino-pretty",
+          options: {
+            colorize: true,
+          },
+        },
+      }
+    : undefined;
 
-export const info = logger("info");
-export const debug = logger("debug");
-export const error = logger("error");
-export const warn = logger("warn");
-export const log = logger();
+const TEST_OPTIONS: (pino.LoggerOptions & Record<string, any>) | undefined =
+  NODE_ENV === "test"
+    ? {
+        enabled: false,
+        transport: {
+          target: "pino-pretty",
+          options: {
+            colorize: true,
+          },
+        },
+      }
+    : undefined;
+
+export const logger = pino({
+  ...TEST_OPTIONS,
+  ...DEV_OPTIONS,
+  redact: [],
+});
