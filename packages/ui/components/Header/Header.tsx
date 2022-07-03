@@ -1,4 +1,3 @@
-import { useSession, signIn, signOut } from "next-auth/react";
 import Link from "next/link";
 
 import { SearchPrompt } from "ui/components/SearchPrompt";
@@ -7,8 +6,6 @@ import "./Header.scss";
 import type { HeaderProps } from "./Header.types";
 
 export function Header({ brand = "BRAND", logo, links }: HeaderProps): JSX.Element {
-  const { data: session } = useSession();
-
   return (
     <div className="nav-header">
       <div className="left">
