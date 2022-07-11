@@ -8,8 +8,6 @@
 
 .card-header svg {
   @apply font-light hover:rounded-md hover:bg-[#00000033] hover:fill-white hover:shadow-2xl active:shadow-md;
-  /* cursor: pointer; */
-  /* padding: 0.25rem; */
 }
 
 .card-footer {
