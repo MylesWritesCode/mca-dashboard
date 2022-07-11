@@ -9,12 +9,14 @@ const CHART_WIDTH = 600;
 const CHART_HEIGHT = 150;
 
 export default function Index() {
-  const barChartRef = useRef<SVGSVGElement | null>(null);
+  const verticalBarChartRef = useRef<SVGSVGElement | null>(null);
+  const horizontalBarChartRef = useRef<SVGSVGElement | null>(null);
   const dataArray = [90, 80, 34, 75, 102, 68, 21, 8, 19, 104, 79];
 
+  // Vertical bar graph
   useEffect(() => {
-    if (!window || !barChartRef) return;
-    d3.select(barChartRef.current)
+    if (!window || !verticalBarChartRef) return;
+    d3.select(verticalBarChartRef.current)
       .selectAll("rect")
       .data(dataArray)
       .enter()
@@ -23,7 +25,20 @@ export default function Index() {
       .attr("y", d => CHART_HEIGHT - d)
       .attr("height", d => d)
       .attr("width", BAR_WIDTH)
-      .attr("stroke-width", 2)
+      .attr("stroke-width", "1px")
+      .attr("stroke", "#369")
+      .attr("fill", "#396");
+
+    d3.select(horizontalBarChartRef.current)
+      .selectAll("rect")
+      .data(dataArray)
+      .enter()
+      .append("rect")
+      .attr("x", (d, i) => BAR_HEIGHT)
+      .attr("y", (d, i) => i * BAR_HEIGHT)
+      .attr("height", BAR_HEIGHT)
+      .attr("width", d => d)
+      .attr("stroke-width", "1px")
       .attr("stroke", "#369")
       .attr("fill", "#396");
   }, []);
@@ -31,10 +46,18 @@ export default function Index() {
   return (
     <div className="flex flex-col gap-4">
       <Card>
-        <Card.Header title="Bar charts with D3" />
+        <Card.Header title="Horizontal bar charts with D3" />
         <div className="flex justify-center align-center">
           <div className="m-8">
-            <svg ref={barChartRef} width={CHART_WIDTH} height={CHART_HEIGHT}></svg>
+            <svg ref={horizontalBarChartRef} width={CHART_WIDTH} height={BAR_HEIGHT * dataArray.length - 1}></svg>
+          </div>
+        </div>
+      </Card>
+      <Card>
+        <Card.Header title="Vertical bar charts with D3" />
+        <div className="flex justify-center align-center">
+          <div className="m-8">
+            <svg ref={verticalBarChartRef} width={BAR_WIDTH * dataArray.length - 1} height={CHART_HEIGHT}></svg>
           </div>
         </div>
       </Card>
