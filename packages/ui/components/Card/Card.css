@@ -3,7 +3,7 @@
 }
 
 .card-header {
-  @apply flex items-center justify-between bg-[#ffffff88] p-4;
+  @apply flex max-w-3xl w-[768px] items-center justify-between bg-[#ffffff88] p-4;
 }
 
 .card-header svg {

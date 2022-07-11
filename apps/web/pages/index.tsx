@@ -74,7 +74,7 @@ export default function Index() {
   }, []);
 
   return (
-    <div className="flex flex-col gap-4">
+    <div className="flex flex-wrap gap-4">
       <Card>
         <Card.Header title="Progress chart with D3" />
         <div className="flex justify-center align-center">
