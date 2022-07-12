@@ -12,7 +12,6 @@ export default function Index() {
   const progressBarChartRef = useRef<HTMLDivElement | null>(null);
 
   const dataArray = [90, 80, 34, 75, 102, 68, 21, 8, 19, 104, 79];
-  const dataArrayMax = Math.max(...dataArray);
 
   // Vertical bar graph
   useEffect(() => {
@@ -36,10 +35,8 @@ export default function Index() {
       .attr("width", CHART_WIDTH)
       .attr("height", BAR_HEIGHT);
 
-    console.log((CHART_WIDTH * dataArrayMax) / dataArrayMax);
-
     let max = d3.max(dataArray) || CHART_WIDTH;
-    let scale = d3.scaleLinear().domain([0, 100]).range([0, max]);
+    let scale = d3.scaleLinear().domain([0, max]).range([0, CHART_WIDTH]);
 
     progress
       .append("rect")
