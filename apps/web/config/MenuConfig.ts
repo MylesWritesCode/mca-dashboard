@@ -1,8 +1,9 @@
 /**
  * Story config object
  */
+import { AiOutlineBarChart, AiOutlineRadarChart } from "react-icons/ai";
 import { FaHome, FaBuilding, FaUserMinus, FaUserPlus, FaUserFriends } from "react-icons/fa";
-import { IoIosSettings } from 'react-icons/io'
+import { IoIosSettings } from "react-icons/io";
 
 export const MENU_ITEMS = [
   {
@@ -12,14 +13,14 @@ export const MENU_ITEMS = [
     items: [],
   },
   {
-    name: "Organization",
-    url: "/",
-    icon: FaBuilding,
+    name: "D3 practice",
+    url: "/d3-practice",
+    icon: AiOutlineRadarChart,
     items: [
       {
-        name: "Create account",
-        url: "/auth/create-account",
-        icon: FaUserPlus,
+        name: "Bar charts",
+        url: "/d3-practice/bar",
+        icon: AiOutlineBarChart,
       },
       {
         name: "Settings",
