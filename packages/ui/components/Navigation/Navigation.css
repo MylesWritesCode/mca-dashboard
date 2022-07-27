@@ -1,15 +1,16 @@
 .nav-drawer {
   display: flex;
+  padding: 1.25rem 0;
   position: relative;
   top: 0;
   left: 0;
   flex-direction: column;
   justify-content: space-between;
   z-index: 100;
-  background: var(--primary);
   height: 100%;
   color: var(--text-secondary);
   user-select: none;
+  background: #ffffffbb;
 }
 
 .nav-drawer * {
@@ -60,7 +61,7 @@
 }
 
 .nav-item:hover {
-  background-color: var(--secondary);
+  background-color: #fff;
 }
 
 .nav-icon {

@@ -22,15 +22,13 @@ interface UserCardProps {
 const USER = PLACEHOLDER.user;
 
 export function UserCard({ user, isOpen, className }: UserCardProps): JSX.Element {
-
   return (
-    <div className="flex h-full w-full flex-col items-center justify-center py-5">
+    <div className="user-card-container flex h-full w-full flex-col items-center justify-center pb-0">
       <div
         className={[
           "user-card-avatar p-1 transition-all shadow-md hover:shadow-2xl active:shadow-sm",
           "w-28 h-28 rounded-full bg-gradient-to-br from-indigo-300 to-emerald-200",
-        ].join(" ")}
-      >
+        ].join(" ")}>
         <img src={user.avatarSrc || USER.avatarSrc} className="h-full w-full rounded-full object-cover" />
       </div>
       {isOpen && (

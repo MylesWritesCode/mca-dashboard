@@ -19,7 +19,7 @@ export default function Layout({ menuItems, children, contentClassName, sx }: La
   const [isOpen, setIsOpen] = useState(true);
 
   useEffect(() => {
-    window.onkeydown = (e: KeyboardEvent) => {
+    window.onkeydown = (e: any) => {
       if (e.code === "KeyB" && (e.ctrlKey || e.metaKey)) {
         e.preventDefault();
         setIsOpen(!isOpen);

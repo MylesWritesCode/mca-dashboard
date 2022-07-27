@@ -14,8 +14,8 @@ export default function App({ Component, pageProps, session }: any) {
 
 function AppLayout({ children }: { children: React.ReactNode }) {
   return (
-    <div className="h-[calc(100vh-72px)]">
-      <Header logo="/logo.png" />
+    <div className="h-full bg-cover" style={{ backgroundImage: "url(/blob-scene-haikei.svg)" }}>
+      <Header logo="/icons/logo.svg" />
       <Layout menuItems={MENU_ITEMS} contentClassName="main-content">
         {children}
       </Layout>
